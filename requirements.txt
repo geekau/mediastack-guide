@@ -1,0 +1,6 @@
+mkdocs
+mkdocs-bootswatch
+mkdocs-minify-plugin
+mkdocs-material
+mkdocs-awesome-pages-plugin
+mkdocs-git-revision-date-localized-plugin
