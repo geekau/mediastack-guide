@@ -1,0 +1,796 @@
+**PART 1 - Introduction**  
+  
+Set up a full VPN encrypted Jellyfin, Jellyseerr, NZBGet, Transmission and \*ARR media stack using this docker-compose guide in approximately 30 - 60 minutes, on Linux, Windows or Synology NAS, and potentially more Docker enabled environments.  
+  
+This guide will cover all the steps needed to initially install and configure a secure docker hosted media environment, with all the applications needed to download torrents and Usenet content which you have a right to use in your media library, and allow you to stream the media via a simple web browser, and even stream the media to your Smart TV / Apple TV apps around the house.  
+  
+This guide ensures all network traffic is securely hidden using a VPN, and encrypting ALL traffic in / out of your home network. It can also be used on your Synology NAS, or any other Linux / Windows / MacOS machine running the Docker environment.  
+  
+With many people owning CDs, DVD, and Blu-ray disks, there is demand to make people's media content more transferrable in their home media systems, so it can be viewed on their personal devices. People also want to be able to put their own home movies / photos onto their media servers, so it too can be freely shared between their devices.  
+  
+**NOTE:** This guide is not about, nor promotes, the illegal piracy of digital media content from their respected / licensed owners.  
+  
+**NOTE:** It is highly recommended not adding any of your own media files or libraries into the Docker folders / applications, until after setting up the entire media stack, then you can add your media in a structured manner.  
+  
+**TLDR - Short Version For Those People That Really Really Know What They're Doing:**  
+
+1.  [Download Docker Compose Media Stack - YAML file](https://github.com/geekau/media-stack/blob/main/docker-compose-media-stack.yaml)
+2.  [Download Docker Compose Media Stack - Environment file](https://github.com/geekau/media-stack/blob/main/docker-compose-media-stack.env)
+3.  Update ENV file with docker / local subnet details
+4.  Update ENV file with local host folder details
+5.  Update ENV file with PUID / PGID / TZ detail
+6.  Update ENV file with VPN details
+7.  Setup subfolders for apps / categories - commands below
+8.  Deploy docker-compose file
+9.  Configure applications as needed
+10.  Come back to this guide because you missed something ![:)](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 "Smile    :)")
+
+For those that are not super gurus and fully understand all of these applications already, continue with the rest of the guide.  
+  
+  
+  
+**PART 2 - Docker Media Applications and Their Roles / Functions**  
+  
+This guide will focus on Jellyfin and the \*ARR media libraries in order to manage your media libraries and make your media accessible across your home network and devices.  
+  
+The Gluetun docker container will establish a secure VPN tunnel to your choice of VPN service provider, and then it will force all of the other docker applications in the stack to use the VPN tunnel, if they need to communicate out to the Internet. If Gluetun drops the VPN tunnel at any time, for any reason, then all Internet traffic between the docker applications and the Internet are blocked until the VPN connection is re-established. This provides encrypted security to all data transfers, and assurance that unencrypted data will not be sent if there is a network error.  
+  
+All local data traffic between the applications in the docker stack, use the basic HTTP / unencrypted protocol, as the data in not going out to the Internet. This saves a considerable amount of configuration of digital certificates on portals / data traffic which will only be used internally.  
+  
+**NOTE:** All network traffic going in and out of the **DOCKER\_SUBNET** goes through the Gluetun security container. Some guides advise to only secure the network traffic for the download clients, this guide takes a more secure approach and secures ALL network going out to the Internet.  
+  
+The table below shows the docker applications which will be installed, their default port numbers and what function they perform:  
+  
+  
+
+Portal URL:​
+
+Application:​
+
+Role / Function:​
+
+No Portal -->
+
+Gluetun
+
+VPN Client - Supports extensive Internet providers and protocols
+
+[http://localhost:6789](http://localhost:6789)
+
+NZBGet
+
+Download client - Used to download NZB from Usenet groups
+
+[http://localhost:9091](http://localhost:9091)
+
+Transmission
+
+Download Client - Used to download torrent files
+
+[http://localhost:8096](http://localhost:8096)
+
+Jellyfin
+
+Media Library / Player - Organise, manage, and share digital media files to networked devices
+
+[http://localhost:5055](http://localhost:5055)
+
+Jellyseerr
+
+Request management and media discovery tool (Overseerr Fork for Jellyfin)
+
+[http://localhost:9696](http://localhost:9696)
+
+Prowlarr
+
+Index and Search Management for "\*ARR" applications below
+
+[http://localhost:8686](http://localhost:8686)
+
+Lidarr
+
+Library Manager for Music content management
+
+[http://localhost:8090](http://localhost:8090)
+
+Mylar3
+
+Library Manager for Comic content management
+
+[http://localhost:7878](http://localhost:7878)
+
+Radarr
+
+Library Manager for Movie content management
+
+[http://localhost:8787](http://localhost:8787)
+
+Readarr
+
+Library Manager for Book / Epub content management
+
+[http://localhost:8989](http://localhost:8989)
+
+Sonarr
+
+Library Manager for TV Show / Series / Anime content management
+
+[http://localhost:6969](http://localhost:6969)
+
+Whisparr  
+(see note)
+
+Library Manager for Adult movie content management
+
+  
+**NOTE:** This guide also includes Whisparr which is a Library Manager for movies from the Adult entertainment industry. It is included as its part of the \*ARR product family, we don't judge what people do / don't watch, but we do urge the use of access controls / security on adult content, so minors and other groups are not exposed to this content if they are not of legal age under your regional laws.  
+  
+In order to deploy the docker-compose file and host the applications, Docker must be installed as a prerequisite on your Linux, Windows, or Synology hosting environment. The following guide will help set up your Docker environment, and help manage the applications once they are installed:  
+  
+[Tutorial - Ultimate Starter - Docker, Portainer, Portainer Agents, and Auto-Updating Everything with Watchtower](https://www.synoforum.com/resources/ultimate-starter-docker-portainer-portainer-agents-and-auto-updating-everything-with-watchtower.183/)  
+  
+**NOTE:** This guide assumes you have installed Docker, and Portainer for managing your docker environment.  
+  
+  
+  
+**PART 3 - Configuring the Docker-Compose Environment Settings**  
+  
+This implementation will use a docker-compose configuration file and an accompanying environment file, containing all of the variables for the docker-compose file, so it can be customised to your individual requirements. This allows complex docker builds to be rapidly deployed over and over with relative ease, and minimal input. In fact, it is quicker and easier to delete all of the docker applications and redeploy it again, rather than trying to do any fault finding when errors occur. It is also a simply way to upgrade application versions, by deleting the entire docker stack, and redeploying again using updated images.  
+  
+[**Download Docker Compose Media Stack - Yaml file**](https://github.com/geekau/media-stack/blob/main/docker-compose-media-stack.yaml)  
+[**Download Docker Compose Media Stack - Environment file**](https://github.com/geekau/media-stack/blob/main/docker-compose-media-stack.env)  
+  
+Below are some of the planning details / settings you need to consider, which are located inside the Environment File - they should be updated to suit your needs.  
+  
+**Define Docker Stack and Local Network Details:**  
+  
+You can change the subnet / gateway of the network inside docker where these applications will be deployed, if you are not experienced with docker, then leave the subnet / gateway settings alone.  
+  
+Put your internal home network details into the **LOCAL\_SUBNET** variable, this will tell the VPN client to allow local computers on this network, they are allowed to access each of the applications inside the secure docker stack.  
+  
+**DOCKER\_SUBNET**\=172.28.10.0/24  
+**DOCKER\_GATEWAY**\=172.28.10.1  
+**LOCAL\_SUBNET**\=192.168.1.0/24 <-- your local / home network subnet details here  
+  
+Once the docker stack has been created and the VPN connection established, Gluetun also allows all computers on the local network, to piggy back off the VPN connection and send all web traffic from your local computer through the secure tunnel. You can change your web proxy to the IP address of your Docker host, using port 8888. A point to remember, if your Docker stack is disabled / turned off, then your web browsers will stop working until you restart the Docker host / stack, or remove the proxy setting in your web browsers.  
+  
+**Set up VPN Connection for Entire Docker Stack:**  
+  
+Its a mandatory requirement you have an active VPN connection, otherwise Gluetun will not establish a VPN tunnel, and there will be no data forwarded to the Internet for the entire docker stack.  
+  
+A full list of supported VPN / Wireguard providers can be found on the Gluetun wiki on the right hand side menu: [Home · qdm12/gluetun Wiki](https://github.com/qdm12/gluetun/wiki)  
+  
+Gluetun also supports custom VPN configurations if you have alternate VPN setups, the docker-compose file has the necessary variables if you need to set up a custom VPN connection, including Wireguard.  
+  
+**VPN\_SERVICE\_PROVIDER**\=VPN provider name  
+**VPN\_USERNAME**\=<username from VPN provider>  
+**VPN\_PASSWORD**\=<password from VPN provider>  
+**SERVER\_REGION**\=<regions supported by VPN provider>  
+  
+**Main Folders For Media and Docker Persistent Configurations:**  
+  
+This is the most important component of your media server, were data is going to be stored, and how all the different Docker applications are going to access the different media / configuration files.  
+  
+When you set up folders / volumes on the host computer, you need to map them in the Docker configuration, so the applications can access the data. The docker-compose file has already set up all the correct folder mappings between the host computer and docker applications by using environment variables in the YAML file, however you will need to update the variables below so the the docker-compose build knows which folders to map.  
+  
+When considering media storage, you also need to consider files are going to be downloaded by the Docker applications and moved between folders, which are actually being moved by the underlaying host computer. So you need to consider what happens when moving a 10GB file between two folders inside different Docker applications, may in fact be getting transferred to different HDDs / Filesystems / Volumes, on the host system - this can greatly slow down the performance of disk operations and docker performance.  
+  
+It is highly recommended the locations you choose for the MEDIA, TORRENTS, USENET, and WATCH folders, are located on the same HDD / Volume / Partition on the local host computer. The Docker stack has been carefully planned, and as long as these host folders are using these principles, then the Docker application will take advantage of Atomic Moves (instant) inside the containers.  
+  
+**FOLDER\_FOR\_DOCKER\_DATA**\= # Folder to store persistent configuration settings for all the docker applications  
+**FOLDER\_FOR\_MEDIA**\= # Folder where root of media library exists  
+**FOLDER\_FOR\_TORRENTS**\= # Folder where all torrent files will be downloaded (Transmission)  
+**FOLDER\_FOR\_USENET**\= # Folder where all NZB Usenet files will be downloaded (NZBGet)  
+**FOLDER\_FOR\_WATCH**\= # Folder to place NZB and Torrent files for manual downloading  
+  
+The following table provides examples on how the folders located on the Host computer, will be mapped to the folders inside the Docker containers.  
+  
+  
+
+Environment Variable:​
+
+Synology Example:​
+
+Linux Example:​
+
+Windows Example:​
+
+Docker Path:​
+
+FOLDER\_FOR\_DOCKER\_DATA
+
+/volume1/docker
+
+/opt/docker
+
+D:\\Docker
+
+Differs by container
+
+FOLDER\_FOR\_MEDIA
+
+/volume1/media
+
+/opt/media
+
+D:\\Media
+
+/data/media
+
+FOLDER\_FOR\_TORRENTS
+
+/volume1/data/torrents
+
+/opt/torrents
+
+D:\\Torrents
+
+/data/torrents
+
+FOLDER\_FOR\_USENET
+
+/volume1/data/usenet
+
+/opt/usenet
+
+D:\\Usenet
+
+/data/usenet
+
+FOLDER\_FOR\_WATCH
+
+/volume1/data/watch
+
+/opt/watch
+
+D:\\Watch
+
+/data/watch
+
+  
+You need to define your own folders for Synology / Linux / Windows, however the locations you define in the variables, will be mapped to the docker application as per the Docker Path column.  
+  
+**NOTE:** It is recommended the folders you use on the host computer, remain empty until completing the entire guide and setting up all the applications. So if you plan to use folder names that current have media, you should rename the old folders, create new ones, then copy the media into the new folders after completing this guide.  
+  
+  
+  
+**PART 4 - Folders for Media Categories and Docker Applications**  
+  
+Now that you have identified the folders where you are going to locate your media types, download files, and docker configuration settings, you need to set up the sub-folders in each of these areas, so they are consistent between the host computer and each of the docker containers.  
+  
+Synology Users: Ideally you should create these folders in "File Station", but it will take a while to do them individually, so you can do them using SSH, logged into the Synology OS. Refer to the Docker / Portainer guide if needed, and minimise the amount of unnecessary commands executed while in SSH session: [Tutorial - Ultimate Starter - Docker, Portainer, Portainer Agents, and Auto-Updating Everything with Watchtower](https://www.synoforum.com/resources/ultimate-starter-docker-portainer-portainer-agents-and-auto-updating-everything-with-watchtower.183/)  
+  
+  
+**FOLDER\_FOR\_DOCKER\_DATA Sub-Folders:**  
+  
+These folders will hold all the persistent configuration settings for each of the docker containers being deployed in the docker-compose file. If one of the containers / applications become corrupt, you can delete it and redeploy it using the same configuration information. If you want to reset the configuration for one of the applications, you just need to delete the contents of the respective folder and restart the container.  
+  
+Synology NAS Users: Make sure a suitable volume / share is created using DSM before executing by SSH.  
+
+Code:
+
+    cd /volume1/docker
+    pwd          # check you're in correct folder before next command
+    sudo mkdir gluetun jellyfin jellyseerr lidarr mylar nzbget prowlarr qbittorrent radarr readarr sabnzbd sonarr transmission whisparr
+
+  
+Linux Users:  
+
+Code:
+
+    cd /opt/docker
+    sudo mkdir gluetun jellyfin jellyseerr lidarr mylar nzbget prowlarr qbittorrent radarr readarr sabnzbd sonarr transmission whisparr
+
+  
+Windows Users:  
+
+Code:
+
+    cd D:\Docker
+    mkdir gluetun,jellyfin,jellyseerr,lidarr,mylar,nzbget,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,transmission,whisparr
+
+  
+  
+**FOLDER\_FOR\_MEDIA **Sub-Folders**:**  
+  
+Each of the media subfolders will store your media based on the media category... i.e. Anime in the "anime" folder, and Movies in the "movies" folder etc... Each of the \*ARR media libraries which are responsible for managing media types, will be linked to that media folder inside the container.  
+  
+i.e. Radarr will be linked to managed the movies located in the "/data/movies" folder, which will be mapped back to the "movies" sub-folder inside FOLDER\_FOR\_MEDIA on the host computer.  
+  
+Synology NAS Users: Make sure a suitable volume / share is created using DSM before executing by SSH.  
+
+Code:
+
+    cd /volume1/media
+    pwd          # check you're in correct folder before next command
+    sudo mkdir adult anime audio books comics movies music photos podcasts series software
+
+  
+Linux Users:  
+
+Code:
+
+    cd /opt/media
+    sudo mkdir adult anime audio books comics movies music photos podcasts series software
+
+  
+Windows Users:  
+
+Code:
+
+    cd D:\Media
+    mkdir adult,anime,audio,books,comics,movies,music,photos,podcasts,series,software
+
+  
+  
+**FOLDER\_FOR\_TORRENTS **Sub-Folders**:**  
+  
+The sub-folders inside the Torrent folder, is to handle category downloading by Transmission.  
+  
+Synology NAS Users: Make sure a suitable volume / share is created using DSM before executing by SSH.  
+
+Code:
+
+    cd /volume1/data/torrents
+    pwd          # check you're in correct folder before next command
+    sudo mkdir adult anime audio books comics movies music podcasts prowlarr series software
+
+  
+Linux Users:  
+
+Code:
+
+    cd /opt/torrents
+    sudo mkdir adult anime audio books comics movies music podcasts prowlarr series software
+
+  
+Windows Users:  
+
+Code:
+
+    cd D:\Torrents
+    mkdir adult,anime,audio,books,comics,movies,music,podcasts,prowlarr,series,software
+
+  
+  
+**FOLDER\_FOR\_USENET **Sub-Folders**:**  
+  
+The sub-folders inside the Usenet folder, is to handle category downloading by NZBGet.  
+  
+Synology NAS Users: Make sure a suitable volume / share is created using DSM before executing by SSH.  
+
+Code:
+
+    cd /volume1/data/usenet
+    pwd          # check you're in correct folder before next command
+    sudo mkdir adult anime audio books comics movies music podcasts prowlarr series software incomplete intermediate queue tmp scripts
+
+  
+Linux Users:  
+
+Code:
+
+    cd /opt/usenet
+    sudo mkdir adult anime audio books comics movies music podcasts prowlarr series software incomplete intermediate queue tmp scripts
+
+  
+Windows Users:  
+
+Code:
+
+    cd D:\Usenet
+    mkdir adult,anime,audio,books,comics,movies,music,podcasts,prowlarr,series,software,incomplete,intermediate,queue,tmp,scripts
+
+  
+  
+**FOLDER\_FOR\_WATCH **Sub-Folders**:**  
+  
+Nothing... there are no sub-folders needed for the Watch folder, however whenever you place a .nzb or .torrent file into this folder, it will automatically be picked up by either NZBGet or Transmission and commence downloading the files manually.  
+  
+Once manual .nzb and .torrent files have been downloaded by NZBGet and Transmission, they will be saved in the FOLDER\_FOR\_USENET and FOLDER\_FOR\_TORRENTS respectively. If they are media files, they will not be imported into any of the \*ARR media libraries / Jellyfin automatically, they will need to be manually imported into the media managers / Jellyfin.  
+  
+The Watch folder and manual downloading will help users who want to download none media centre oriented files, such as torrents for Ubuntu ISO files etc... then the download clients will do all the work of pulling in the files for you.  
+  
+  
+**Docker Application Folder Structure:**  
+  
+You have now created the following folder structure inside your Docker containers, which will be mapped to the appropriate folders / files on your host computer, which were specified in the "FOLDER\_FOR" variables.  
+  
+  
+
+> ├── data  
+> ⠀⠀⠀⠀⠀├── media  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── adult  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── photos  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── podcasts  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── software  
+> ⠀⠀⠀⠀⠀├── torrents  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── adult  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── podcasts  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── prowlarr  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── software  
+> ⠀⠀⠀⠀⠀├── usenet  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── adult  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── incomplete  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── intermediate  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── podcasts  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── prowlarr  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── queue  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── scripts  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── software  
+> ⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── tmp  
+> ⠀⠀⠀⠀⠀└── watch
+> 
+> Click to expand...
+
+  
+  
+  
+**PART 5 - File Permissions Between Docker Containers and Host Computer**  
+  
+One of the biggest issues new users face with using Docker and accessing files on the host computer, is the inability of the container applications accessing folders / files due to incorrect permissions. If the container has incorrect permissions to the local filesystem, then access will be denied, and the container applications do not function as expected.  
+  
+To overcome this issue, Docker can access the folders / files of the local host computer, as a specific user and group which exists on the local system, however its imperative the local user and group which is specified in the ENV file configuration, actually exists and has the correct permissions to the folder and files on the host.  
+  
+For Synology / Linux users, follow the earlier guide on setting up Docker / Portainer, and create the "docker" user as documented: [Tutorial - Ultimate Starter - Docker, Portainer, Portainer Agents, and Auto-Updating Everything with Watchtower](https://www.synoforum.com/resources/ultimate-starter-docker-portainer-portainer-agents-and-auto-updating-everything-with-watchtower.183/)  
+  
+When logged into the terminal on Linux and Synology (via SSH), run the following command:  
+  
+
+Code:
+
+    sudo id docker
+
+  
+This will return an entry similar to:⠀⠀⠀⠀**uid=131(docker) gid=123(docker) groups=123(docker)**  
+  
+This means the "docker" user has User ID of 131, Group ID of 123, and is in the following groups... just 123, which is docker. If you convert the uid and gid to PUID and PGID respectively, your config should look like this:  
+  
+**PUID**\=131  
+**PGID**\=123  
+**UMASK**\=0002 <-- Don't change this unless you know what you're doing  
+**TIMEZONE**\=Australia/Brisbane  
+  
+Update your local Timezone using this list: [List of tz database time zones - Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)  
+  
+**NOTE:** PUID / PGID will vary from system to system, you can't use Docker configurations from the Internet and expect them to work, unless you adjust the PUID / PGID values to match your system.  
+  
+  
+**File Permissions for Synology NAS Users:**  
+  
+Synology DSM has a very complex set of permissions and folder attributes underneath the DSM web interface, effectively where the shares are located in "File Station", the the underlying folder permissions are "777" (and more), which you don't want to mess with at the command line.  
+  
+
+Code:
+
+    drwxrwxrwx+  1 root       root             436 Jan 1 00:10 /volume1/docker
+
+  
+This means the root user and root group own the /volume1/docker share, however all of the folders and files have 777 permissions inherited recursively throughout the sub-folder structure.  
+  
+This might sound a bit complex, but the key point is just to use the DSM File Station web interface, and add the "docker" user to either the main shared folder, such as "/volume1/docker", or just to the selective sub-folders within a shared folder, such as "/volume1/data/torrents", "/volume1/data/usenet", and "/volume1/data/watch". This would mean the "docker" user only has access to the folders (and sub-folders) of torrents, usenet, and watch, inside the shared folder /volume1/data.  
+  
+Ultimately, you need to ensure the "docker" user has read/write access to whatever folders you are using on the Synology NAS, using DSM Portal.  
+  
+  
+**File Permissions for Linux OS Users:**  
+  
+When you created the "docker" user for Linux, you also created a "docker" group. Additionally, you added your own Linux user account into the "docker" group, so you want to apply "docker:docker" permissions to folders for the correct access permissions to filter through the file structure.  
+  
+If you want to be security conscience and only allow members of the "docker" group (and running docker applications) access to for docker and media folders, you can execute the following commands, which also turn on the SetGid bit for the group, so any new folder / file created inside these folders will have full permissions to anyone in the "docker" group; so being a member of the "docker" group is key.  
+  
+
+Code:
+
+    sudo chmod -R u+rwx,g+rws,o+rx,o-w /opt/docker /opt/media /opt/usenet /opt/torrents /opt/watch
+    sudo chown -R docker:docker /opt/docker /opt/media /opt/usenet /opt/torrents /opt/watch
+
+  
+
+Code:
+
+    drwxrwsr-x+  15 docker       docker             4096 Jan 01 00:10 /opt/docker
+    drwxrwsr-x+  12 docker       docker             4096 Jan 01 00:10 /opt/media
+    drwxrwsr-x+  12 docker       docker             4096 Jan 01 00:10 /opt/torrents
+    drwxrwsr-x+  17 docker       docker             4096 Jan 01 00:10 /opt/usenet
+    drwxrwsr-x+   2 docker       docker            53248 Jan 01 00:10 /opt/watch
+
+  
+  
+If you don't share your Linux host computer with other users and you are having problems with access and permissions, you can always using the following commands, which allow everyone to have absolute access:  
+  
+
+Code:
+
+    sudo chmod -R 777 /opt/docker /opt/media /opt/usenet /opt/torrents /opt/watch
+    sudo chown -R docker:docker /opt/docker /opt/media /opt/usenet /opt/torrents /opt/watch
+
+  
+**NOTE:** If you ever experience issues with file / permission access issues, then rerun both the "chmod" and "chown" commands above, and restart your docker media stack.  
+  
+  
+**File Permissions for Windows OS Users:**  
+  
+Is this even needed, does Docker run as system or local user account? - needs testing.  
+  
+  
+  
+**PART 6 - Deploying the Docker Compose Media Stack**  
+  
+  
+When you deploy the docker-compose build, it will download 12 Docker images from the public DockerHub repository before building the Docker containers and secure network. As its the first time you've deployed the docker-compose stack, it will take a few minutes to download the necessary Docker images. If you need to redeploy the docker-compose due to customisation, or fixing a fault, the containers will be instantly, as the images will still be available on your host computer.  
+  
+You can deploy the docker-compose build two ways, either via the Linux terminal (PowerShell for Windows), or via Portainer if you installed it as part of the earlier Docker / Portainer guide: [Tutorial - Ultimate Starter - Docker, Portainer, Portainer Agents, and Auto-Updating Everything with Watchtower](https://www.synoforum.com/resources/ultimate-starter-docker-portainer-portainer-agents-and-auto-updating-everything-with-watchtower.183/)  
+  
+If you have issues loading the YAML file, whether its corrupt, or you've made changes, you can copy and paste the entire YAML file contents to an online YAML Validation Tool, and it will advise if, and where, there are errors in the YAML code, so you can fix it.  
+  
+**Online YAML Validator:** [Validate YAML - Online YAML Tools](https://onlineyamltools.com/validate-yaml)  
+  
+**NOTE:** Don't add any of your current media files into the folders you created above, we'll add all the media at the end in a structured process / format.  
+  
+  
+**Deployment via Synology SSH / Linux Terminal / Windows** **PowerShell****:**  
+  
+Deploying the docker-compose media stack is exactly the same process using Synology SSH / Linux Terminal / Windows PowerShell, as the only difference between these systems is the paths for each Operating System, however we've added the paths for the relevant Operating Systems into the Environment file, so Docker will just pick this up during the build and map the local folders you've already declared.  
+  
+Execute the following command to build the docker compose media stack:  
+  
+
+Code:
+
+    docker-compose --file docker-compose-media-stack.yaml --project-name media_stack --env-file docker-compose-media-stack.env up
+
+  
+You will notice all of the images being downloaded from DockerHub, then all of the containers will display their log output on the screen, which is an easy way to identify if any errors occur.  
+  
+Press "CTRL+ C" to exit the docker console, if you're happy there were no errors and you want it to run in "detached mode" (i.e. in the background), the run the command again with the "-d" (detached) argument.  
+  
+
+Code:
+
+    docker-compose --file docker-compose-media-stack.yaml --project-name media_stack --env-file docker-compose-media-stack.env up -d
+
+  
+NOTE: While you now have a running media stack in Docker, you will need to manage all changes / executions from the terminal window / PowerShell from now on, and that's OK, however if you want the flexibility and ease of use to change / save settings in an easy to use GUI, then Portainer may be the way to load and manage your docker compose media stake.  
+  
+  
+**Deployment via Portainer GUI on Synology / Linux / Windows:**  
+  
+Deploying the docker-compose media stack via Portainer, will be exactly the same on Synology / Linux / Windows, assuming Portainer has already been installed on the Docker Host, and the file paths have been updated in the ENV file for each respective Operating System.  
+  
+\- Open Portainer at: [https://localhost:9443](https://localhost:9443)  
+  
+\- Connect to your local Docker environment in the Portainer portal, then select "Stack" in the left menu, then "Add Stack" on the right side of the page.  
+  
+\- Stack Name: "media\_stack" <-- Must be lowercase and only use underscores or hyphens  
+  
+\- Select: "Upload" -- Press "Upload File", then select the "docker-compose-media-stack.yaml" file and save.  
+  
+\- Select: "Load Variables From .ENV File", then select the "docker-compose-media-stack.env" file and save.  
+  
+\- "Enable access control": Disable this if you do not have multiple users in Portainer (Optional)  
+  
+\- Select "Deploy The Stack".  
+  
+\- Go make a coffee if this is the first time downloading the images, it will take a few minutes.  
+  
+  
+**Configuration Persistence for Docker Containers:**  
+  
+Great care has been taken to make sure all of the configuration settings in each of the docker containers, have been mapped into their individual folders in the **FOLDER\_FOR\_DOCKER\_DATA** location; if you check these folders, they are now full and contained the configuration of each application.  
+  
+This means you can completely delete all Docker containers, Docker images, uninstall the Docker application, and then rebuild everything again, and as long as you use the same .YAML and .ENV files with their settings, then your whole media stack will be rebuilt and operate exactly how is was running prior to you stopping it.  
+  
+This also allows you to easily migrate to new servers / host computers, fire up the docker compose media stack, and be up and running again as soon as the docker images have been downloaded.  
+  
+Back up the **OLDER\_FOR\_DOCKER\_DATA** sub-folders to save you rebuilding after a system failure / migration.  
+  
+  
+**Test Redeploying Your Docker Compose Media Stack:**  
+  
+Now is the best time to validate your docker compose configuration, open some of the applications using the links at the very top to make sure they're up and running, then:  
+  
+\- If you used docker-compose command at the terminal / PowerShell, go to the .ENV file, then make the following change, and run the docker-compose up command again.  
+  
+
+Code:
+
+    TP_THEME=dracula
+
+  
+\- If you used Portainer, go to "Stacks" -- "media\_stack" -- "Editor", find "TP\_THEME" down the bottom in the variables, and change the value to "dracula", then select "Actions: Update The Stack".  
+  
+Once you have redeployed the docker-compose via the terminal / Portainer, go back into the applications using the links up the top again, and check that your chance has occurred.  
+  
+**NOTE:** The TP\_THEME is used in all docker containers, except Jellyfin, Jellyseerr, and Whisparr.  
+  
+  
+  
+  
+**PART 7 - Configuring Your Torrent / NZB Download Clients  
+  
+  
+Validating The Security of Your VPN Network Connection:**  
+  
+As the Gluetun container is providing full VPN encryption for the entire Docker stack, its important to first check the VPN is providing obscurity for your Internet connection.  
+  
+From any computer in your network, you will be able to see what the IP Address for your Internet connection is by going to [ifconfig.io](http://ifconfig.io)  
+  
+Now open Portainer, and go to the Transmission and NZBGet containers and connect to "Console", then type the following into the terminal window:  
+  
+
+Code:
+
+    curl ifconfig.io
+
+  
+This will show the IP Address being used by your Transmission and NZBGet containers, which is being provided by the Gluetun VPN connection.  
+  
+You can check the location of the IP Address at [IP Location](https://iplocation.com)  
+  
+**NOTE:** If the Gluetun container is not running, or does not have an active VPN connection, then no traffic from the other containers (Transmission / NZBGet etc…) will be allowed to go out to the Internet; it is all blocked unless a secure VPN tunnel is active.  
+  
+**NOTE:** If you are using an active VPN account and are not able to secure a VPN connection, you should seek assistance before progressing. Synology users may need to check VPN / TUN prerequisite details in this article, and seek guidance from the Synology community: [Synology prerequisites · qdm12/gluetun Wiki](https://github.com/qdm12/gluetun/wiki/Synology-prerequisites)  
+  
+  
+**Transmission - Torrent Download Client:**  
+  
+Transmission connects to trackers, seeders and peers in the torrent network in order to access content which has been uploaded to torrent groups.  
+  
+1\. Open Transmissions Portal: [http://localhost:9091](http://localhost:9091)  
+  
+2\. Press the "Spanner" icon in the bottom left corner to open "Preferences Menu"  
+  
+3\. Torrents Tab - Downloading to… Change this to: **/data/torrents**  
+  
+4\. You can adjust Torrent, Speed, Peer, and Network settings in this section. Only adjust these if you know what you're doing. Don't change the download path or peering port, as these a relative to the Transmission Docker container, not your local file or network settings - adjust these in the ENV docker-compose file.  
+  
+5\. If you need to manually download torrent files, they can be placed into your **FOLDER\_FOR\_WATCH** folder, and Transmission will start to download the file.  
+  
+6\. Completed manual file downloads will be placed into **FOLDER\_FOR\_TORRENT** folder.  
+  
+  
+**NZBGet - Usenet Download Client:**  
+  
+1\. Open NZBGet Portal: [http://localhost:6789](http://localhost:6789)  
+
+*   Default Username: nzbget
+*   Default Password: tegbzn6789
+
+2\. Go to the Settings page: [http://localhost:6789/#ConfigTab](http://localhost:6789/#ConfigTab)  
+  
+3\. "PATHS" menu, change these paths only:  
+
+*   MainDir: /data/usenet
+*   DestDir: /data/usenet
+*   NzbDir: /data/watch
+
+  
+4\. "NEWS-SERVERS" menu: Use this page to configure all your Usenet News Servers - Gaining access to Usenet News Servers is out of scope for this guide - sorry.  
+  
+5\. "SECURITY" menu: Leave these as default. However, you can empty both ControlUsername and ControlPassword fields if you want to remove username and password prompts each time you access the NZBGet portal.  
+  
+6\. "CATEGORIES" menu: DELETE ALL THE DEFAULT CATEGORIES  
+  
+7\. Add the following new category names, destdirs, and aliases for each of the "ARR" applications:  
+  
+**NOTE:** They must be in LOWERCASE only.  
+  
+  
+
+**ARE THESE THE CORRECT CATEGORIES FOR STARTERS?  
+  
+ARE THE CATEGORY ALIASES ALLOCATED CORRECTLY?**​
+
+  
+  
+  
+
+Category.Name:​
+
+Category.DestDir​
+
+Category.Aliases​
+
+adult
+
+adult
+
+xxx,\*hentai
+
+anime
+
+anime
+
+audio
+
+audio
+
+audible
+
+books
+
+books
+
+epub
+
+comics
+
+comics
+
+manga
+
+movies
+
+movies
+
+music
+
+music
+
+podcasts
+
+podcasts
+
+prowlarr
+
+prowlarr
+
+series
+
+series
+
+tv\*
+
+software
+
+software
+
+console,pc
+
+  
+**NOTE:** You should now have 11 categories.... all in lowercase.  
+  
+8\. "RSS FEEDS" menu: Leave these as default  
+  
+9\. "INCOMING NZBS" menu: Change "NzbDirFileAge" to 5 seconds  
+  
+11\. "DOWNLOAD QUEUE" menu: Leave these as default  
+  
+12\. "CONNECTION" menu: Leave these as default  
+  
+13\. "LOGGING" menu: Leave these as default  
+  
+14\. "SCHEDULER" menu: Leave these as default  
+  
+15\. "CHECK AND REPAIR" menu: Leave these as default  
+  
+16\. "UNPACK" menu: Leave these as default  
+  
+17\. "EXTENSION SCRIPTS" menu: Leave these as default  
+  
+18\. Save all your changes and allow NZBGet to restart  
+  
+  
+.
