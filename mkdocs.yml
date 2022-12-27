@@ -25,9 +25,9 @@ nav:
     - Installing Apps Individually: installation/individualinstall.md
     - Installing Apps Collectively: installation/collectiveinstall.md
     - Configuring Environment:      installation/environment.md
-    - installation/df
+    - installation/deletethis.md
   - Contributing to MediaStack:
-    - 
+    - testing.md
     - contributing.md
     - Download: download.md
     - environment.md
@@ -36,9 +36,7 @@ nav:
 
 theme:
   name: material
-  icon: fontawesome/brands/git
-  repo: fontawesome/brands/git-alt
-
+  
   palette: 
   - scheme: slate
     toggle:
