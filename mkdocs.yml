@@ -1,1 +1,29 @@
 site_name: MediaStack.Guide
+site_url: https://example.com/
+
+nav:
+    - Home: index.md
+    - About: about.md
+
+theme:
+  name: material
+
+  palette: 
+  - scheme: slate
+    toggle:
+      icon: material/brightness-7 
+      name: Switch to dark mode
+  - scheme: default
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+
+  custom_dir: overrides
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+
