@@ -1,8 +1,9 @@
 mkdocs
-mkdocs-bootswatch
-mkdocs-minify-plugin
-mkdocs-material
 mkdocs-awesome-pages-plugin
-mkdocs-git-revision-date-localized-plugin
+mkdocs-bootswatch
 mkdocs-git-committers-plugin-2
+mkdocs-git-revision-date-localized-plugin
 mkdocs-glightbox
+mkdocs-material
+mkdocs-minify-plugin
+mkdocs-redirects

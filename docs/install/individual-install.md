@@ -1,3 +1,6 @@
+# Individual Installation
+
+
 **NOTE: This is PAGE 2 of** [**Ultimate Starter - Jellyfin, Jellyseerr, NZBGet, Torrents and \*ARR Media Stack**](https://www.synoforum.com/resources/ultimate-starter-page-1-jellyfin-jellyseerr-nzbget-torrents-and-arr-media-library-stack.184/)  
   
   

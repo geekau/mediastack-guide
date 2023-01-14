@@ -1,8 +1,13 @@
 .md-grid {
-    max-width: 1440px; 
+    max-width: 1840px; 
 }
+
 .md-typeset .admonition,
 .md-typeset details {
   border-width: 2;
   border-left-width: 8px;
+}
+
+.md-header__button.md-icon {
+  color: black;
 }

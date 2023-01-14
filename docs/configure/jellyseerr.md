@@ -1,0 +1,1 @@
+# Jellyseerr - Media Request Manager

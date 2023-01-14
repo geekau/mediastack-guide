@@ -1,3 +1,8 @@
+# Collective Installation
+
+
+
+
 # Docker Media Stack
 >You can download these files easily, by going to [https://github.com/geekau/media-stack](https://github.com/geekau/media-stack) then selecting "**Code**" --> "**Download Zip**".
 
