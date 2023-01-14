@@ -5,3 +5,4 @@ mkdocs-material
 mkdocs-awesome-pages-plugin
 mkdocs-git-revision-date-localized-plugin
 mkdocs-git-committers-plugin-2
+mkdocs-glightbox

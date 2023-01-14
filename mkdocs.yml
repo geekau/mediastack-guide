@@ -3,28 +3,30 @@
 site_name: MediaStack.Guide
 site_url: https://mediastack.guide/
 
-repo_url: https://github.com/geekau/media-stack
 repo_name: media-stack
+repo_url: https://github.com/geekau/media-stack
 
 plugins:
   - search
-  - git-committers:
-      repository: geekau/media-stack
-      branch: main
+  - glightbox
+#  - git-committers:
+#      repository: geekau/media-stack
+#      branch: main
+
 
 nav:
   - Home: index.md
   - Introduction:
-    - Intro to MediaStack:          starting/intro.md
-    - Applications and Their Roles: starting/applicationroles.md
-    - Installing Docker on Host OS: starting/docker.md
-    - Docker Filesystems / Folders: starting/filesystems.md
-    - Download Docker Build Files:  starting/download.md
+    - Intro to MediaStack:          intro/intro.md
+    - Applications and Their Roles: intro/applicationroles.md
+    - Installing Docker on Host OS: intro/docker.md
+    - Docker Filesystems / Folders: intro/filesystems.md
+    - Download Docker Build Files:  intro/download.md
   - Installing Docker Apps:
-    - Configuring Environment:      installation/environment.md
-    - Installing Apps Individually: installation/individualinstall.md
-    - Installing Apps Collectively: installation/collectiveinstall.md
-    - Configuring Environment:      installation/environment.md
+    - Configuring Environment:      install/environment.md
+    - Installing Apps Individually: install/individualinstall.md
+    - Installing Apps Collectively: install/collectiveinstall.md
+    - Configuring Environment:      install/environment.md
     - installation/deletethis.md
   - Contributing to MediaStack:
     - testing.md
@@ -36,31 +38,83 @@ nav:
 
 theme:
   name: material
+  icon:
+    repo: fontawesome/brands/github
+    admonition:
+      note:     fontawesome/solid/note-sticky
+      abstract: fontawesome/solid/book
+      info:     fontawesome/solid/circle-info
+      tip:      fontawesome/solid/bullhorn
+      success:  fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning:  fontawesome/solid/triangle-exclamation
+      failure:  fontawesome/solid/bomb
+      danger:   fontawesome/solid/skull
+      bug:      fontawesome/solid/robot
+      example:  fontawesome/solid/flask
+      quote:    fontawesome/solid/quote-left
   
-  palette: 
-  - scheme: slate
+  palette:
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: blue
+    accent: red
     toggle:
-      icon: material/brightness-7 
-      name: Switch to Light Mode
-  - scheme: default
-    toggle:
-      icon: material/brightness-4
+      icon: material/lightbulb
       name: Switch to Dark Mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: yellow
+    accent: red
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to Light Mode
+
     features:
+    - content.tabs.link
     - navigation.instant
     - navigation.tracking
+    - navigation.top
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
-    - navigation.prune
-    - navigation.indexes
+#    - navigation.prune
+#    - navigation.indexes
     - toc.follow
     - toc.integrate
-    - navigation.top
     - search.suggest
     - search.highlight
     - header.autohide
+
+markdown_extensions:
+  - admonition
+  - pymdownx.betterem
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.caret:
+      smart_insert: true
+      insert: true
+      superscript: true
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      title: "On This Page:"
+      toc_depth: 3
+      permalink: true
+      permalink_title: "Permanent Link <Anchor>"
+      slugify: !!python/name:pymdownx.slugs.uslugify
+
 
 
 #  custom_dir: overrides
