@@ -1,20 +1,6 @@
 # Welcome to MediaStack.Guide
 
-These Docker Compose configurations will help you rapidly deploy all the applications you need in a Docker stack, to operate a Jellyfin, Jellyseerr, Torrent, Usenet, \*ARR Media Library Managers, Reverse Proxy, MFA Authenticated Access, and Tdarr Automated Media Transcoding enabled media stack, and has been thoroughly testing on Linux, Windows and Synology NAS servers.
-
-Set up a full VPN encrypted Jellyfin, Jellyseerr, NZBGet, Transmission and *ARR media stack using this docker-compose guide in approximately 30 - 60 minutes, on Linux, Windows or Synology NAS, and potentially more Docker enabled environments.
-
-This guide will cover all the steps needed to initially install and configure a secure docker hosted media environment, with all the applications needed to download torrents and Usenet content which you have a right to use in your media library, and allow you to stream the media via a simple web browser, and even stream the media to your Smart TV / Apple TV apps around the house.
-
-This guide ensures all network traffic is securely hidden using a VPN, and encrypting ALL traffic in / out of your home network. It can also be used on your Synology NAS, or any other Linux / Windows / MacOS machine running the Docker environment.
-
-With many people owning CDs, DVD, and Blu-ray disks, there is demand to make people's media content more transferrable in their home media systems, so it can be viewed on their personal devices. People also want to be able to put their own home movies / photos onto their media servers, so it too can be freely shared between their devices.
-
-NOTE: This guide is not about, nor promotes, the illegal piracy of digital media content from their respected / licensed owners.
-
-NOTE: It is highly recommended not adding any of your own media files or libraries into the Docker folders / applications, until after setting up the entire media stack, then you can add your media in a structured manner.
-
-
+For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
 

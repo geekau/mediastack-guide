@@ -2,13 +2,17 @@
 
 site_name: MediaStack.Guide
 site_url: https://mediastack.guide/
+site_description: >
+  Quick-start guide to set up a full VPN encrypted streaming media service, with reverse-proxy / MFA access from the Internet, for Linux, Windows, Synology NAS, and more...   Full Docker deployment for Jellyfin, Jellyseerr, Gluetun, DDNS-Updater, Prowlarr, Radarr, Sonarr, Lidarr, Mylar, Readarr, Whisparr, Bazarr, qBittorrent, SABnzbd, Unpackerr, SWAG, Heimdall, Authelia, Flaresolverr, and Portainer.
 
 repo_name: media-stack
 repo_url: https://github.com/geekau/media-stack
+edit_uri: blob/main/docs/
 
 plugins:
   - search
   - glightbox
+#  - typeset
 #  - git-committers:
 #      repository: geekau/media-stack
 #      branch: main
@@ -39,24 +43,27 @@ nav:
     - Cloudflare Domain Management:  configure/cloudflare-domains.md
   - Contributing to MediaStack:
     - Contributing:                  contributing/contributing.md
+    - Template:                      contributing/doc-template.md
 
 
 theme:
   name: material
-
+  
   features:
-#  - content.tabs.link
+  - announce.dismiss
+  - content.tabs.link
+  - content.code.copy
   - navigation.instant
   - navigation.tracking
-#  - navigation.top
+  - navigation.top
   - navigation.tabs
   - navigation.tabs.sticky
   - navigation.sections
-#  - navigation.expand
+  - navigation.expand
   - navigation.prune
   - navigation.indexes
   - toc.follow
-#  - toc.integrate
+  - toc.integrate
   - search.suggest
   - search.highlight
   - header.autohide
@@ -93,7 +100,9 @@ theme:
       bug:      fontawesome/solid/robot
       example:  fontawesome/solid/flask
       quote:    fontawesome/solid/quote-left
-  
+
+  custom_dir: overrides
+
 markdown_extensions:
   - admonition
   - pymdownx.betterem
@@ -122,7 +131,7 @@ markdown_extensions:
   - md_in_html
   - toc:
       title: "On This Page:"
-      toc_depth: 3
+      toc_depth: 4
       permalink: true
       permalink_title: "Permanent Link <Anchor>"
       slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}

@@ -1,33 +1,13 @@
 # Collective Installation
 
 
-
+ 
 
 # Docker Media Stack
 >You can download these files easily, by going to [https://github.com/geekau/media-stack](https://github.com/geekau/media-stack) then selecting "**Code**" --> "**Download Zip**".
 
 These Docker Compose configurations will help you rapidly deploy all the applications you need in a Docker stack, to operate a Jellyfin, Jellyseerr, Torrent, Usenet, \*ARR Media Library Managers, Reverse Proxy, MFA Authenticated Access, and Tdarr Automated Media Transcoding enabled media stack, and has been thoroughly testing on Linux, Windows and Synology NAS servers.
 
-## 1 - Prepare / rename media library if needed:
-If you are setting up your media server and media libraries for the very first time, or your media is very poorly named, it is recommended you use Filebot with the following naming standards below, to initially sort all of your media. Otherwise the Media Library Managers and Jellyfin may not be able to identify your media titles, media art, and subtitles, if the original filenames are of a poor standard.
-
-Change "**D:/Storage**" to suit your needs, however use the same disk as the original media, so it is renamed quickly in place, rather than copied to a different disk or network; this could take a great deal of time to complete depending on size of the libraries / media you are renaming.
->This can be skipped if you have a well organised / structured media library already.
-
-**Filebot Renaming Preset String for Series / TV Shows:**
-```
-D:/Storage/renamed/series/{ny.colon(' - ').ascii()} [tmdbid-{id}]/Season {s00}/{ny.colon(' - ').ascii()} {s00e00} - {t.ascii()} {" - $hd $vf $vc $ac"}
-```
-
-**Filebot Renaming Preset String for Movies / Adult:**
-```
-D:/Storage/renamed/movies/{ny.colon(' - ').ascii()} [imdbid-{imdbid}]/{ny.colon(' - ').ascii()} {" - $hd $vf $vc $ac"}
-```
-
-**Filebot Renaming Preset String for Music / Audio:**
-```
-D:/Storage/renamed/music/{artist.upperInitial().ascii()}/{album.upperInitial().ascii()} ({y})/{albumArtist.upperInitial().ascii()} - {album.upperInitial().ascii()} - {pi.pad(3)+' - '} {t.ascii()}
-```
 
 ## 2 - Edit the "docker-compose.env" file, and update variables to suit your environment.
 
@@ -72,81 +52,6 @@ SERVER_REGION=<regions supported by VPN provider>
 ```
 == **All containers are initally configured to sit behind the VPN connection for security / privacy. If you want the containers to have direct Internet access, follow the steps in each of the YAML files to change the network configuration, and restart the container.** ==
 
-## 3 - Set up all of the folders / subfolders:
-The commands suit the folders defined above in your ENV file for **FOLDER_FOR_CONFIGS** and **FOLDER_FOR_MEDIA**.
-
-### For Linux hosted data folders:
-If you used Linux / NAS folders in the ENV file, then use the following commands to create the necessary folders:
-```
-export FOLDER_FOR_CONFIGS=/home/geekau/docker
-export FOLDER_FOR_MEDIA=/home/geekau/media-stack
-
-sudo -E mkdir -p $FOLDER_FOR_CONFIGS/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr,tdarr_transcode_cache,unpackerr,whisparr}
-sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{adult,anime,audio,books,comics,movies,music,photos,podcasts,series,software}
-sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{adult,anime,audio,books,comics,movies,music,prowlarr,podcasts,series,software}
-sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{adult,anime,audio,books,comics,movies,music,prowlarr,podcasts,series,software}
-sudo -E mkdir -p $FOLDER_FOR_MEDIA/watch
-sudo -E chmod -R 775 $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
-sudo -E chown -R geekau:geekau $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
-```
-### For Window hosted data folders:
-If you used Windows folders in the ENV file, then use the following commands to create the necessary folders:
-```
-set FOLDER_FOR_CONFIGS=D:\Storage\Docker
-set FOLDER_FOR_MEDIA=D:\Storage\Media-Stack
-
-FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall jellyfin jellyseerr lidarr mylar3 portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_CONFIGS%\%I
-FOR /D %I IN (adult anime audio books comics movies music photos podcasts series software) DO mkdir %FOLDER_FOR_MEDIA%\media\%I
-FOR /D %I IN (adult anime audio books comics movies music podcasts prowlarr series software) DO mkdir %FOLDER_FOR_MEDIA%\usenet\%I
-FOR /D %I IN (adult anime audio books comics movies music podcasts prowlarr series software) DO mkdir %FOLDER_FOR_MEDIA%\torrents\%I
-mkdir %FOLDER_FOR_MEDIA%\watch
-```
-### Folder mappings between host and Docker containers:
-After you run the commands above (Linux or Windows), **this will be your folder structure INSIDE your docker containers**:
-```
-$ tree $FOLDER_FOR_MEDIA
-
-⠀⠀⠀⠀⠀Host Computer:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀Inside Containers:
-├── /FOLDER_FOR_MEDIA   ⠀       ├── /data
-⠀⠀⠀⠀⠀├── media                  ⠀⠀⠀⠀├── media        <-- Media is located / managed under this folder
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── adult                 │⠀⠀⠀⠀├── adult
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime                 │⠀⠀⠀⠀├── anime
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio                 │⠀⠀⠀⠀├── audio
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books                 │⠀⠀⠀⠀├── books
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies                │⠀⠀⠀⠀├── movies
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music                 │⠀⠀⠀⠀├── music
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── photos                │⠀⠀⠀⠀├── photos
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── podcasts              │⠀⠀⠀⠀├── podcasts
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series                │⠀⠀⠀⠀├── series
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── software              │⠀⠀⠀⠀└── software
-⠀⠀⠀⠀⠀├── torrents               ⠀⠀⠀⠀├── torrents     <-- Downloads for Torrent data
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── adult                 │⠀⠀⠀⠀├── adult
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime                 │⠀⠀⠀⠀├── anime
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio                 │⠀⠀⠀⠀├── audio
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books                 │⠀⠀⠀⠀├── books
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies                │⠀⠀⠀⠀├── movies
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music                 │⠀⠀⠀⠀├── music
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── podcasts              │⠀⠀⠀⠀├── podcasts
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── prowlarr              │⠀⠀⠀⠀├── prowlarr
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series                │⠀⠀⠀⠀├── series
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── software              │⠀⠀⠀⠀└── software
-⠀⠀⠀⠀⠀├── usenet                 ⠀⠀⠀⠀├── usenet       <-- Downloads for Usenet data
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── adult                 │⠀⠀⠀⠀├── adult
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime                 │⠀⠀⠀⠀├── anime
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio                 │⠀⠀⠀⠀├── audio
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books                 │⠀⠀⠀⠀├── books
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies                │⠀⠀⠀⠀├── movies
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music                 │⠀⠀⠀⠀├── music
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── podcasts              │⠀⠀⠀⠀├── podcasts
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── prowlarr              │⠀⠀⠀⠀├── prowlarr
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series                │⠀⠀⠀⠀├── series
-⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── software              │⠀⠀⠀⠀└── software
-⠀⠀⠀⠀⠀└── watch                  ⠀⠀⠀⠀└── watch       <-- Add .nzb and .torrent files for manual download
-
-```
 
 ## 4 - Install the Docker applications individually as you need them.
 
