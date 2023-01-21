@@ -5,17 +5,16 @@ site_url: https://mediastack.guide/
 site_description: >
   Quick-start guide to set up a full VPN encrypted streaming media service, with reverse-proxy / MFA access from the Internet, for Linux, Windows, Synology NAS, and more...   Full Docker deployment for Jellyfin, Jellyseerr, Gluetun, DDNS-Updater, Prowlarr, Radarr, Sonarr, Lidarr, Mylar, Readarr, Whisparr, Bazarr, qBittorrent, SABnzbd, Unpackerr, SWAG, Heimdall, Authelia, Flaresolverr, and Portainer.
 
-repo_name: media-stack
-repo_url: https://github.com/geekau/media-stack
+repo_name: mediastack.guide
+repo_url: https://github.com/geekau/mediastack.guide
 edit_uri: blob/main/docs/
 
 plugins:
   - search
   - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: false
 #  - typeset
-#  - git-committers:
-#      repository: geekau/media-stack
-#      branch: main
 
 nav:
   - Home:                            index.md
@@ -48,16 +47,22 @@ nav:
 
 theme:
   name: material
-  
+  custom_dir: overrides
+  favicon: assets/favicon.png
+
   features:
   - announce.dismiss
-  - content.tabs.link
+  - content.action.edit
+  - content.action.view
+  - content.code.annotate
   - content.code.copy
+  - content.tabs.link
   - navigation.instant
   - navigation.tracking
   - navigation.top
+  - navigation.footer
   - navigation.tabs
-  - navigation.tabs.sticky
+#  - navigation.tabs.sticky
   - navigation.sections
   - navigation.expand
   - navigation.prune
@@ -66,7 +71,7 @@ theme:
   - toc.integrate
   - search.suggest
   - search.highlight
-  - header.autohide
+#  - header.autohide
 
   palette:
   - media: "(prefers-color-scheme: light)"
@@ -100,8 +105,6 @@ theme:
       bug:      fontawesome/solid/robot
       example:  fontawesome/solid/flask
       quote:    fontawesome/solid/quote-left
-
-  custom_dir: overrides
 
 markdown_extensions:
   - admonition
@@ -143,6 +146,8 @@ extra_javascript:
   - javascript/extra.js
 
 extra:
+  version:
+    provider: stable
   consent:
     title: Cookie Consent
     description: >- 
@@ -163,4 +168,4 @@ extra:
       name: "Twitter: squidfunk"
 
 copyright: >
-  Copyright &copy; 2023 - <a href="https://MediaStack.Guide">MediaStack.Guide</a> - <a href="#__consent">Update Change Cookie Settings</a>
+  Copyright &copy; 2023 - <a href="https://MediaStack.Guide">MediaStack.Guide</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( &nbsp;<a href="#__consent">Update Change Cookie Settings</a> &nbsp;)

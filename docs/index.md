@@ -1,8 +1,18 @@
 # Welcome to MediaStack.Guide
 
-These Docker Compose configurations will help you rapidly deploy all the applications you need in a Docker stack, to operate a Jellyfin, Jellyseerr, Torrent, Usenet, \*ARR Media Library Managers, Reverse Proxy, MFA Authenticated Access, and Tdarr Automated Media Transcoding enabled media stack, and has been thoroughly testing on Linux, Windows and Synology NAS servers.
+With many people owning digital media such as CDs, DVD, and Blu-ray disks, home movies, personal photos, personal music collection, its common that people want to build home media servers in order to manage and access their digital libraries from any device within their home network, their mobile devices, and even remotely when they may be away on holidays or having a lunch break at work.
 
-Set up a full VPN encrypted Jellyfin, Jellyseerr, NZBGet, Transmission and *ARR media stack using this docker-compose guide in approximately 30 - 60 minutes, on Linux, Windows or Synology NAS, and potentially more Docker enabled environments.
+This guide will help you rapidly deploy all the applications you need in a full Docker build, to operate a Jellyfin, Jellyseerr, *ARR Media Library Managers (Prowlarr / Sonarr / Radarr / Lidarr / Readarr etc..) and Tdarr Automated Media Transcoding enabled media stack, and has been thoroughly tested on Linux, Windows and Synology NAS servers.
+
+
+Fully encrypted outbound network - The guide establishes a full VPN encrypted Internet connection for all outbound communications, so all network traffic to Torrent / Usenet and meta-data servers are fully encrypted as they leave your network, in order to provide you full privacy. If the VPN connection fails / drops, or is stopped for any reason, then all outbound traffic is completely restricted, until the VPN connection is re-established.
+
+
+
+Fully encrypted inbound - This guide will also establish an inbound Nginx reverse proxy into your network, using 
+
+
+ Jellyfin, Jellyseerr, NZBGet, Transmission and *ARR media stack using this docker-compose guide in approximately 30 - 60 minutes, on Linux, Windows or Synology NAS, and potentially more Docker enabled environments.
 
 This guide will cover all the steps needed to initially install and configure a secure docker hosted media environment, with all the applications needed to download torrents and Usenet content which you have a right to use in your media library, and allow you to stream the media via a simple web browser, and even stream the media to your Smart TV / Apple TV apps around the house.
 
@@ -10,9 +20,16 @@ This guide ensures all network traffic is securely hidden using a VPN, and encry
 
 With many people owning CDs, DVD, and Blu-ray disks, there is demand to make people's media content more transferrable in their home media systems, so it can be viewed on their personal devices. People also want to be able to put their own home movies / photos onto their media servers, so it too can be freely shared between their devices.
 
-NOTE: This guide is not about, nor promotes, the illegal piracy of digital media content from their respected / licensed owners.
+NOTE: 
 
 NOTE: It is highly recommended not adding any of your own media files or libraries into the Docker folders / applications, until after setting up the entire media stack, then you can add your media in a structured manner.
+
+
+!!! warning "Piracy Notice"
+
+    This guide is not about, nor promotes, the illegal piracy of digital media content from their respected / licensed owners.
+    
+    This guide assumes no responsibility for users who may access or download digital media content, which they do not have legal rights.
 
 
 
@@ -188,6 +205,5 @@ flowchart LR
 
     This is a Quote field... copy this example
 
----
 
 

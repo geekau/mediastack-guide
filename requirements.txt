@@ -1,7 +1,6 @@
 mkdocs
 mkdocs-awesome-pages-plugin
 mkdocs-bootswatch
-mkdocs-git-committers-plugin-2
 mkdocs-git-revision-date-localized-plugin
 mkdocs-glightbox
 mkdocs-material
