@@ -48,7 +48,7 @@ nav:
 theme:
   name: material
   custom_dir: overrides
-  favicon: assets/favicon.png
+  favicon: assets/favicon.ico
 
   features:
   - announce.dismiss
@@ -62,7 +62,6 @@ theme:
   - navigation.top
   - navigation.footer
   - navigation.tabs
-#  - navigation.tabs.sticky
   - navigation.sections
   - navigation.expand
   - navigation.prune
@@ -71,7 +70,6 @@ theme:
   - toc.integrate
   - search.suggest
   - search.highlight
-#  - header.autohide
 
   palette:
   - media: "(prefers-color-scheme: light)"
@@ -90,7 +88,7 @@ theme:
       name: Switch to Light Mode
 
   icon:
-    logo: fontawesome/solid/photo-film
+    logo: assets/header-logo
     repo: fontawesome/brands/github
     admonition:
       note:     fontawesome/solid/note-sticky

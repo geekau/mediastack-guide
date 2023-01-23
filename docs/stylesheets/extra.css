@@ -11,3 +11,20 @@
 .md-header__button.md-icon {
   color: black;
 }
+
+.md-header {
+  border-bottom: 0.1rem solid rgb(16, 23, 212);
+}
+
+.md-tabs {
+  border-bottom: 0.1rem solid rgb(16, 198, 43);
+}
+
+[data-md-color-scheme="default"] {
+  --md-default-fg-color--light: rgba(9, 19, 214, 0.697);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-fg-color--light: rgb(37, 206, 37);
+  .md-header .border-bottom {0.05rem solid red;}
+}
