@@ -19,29 +19,52 @@ plugins:
 nav:
   - Home:                            index.md
   - Preparation:
-    - MediaStack Applications:       preparation/applications-roles.md
-    - Installing Docker:             preparation/install-docker.md
-    - Docker Filesystems / Folders:  preparation/docker-filesystems.md
-    - Prepare Media Library:         preparation/media-library.md
-    - Docker Compose Files:          preparation/compose-files.md
+    - MediaStack Applications:       preparation/mediastack-applications.md
+    - Networking Architecture:       preparation/networking-architecture.md
+    - Installing Docker:             preparation/installing-docker.md
+    - Docker Filesystem:             preparation/docker-filesystem.md
+    - Prepare Media Library:         preparation/prepare-media-library.md
+    - Docker Compose Files:          preparation/docker-compose-files.md
   - Installation:
-    - Configuring Environment:       installation/environment-file.md
-    - Installing Apps Individually:  installation/individual-install.md
-    - Installing Apps Collectively:  installation/collective-install.md
-    - Configuring Environment:       installation/environment-file.md
-    - Portainer - Docker GUI:        installation/portainer.md
-  - Configuration:
-    - Download Clients:              configuration/download-clients.md
-    - "*ARR (starr) Applications":   configuration/arr-applications.md
-    - Jellyfin Media Server:         configuration/jellyfin.md
-    - Jellyseerr - Request Media:    configuration/jellyseerr.md
-    - SWAG Reverse Proxy:            configuration/swag.md
+    - Default Environment:           installation/default-environment.md
+    - Customising Environment:       installation/customising-environment.md
+    - Individual Install:            installation/individual-install.md
+    - Collective Install:            installation/collective-install.md
+    - Docker GUI (Portainer):        installation/portainer.md
+  - Configure Media Apps:
+    - Gluetun     (VPN Client):      configuration/gluetun.md
+    - qBittorrent (Torrent Files):   configuration/qbittorrent.md
+    - SABnzbd     (Usenet Files):    configuration/sabnzbd.md
+    - Prowlarr    (Index Search):    configuration/prowlarr.md
+    - Radarr      (Movie Library):   configuration/radarr.md
+    - Sonarr      (Series Library):  configuration/sonarr.md
+    - Lidarr      (Music Library):   configuration/lidarr.md
+    - Readarr     (Book Library):    configuration/readarr.md
+    - Mylar       (Comic Library):   configuration/mylar.md
+    - Whisparr    (Adult Library):   configuration/whisparr.md
+    - Bazaar      (Subtitles):       configuration/bazaar.md
+    - Tdarr       (Transcoding):     configuration/tdarr.md
+    - Unpackerr   (Unzip Archives):  configuration/unpackerr.md
+    - Jellyfin    (Media Server):    configuration/jellyfin.md
+    - Jellyseerr  (Request Manager): configuration/jellyseerr.md
+  - Configure Remote Access:
+    - Cloudflare Domain Management:  configuration/cloudflare-domain-management.md
     - DDNS-Updater:                  configuration/ddns-updater.md
+    - Secure Web App Gateway:        configuration/secure-web-app-gateway.md
+    - Authelia:                      configuration/authelia.md
+    - Heimdall:                      configuration/heimdall.md
     - Cloudflare Zero Trust:         configuration/cloudflare-zero-trust.md
-    - Cloudflare Domain Management:  configuration/cloudflare-domains.md
-  - Contributing to MediaStack:
-    - Contributing:                  contributing/contributing.md
-    - Template:                      contributing/doc-template.md
+  - Help:
+    - Application Websites:          help/application-websites.md
+    - Contributing:                  help/contributing.md
+    - Template:                      help/template.md
+  - OLD DOCS:
+    - Old Notes 1:                   help/1.md
+    - Old Notes 2:                   help/2.md
+    - Old Notes 3:                   help/3.md
+    - Old Notes 4:                   help/4.md
+    - Old Notes 5:                   help/5.md
+
 
 
 theme:

@@ -1,4 +1,6 @@
-# Welcome to MediaStack.Guide
+# Markdown Examples Used Throughout Site
+
+## Copy and Paste These As Needed
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
@@ -52,6 +54,66 @@ flowchart LR
 	VPN-->gateway[VPN Gateway]
 	end
 ```
+
+
+<form>
+  <label for="FOLDER_FOR_CONFIGS">FOLDER_FOR_CONFIGS:</label>
+  <input type="text" id="FOLDER_FOR_CONFIGS" name="FOLDER_FOR_CONFIGS"><br>
+  <label for="FOLDER_FOR_MEDIA">FOLDER_FOR_MEDIA:</label>
+  <input type="text" id="FOLDER_FOR_MEDIA" name="FOLDER_FOR_MEDIA">
+</form>
+
+
+
+
+
+!!! note "This is a note code fence"
+
+    Select something below:
+
+    FOLDER_FOR_CONFIGS  
+    FOLDER_FOR_MEDIA
+
+
+    === "Linux Shell"
+
+        ``` bash
+        export FOLDER_FOR_CONFIGS=/home/geekau/docker
+        export FOLDER_FOR_MEDIA=/home/geekau/media-stack
+
+        sudo -E mkdir -p $FOLDER_FOR_CONFIGS/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr,tdarr_transcode_cache,unpackerr,whisparr}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{adult,anime,audio,books,comics,movies,music,photos,podcasts,series,software}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{adult,anime,audio,books,comics,movies,music,prowlarr,podcasts,series,software}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{adult,anime,audio,books,comics,movies,music,prowlarr,podcasts,series,software}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/watch
+        sudo -E chmod -R 775 $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
+        sudo -E chown -R geekau:geekau $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
+        ```
+
+    === "Windows PowerShell"
+
+        ``` powershell
+        set FOLDER_FOR_CONFIGS=D:\Storage\Docker
+        set FOLDER_FOR_MEDIA=D:\Storage\Media-Stack
+
+        FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall jellyfin jellyseerr lidarr mylar3 portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_CONFIGS%\%I
+        FOR /D %I IN (adult anime audio books comics movies music photos podcasts series software) DO mkdir %FOLDER_FOR_MEDIA%\media\%I
+        FOR /D %I IN (adult anime audio books comics movies music podcasts prowlarr series software) DO mkdir %FOLDER_FOR_MEDIA%\usenet\%I
+        FOR /D %I IN (adult anime audio books comics movies music podcasts prowlarr series software) DO mkdir %FOLDER_FOR_MEDIA%\torrents\%I
+        mkdir %FOLDER_FOR_MEDIA%\watch
+        ```
+
+    === "MacOS Shell"
+
+        ``` bash
+        Waiting Testing
+        ```
+
+    === "Synology NAS (SSH)"
+
+        ``` bash
+        Synology - ADD HERE
+        ```
 
 
 
