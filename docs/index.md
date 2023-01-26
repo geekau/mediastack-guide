@@ -4,6 +4,18 @@ With many people owning digital media such as CDs, DVD, and Blu-ray disks, home 
 
 This guide will help you rapidly deploy all the applications you need in a full Docker build media stack, to operate a Jellyfin, Jellyseerr, *ARR Media Library Managers (Prowlarr / Sonarr / Radarr / Lidarr / Readarr etc..) and Tdarr Automated Media Transcoding.
 
+## Why MediaStack.Guide
+
+Building a good home media stack is not an easy task for people who aren't computer savy. Reasearching / picking the right applications for each role you need can be a frustrating activity if you don't know how each of the applications work, and worse, if you need to link them together to build a full home media solution.
+
+While there are many good technical sites on the Internet which discuss how to configure some of the applications, these take time to set up and configure each of the applications one-by-one, before moving on to a different website to configure the next application - there really aren't many sites dedicated to covering a "complete setup" of all the applications needed, and covering the configuration steps for all of the applications so they all work together.
+
+By following MediaStack.Guide, you can essentially have all of the applications downloaded and installed in less than 10 minutes using our customised Docker Compose files, then work through our detailed configuration guides to link all of the applications together, without needing a great technical understanding.
+
+Our approach is "quick and simple" for greater user understanding.
+
+> Download and install times depends on the speed of your Internet link.
+
 ## Features
 
 - Host your media stack using Docker on any Operating System or NAS Device (Windows / Linux / Synology)
@@ -17,7 +29,7 @@ This guide will help you rapidly deploy all the applications you need in a full 
 
 ## Security
 
-This guide provides two different security models to cater for your privacy choice:
+MediaStack.Guide focuses heavily on privacy for individuals and provides two different security models to cater for your privacy choice:
 
 - Fully secured configuration - where all Internet connections are fully encrypted end-to-end, and
 - Partially secured configuration - where only the Internet connections for Usenet / Torrents clients and Meta-Data servers are encrypted.
@@ -32,21 +44,19 @@ You can also access your home media server from the Internet as the guide will w
 
     The domain name is required in order for free SSL certificates to be installed on your external connection, using Let's Encrypt or ZeroSSL certificate providers.
 
-
-
-
-This guide will cover all the steps needed to initially install and configure a secure docker hosted media environment, with all the applications needed to download torrents and Usenet content which you have a right to use in your media library, and allow you to stream the media via a simple web browser, and even stream the media to your Smart TV / Apple TV apps around the house.
-
 ## Disclaimer
 
+### Warranties
 
+MediaStack.Guide pulls together over 20 different open source applications, in order to provide the best components for your home based media stack. While the applications chosen for MediaStack.Guide are all excellent products, they are open source and many of them are developed by volunteers / contributors, and don't come with any warranties or consumer protection, additionally, these applications have been containerised into Docker images so they are easier to download, configure and deploy.
 
+While we have taken great care and time to test all of these applications so they work together to provide the best media guide we can for people to follow, the information on this website is for general informational purposes only. MediaStack.Guide makes no representation or warranty, express or implied. Your use of the site is solely at your own risk. We will provide links to websites and support forums for the applications we discuss throughout this guide, so any expert help outside of the scope of this website can be followed to the application developers.
 
+### Piracy Notice
 
-, and has been thoroughly tested on Linux, Windows and Synology NAS servers
+The intent of MediaStack.Guide is to guide you through the steps needed to setup and configure a home media stack, so you can host your own digital media (movies / picture / music / literature), or other digital media where you have rights to host and view that media. MediaStack.Guide also provides steps on how to access and download digital media from the Internet, where you may need to restore missing / corrupted copies of digital media you have legal rights to do, or replace it with better qualities (resolution / sound).
 
-
-With many people owning CDs, DVD, and Blu-ray disks, there is demand to make people's media content more transferrable in their home media systems, so it can be viewed on their personal devices. People also want to be able to put their own home movies / photos onto their media servers, so it too can be freely shared between their devices.
+While you are able to purchase various copies of licensed / copyright digital media and store these in your home media libraries, your legal obligations and right to download, store and view digital media is between you and the owner of the digital media. Your downloading and use of licensed digital media is solely at your own risk.
 
 !!! warning "Warning: Piracy Notice"
 
