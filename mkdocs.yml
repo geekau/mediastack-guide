@@ -18,28 +18,27 @@ plugins:
 
 nav:
   - Home:                            index.md
-  - Introduction:
-    - Intro to MediaStack:           intro/mediastack.md
-    - Applications and Their Roles:  intro/application-roles.md
-    - Installing Docker on Host OS:  intro/install-docker.md
-    - Organising Your Media Library: intro/media-library.md
-    - Docker Filesystems / Folders:  intro/docker-filesystems.md
-    - Download Docker Build Files:   intro/download-mediastack.md
-  - Installing Docker Apps:
-    - Configuring Environment:       install/environment-file.md
-    - Installing Apps Individually:  install/individual-install.md
-    - Installing Apps Collectively:  install/collective-install.md
-    - Configuring Environment:       install/environment-file.md
-    - Portainer - Docker GUI:        install/portainer.md
-  - Configure Docker Apps:
-    - Download Clients:              configure/download-clients.md
-    - "*ARR (starr) Applications":   configure/arr-applications.md
-    - Jellyfin Media Server:         configure/jellyfin.md
-    - Jellyseerr - Request Media:    configure/jellyseerr.md
-    - SWAG Reverse Proxy:            configure/swag.md
-    - DDNS-Updater:                  configure/ddns-updater.md
-    - Cloudflare Zero Trust:         configure/cloudflare-zero-trust.md
-    - Cloudflare Domain Management:  configure/cloudflare-domains.md
+  - Preparation:
+    - MediaStack Applications:       preparation/applications-roles.md
+    - Installing Docker:             preparation/install-docker.md
+    - Docker Filesystems / Folders:  preparation/docker-filesystems.md
+    - Prepare Media Library:         preparation/media-library.md
+    - Docker Compose Files:          preparation/compose-files.md
+  - Installation:
+    - Configuring Environment:       installation/environment-file.md
+    - Installing Apps Individually:  installation/individual-install.md
+    - Installing Apps Collectively:  installation/collective-install.md
+    - Configuring Environment:       installation/environment-file.md
+    - Portainer - Docker GUI:        installation/portainer.md
+  - Configuration:
+    - Download Clients:              configuration/download-clients.md
+    - "*ARR (starr) Applications":   configuration/arr-applications.md
+    - Jellyfin Media Server:         configuration/jellyfin.md
+    - Jellyseerr - Request Media:    configuration/jellyseerr.md
+    - SWAG Reverse Proxy:            configuration/swag.md
+    - DDNS-Updater:                  configuration/ddns-updater.md
+    - Cloudflare Zero Trust:         configuration/cloudflare-zero-trust.md
+    - Cloudflare Domain Management:  configuration/cloudflare-domains.md
   - Contributing to MediaStack:
     - Contributing:                  contributing/contributing.md
     - Template:                      contributing/doc-template.md
