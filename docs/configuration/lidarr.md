@@ -1,0 +1,1 @@
+# Lidarr - Music Library Manager

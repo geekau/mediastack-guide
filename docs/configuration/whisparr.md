@@ -1,0 +1,1 @@
+# Whisparr - Adult Library Manager

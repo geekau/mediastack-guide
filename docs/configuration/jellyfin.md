@@ -1,1 +1,1 @@
-# Jellyfin Media Server
+# Jellyfin - Media Server

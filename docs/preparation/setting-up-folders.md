@@ -1,4 +1,4 @@
-# Docker Filesystems and Folders
+# Setting Up Application and Media Folders
 
 ## Set up all of the folders / subfolders:
 The commands suit the folders defined above in your ENV file for `FOLDER_FOR_CONFIGS` and `FOLDER_FOR_MEDIA`.
@@ -18,9 +18,7 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
 
 
 
-!!! note "This is a note code fence"
-
-    Select something below:
+!!! note "Select the correct operating system to execute desired commands:"
 
     FOLDER_FOR_CONFIGS  
     FOLDER_FOR_MEDIA
