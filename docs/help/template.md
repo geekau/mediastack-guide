@@ -4,6 +4,35 @@
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
+
+## Heading One
+
+!!! Danger "Warning: &nbsp; &nbsp; &nbsp; Page Under Development"
+
+    This page is still under development and may not have accurate information, and should be considered incomplete / inaccurate until this notice is removed.
+
+
+
+Basic intro to Docker... embed Docker intro video etc..
+
+Provide steps to install Docker on Windows, Linux, MacOS, Synology NAS and other hosts where possible
+
+
+## Heading Two
+
+## Heading Three
+
+
+<form>
+  <label for="FOLDER_FOR_CONFIGS">FOLDER_FOR_CONFIGS:</label>
+  <input type="text" id="FOLDER_FOR_CONFIGS" name="FOLDER_FOR_CONFIGS"><br>
+  <label for="FOLDER_FOR_MEDIA">FOLDER_FOR_MEDIA:</label>
+  <input type="text" id="FOLDER_FOR_MEDIA" name="FOLDER_FOR_MEDIA">
+</form>
+
+
+
+
 ## Commands
 
 * `mkdocs new [dir-name]` - Create a new project.

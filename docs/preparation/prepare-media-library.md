@@ -1,5 +1,11 @@
 # Preparing Your Media Library
 
+
+!!! Danger "Warning: &nbsp; &nbsp; &nbsp; Page Under Development"
+
+    This page is still under development and may not have accurate information, and should be considered incomplete / inaccurate until this notice is removed.
+
+
 ## Prepare / rename media library if needed:
 If you are setting up your media server and media libraries for the very first time, or your media is very poorly named, it is recommended you use Filebot with the following naming standards below, to initially sort all of your media. Otherwise the Media Library Managers and Jellyfin may not be able to identify your media titles, media art, and subtitles, if the original filenames are of a poor standard.
 

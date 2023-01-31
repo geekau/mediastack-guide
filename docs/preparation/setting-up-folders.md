@@ -1,5 +1,11 @@
 # Setting Up Application and Media Folders
 
+!!! Danger "Warning: &nbsp; &nbsp; &nbsp; Page Under Development"
+
+    This page is still under development and may not have accurate information, and should be considered incomplete / inaccurate until this notice is removed.
+
+
+
 ## Set up all of the folders / subfolders:
 The commands suit the folders defined above in your ENV file for `FOLDER_FOR_CONFIGS` and `FOLDER_FOR_MEDIA`.
 
@@ -7,21 +13,13 @@ The commands suit the folders defined above in your ENV file for `FOLDER_FOR_CON
 If you used Linux / NAS folders in the ENV file, then use the following commands to create the necessary folders:
 
 
-<form>
-  <label for="FOLDER_FOR_CONFIGS">FOLDER_FOR_CONFIGS:</label>
-  <input type="text" id="FOLDER_FOR_CONFIGS" name="FOLDER_FOR_CONFIGS"><br>
-  <label for="FOLDER_FOR_MEDIA">FOLDER_FOR_MEDIA:</label>
-  <input type="text" id="FOLDER_FOR_MEDIA" name="FOLDER_FOR_MEDIA">
-</form>
-
-
 
 
 
 !!! note "Select the correct operating system to execute desired commands:"
 
-    FOLDER_FOR_CONFIGS  
-    FOLDER_FOR_MEDIA
+    `FOLDER_FOR_CONFIGS`  
+    `FOLDER_FOR_MEDIA`
 
 
     === "Linux Shell"

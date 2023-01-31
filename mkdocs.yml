@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 
 site_name: MediaStack.Guide
-site_url: https://mediastack.guide/
+site_url:  https://mediastack.guide/
 site_description: >
   Quick-start guide to set up a full VPN encrypted streaming media service, with reverse-proxy / MFA access from the Internet, for Linux, Windows, Synology NAS, and more...   Full Docker deployment for Jellyfin, Jellyseerr, Gluetun, DDNS-Updater, Prowlarr, Radarr, Sonarr, Lidarr, Mylar, Readarr, Whisparr, Bazarr, qBittorrent, SABnzbd, Unpackerr, SWAG, Heimdall, Authelia, Flaresolverr, and Portainer.
 
 repo_name: mediastack.guide
-repo_url: https://github.com/geekau/mediastack.guide
-edit_uri: blob/main/docs/
+repo_url:  https://github.com/geekau/mediastack.guide
+edit_uri:  blob/main/docs/
 
 plugins:
   - search
@@ -17,7 +17,7 @@ plugins:
 #  - typeset
 
 nav:
-  - Home:                            index.md
+  - Home:                              index.md
   - Preparation:
     - MediaStack Applications:         preparation/mediastack-applications.md
     - Networking Architecture:         preparation/networking-architecture.md
@@ -30,7 +30,7 @@ nav:
     - Customising Environment:         installation/customising-environment.md
     - Individual Install:              installation/individual-install.md
     - Collective Install:              installation/collective-install.md
-    - Docker GUI (Portainer):          installation/portainer.md
+    - Portainer   (Docker GUI):        installation/portainer.md
   - Configure Media Apps:
     - Gluetun     (VPN Client):        configuration/gluetun.md
     - qBittorrent (Torrent Files):     configuration/qbittorrent.md
@@ -68,9 +68,9 @@ nav:
 
 
 theme:
-  name: material
+  name:       material
   custom_dir: overrides
-  favicon: assets/favicon.ico
+  favicon:    assets/favicon.ico
 
   features:
   - announce.dismiss
@@ -94,24 +94,24 @@ theme:
   - search.highlight
 
   palette:
-  - media: "(prefers-color-scheme: light)"
-    scheme: default
+  - media:   "(prefers-color-scheme: light)"
+    scheme:  default
     primary: deep purple
-    accent: light green
+    accent:  light green
     toggle:
-      icon: material/lightbulb
-      name: Switch to Dark Mode
-  - media: "(prefers-color-scheme: dark)"
-    scheme: slate
+      icon:  material/lightbulb
+      name:  Switch to Dark Mode
+  - media:   "(prefers-color-scheme: dark)"
+    scheme:  slate
     primary: yellow
-    accent: red
+    accent:  red
     toggle:
-      icon: material/lightbulb-outline
-      name: Switch to Light Mode
+      icon:  material/lightbulb-outline
+      name:  Switch to Light Mode
 
   icon:
-    logo: assets/header-logo
-    repo: fontawesome/brands/github
+    logo:       assets/header-logo
+    repo:       fontawesome/brands/github
     admonition:
       note:     fontawesome/solid/note-sticky
       abstract: fontawesome/solid/book
