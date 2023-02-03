@@ -16,3 +16,9 @@ Provide steps to install Docker on Windows, Linux, MacOS, Synology NAS and other
 ## Heading Two
 
 ## Heading Three
+
+The Gluetun docker container will establish a secure VPN tunnel to your choice of VPN service provider, and then it will force all of the other docker applications in the stack to use the VPN tunnel, if they need to communicate out to the Internet. If Gluetun drops the VPN tunnel at any time, for any reason, then all Internet traffic between the docker applications and the Internet are blocked until the VPN connection is re-established. This provides encrypted security to all data transfers, and assurance that unencrypted data will not be sent if there is a network error.  
+  
+All local data traffic between the applications in the docker stack, use the basic HTTP / unencrypted protocol, as the data in not going out to the Internet. This saves a considerable amount of configuration of digital certificates on portals / data traffic which will only be used internally.  
+  
+**NOTE:** All network traffic going in and out of the **DOCKER\_SUBNET** goes through the Gluetun security container. Some guides advise to only secure the network traffic for the download clients, this guide takes a more secure approach and secures ALL network going out to the Internet.  

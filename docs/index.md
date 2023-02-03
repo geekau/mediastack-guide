@@ -12,9 +12,11 @@ While there are many good technical sites on the Internet which discuss how to c
 
 By following MediaStack.Guide, you can essentially have all of the applications downloaded and installed in less than 10 minutes using our customised Docker Compose files, then work through our detailed configuration guides to link all of the applications together, without needing a great technical understanding.
 
-Our approach is "quick and simple" for greater user understanding.
+This build is also built on Docker, its the only application / service you need to install, then you just download each application as a Docker image and deploy it... There's no issues trying to install each application individually directly onto your host operating system, and it can all be simply deleted at any time, without losing any of your media files or configuration settings.
 
-> Download and install times depends on the speed of your Internet link.
+Our approach is simple deployment and ease of use for greater user uptick.
+
+> Note: Download and install times depend mostly on the speed of your Internet link.
 
 ## Features
 
