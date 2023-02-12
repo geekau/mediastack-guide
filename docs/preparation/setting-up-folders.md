@@ -25,29 +25,36 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
 
     === "Linux Shell"
 
-        ``` bash
-        export FOLDER_FOR_CONFIGS=/home/geekau/docker
-        export FOLDER_FOR_MEDIA=/home/geekau/media-stack
+        The Docker process on most Linux distros run as the "docker" user, and all network shares normally have Group ID as "users", so we only need to declare the User ID which Docker uses to access shares in the "FOLDER_FOR_MEDIA" folder.
 
-        sudo -E mkdir -p $FOLDER_FOR_CONFIGS/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr,tdarr_transcode_cache,unpackerr,whisparr}
+        Check your Docker user ID with the command `id docker`, and update the PUID value below.
+
+        ``` bash
+        export FOLDER_FOR_CONFIGS=/home/geekau/dockerdata
+        export FOLDER_FOR_MEDIA=/home/geekau/data
+        export PUID=1000
+        export PGID=1000
+
+        sudo -E mkdir -p $FOLDER_FOR_CONFIGS/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{adult,anime,audio,books,comics,movies,music,photos,podcasts,series,software}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{adult,anime,audio,books,comics,movies,music,prowlarr,podcasts,series,software}
-        sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{adult,anime,audio,books,comics,movies,music,prowlarr,podcasts,series,software}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{adult,anime,audio,books,comics,incomplete,movies,music,prowlarr,podcasts,series,software}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/watch
         sudo -E chmod -R 775 $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
-        sudo -E chown -R geekau:geekau $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
+        sudo -E chown -R $PUID:$PGID $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA/{media,usenet,torrents,watch}
         ```
 
     === "Windows PowerShell"
 
         ``` powershell
         set FOLDER_FOR_CONFIGS=D:\Storage\Docker
-        set FOLDER_FOR_MEDIA=D:\Storage\Media-Stack
+        set FOLDER_FOR_MEDIA=D:\Storage\Media
 
         FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall jellyfin jellyseerr lidarr mylar3 portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_CONFIGS%\%I
+        FOR /D %I IN (server configs logs) DO mkdir %FOLDER_FOR_CONFIGS%\tdarr\%I
         FOR /D %I IN (adult anime audio books comics movies music photos podcasts series software) DO mkdir %FOLDER_FOR_MEDIA%\media\%I
         FOR /D %I IN (adult anime audio books comics movies music podcasts prowlarr series software) DO mkdir %FOLDER_FOR_MEDIA%\usenet\%I
-        FOR /D %I IN (adult anime audio books comics movies music podcasts prowlarr series software) DO mkdir %FOLDER_FOR_MEDIA%\torrents\%I
+        FOR /D %I IN (adult anime audio books comics incomplete movies music podcasts prowlarr series software) DO mkdir %FOLDER_FOR_MEDIA%\torrents\%I
         mkdir %FOLDER_FOR_MEDIA%\watch
         ```
 
@@ -59,8 +66,23 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
 
     === "Synology NAS (SSH)"
 
+        The Docker process on Synology NAS runs as "root", so user and group permissions for $FOLDER_FOR_CONFIGS will be set as "root". All "Shared Folders" you create manually have Group ID as "users", so we only need to declare the User ID (PUID) which Docker uses to access files inside the "FOLDER_FOR_MEDIA" folder.
+
+        Check your Docker user ID with the command `id docker`, and update the PUID value below.
+
         ``` bash
-        Synology - ADD HERE
+        export FOLDER_FOR_CONFIGS=/volume1/docker/appdata
+        export FOLDER_FOR_MEDIA=/volume1/media
+        export PUID=1030
+
+        sudo mkdir -p $FOLDER_FOR_CONFIGS/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
+        sudo mkdir -p $FOLDER_FOR_MEDIA/media/{adult,anime,audio,books,comics,movies,music,photos,podcasts,series,software}
+        sudo mkdir -p $FOLDER_FOR_MEDIA/usenet/{adult,anime,audio,books,comics,movies,music,prowlarr,podcasts,series,software}
+        sudo mkdir -p $FOLDER_FOR_MEDIA/torrents/{adult,anime,audio,books,comics,incomplete,movies,music,prowlarr,podcasts,series,software}
+        sudo mkdir -p $FOLDER_FOR_MEDIA/watch
+        sudo chmod -R 777 $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
+        sudo chown -R root:root $FOLDER_FOR_CONFIGS
+        sudo chown -R $PUID:users $FOLDER_FOR_MEDIA/{media,usenet,torrents,watch}
         ```
 
 
