@@ -1,6 +1,6 @@
 # qBittorent - Torrent Download Client
 
-qBittorrent is a well established open-source BitTorrent client. qBittorrent features a light footprint, whilst providing all the features you may need. It uses the high-tech libtorrent-rasterbar library, which means greater download and upload speed, as well as excellent support of the latest features in the BitTorrent protocol qBittorrent is fast, stable and provides unicode support as well as many features.
+qBittorrent is a well established open-source BitTorrent download client. qBittorrent features a light footprint, whilst providing all the features you may need. It uses the high-tech libtorrent-rasterbar library, which means greater download and upload speed, as well as excellent support of the latest features in the BitTorrent protocol qBittorrent is fast, stable and provides unicode support as well as many features.
 
 !!! Info "Additional Application Information - External Links"
     - Local WebUI Address: &nbsp; &nbsp;[http://localhost:8200](http://localhost:8200)
@@ -171,9 +171,13 @@ Goto: Right click ==Categories== --> ==Add Category==
 
 !!! Warning "Warning: Category Names and Save Paths Are Case Senstive"
 
-    ==Category Names== and ==Save Paths== are case senstive and must be added in lower case, to match the underlaying Linux filesystem inside the Docker images, and / or, the localhost.
+    ==Category Names== and ==Save Paths== are case senstive and must be added in lower case, to match the underlaying Linux filesystem inside the Docker images, and / or, the localhost, and also for communication between the different applications.
 
 Goto: ==Options Icon== --> ==Downloads==
+
+Create a new category for each folder located in the `/data/torrents` folder, except for the ==complete== and ==incomplete== folders, as these are working folders, not specifically set up to manage categories.
+
+Refer to the host / container folder mapping diagram, which was set up during preparation: [Docker Host / Container Folder Mapping](/preparation/setting-up-folders/#folder-mappings-between-host-and-docker-containers)
 
 <figure markdown>
   ![qBittorrent Download Categories](/img/qbittorrent-category-2.png){ width="300" }
@@ -182,9 +186,9 @@ Goto: ==Options Icon== --> ==Downloads==
 
 !!! Hint "Save Path"
 
-    ==Save Path== only needs to have the category name, and not the full path, as it is relative to the ==Default Save Path:== which was set as `/data/torrents` above.
+    ==Save Path== needs to have the full path and category name as listed on the container's filesystem.
 
-    Therefore adding "movies" into the ==Save Path== field will actually be `/data/torrents/movies`.
+    The container's filesystem is mapped to the Docker host's filesystem, so `/data/torrents/anime` will map to `FOLDER_FOR_MEDIA/torrents/anime` on the Docker host.
 
 Continue to add the following categories:
 
@@ -227,15 +231,11 @@ The IP address of the remote / secure VPN connection will be displayed. Type `ex
 
 > NOTE: If the Gluetun container is not running, or does not have an active VPN connection, then no traffic from any of the Docker containers will be allowed to go out to the Internet; it is all blocked unless a secure VPN tunnel is active through Gluetun VPN.
 
-> NOTE: If you are using an active VPN account and are not able to secure a VPN connection, you should seek assistance before progressing.
-
-> Synology users may need to check VPN / TUN prerequisite details in this article, and seek guidance from the Synology community: [Synology prerequisites · qdm12/gluetun Wiki](https://github.com/qdm12/gluetun/wiki/Synology-prerequisites)  
-
-
 
 ## Download Torrent Test File
 
 Now qBittorrent is fully configured and secure behind the Gluetun VPN, you should check downloads are working correctly, by downloading a simple Torrent test file.
+
 
 ### Manual Watch Download
 

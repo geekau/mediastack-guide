@@ -37,3 +37,9 @@ All local data traffic between the applications in the docker stack, use the bas
 - Gluetun Wiki: [https://github.com/qdm12/gluetun/wiki](https://github.com/qdm12/gluetun/wiki)
 
 
+
+> NOTE: If the Gluetun container is not running, or does not have an active VPN connection, then no traffic from any of the Docker containers will be allowed to go out to the Internet; it is all blocked unless a secure VPN tunnel is active through Gluetun VPN.
+
+> NOTE: If you are using an active VPN account and are not able to secure a VPN connection, you should seek assistance before progressing.
+
+> Synology users may need to check VPN / TUN prerequisite details in this article, and seek guidance from the Synology community: [Synology prerequisites · qdm12/gluetun Wiki](https://github.com/qdm12/gluetun/wiki/Synology-prerequisites)  
