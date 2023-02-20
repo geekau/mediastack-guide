@@ -259,3 +259,41 @@ Paste the link into the "Download URL or Magnet Link address" field, and select 
 If you inspect the completed torrent downloads, you will notice the manual download was not association with a category and was moved into the ==/data/torrents== directory, while the second download was assigned a category and was moved into the ==/data/torrents/software== directory.
 
 The downloaded test torrents can now be safely deleted using the WebUI.
+
+## Add qBittorent to *ARR Apps
+
+
+
+<figure markdown>
+  ![qBittorrent Add Downloader to *ARR Applications](/img/qbittorrent-download-client.png){ width="300" }
+  <figcaption>qBittorrent Add Downloader to *ARR Applications</figcaption>
+</figure>
+
+
+
+<figure markdown>
+  ![qBittorrent Edit Download Client](/img/qbittorrent-edit-download-client.png){ width="300" }
+  <figcaption>qBittorrent Edit Download Client</figcaption>
+</figure>
+
+
+
+| *ARR Application | Add Downloader Page | Default Category |
+|------------------|---------------------|-------------------|
+|Prowlarr: |  [http://localhost:9696/settings/downloadclients](http://localhost:9696/settings/downloadclients) | prowlarr |
+|Radarr:   |  [http://localhost:7878/settings/downloadclients](http://localhost:7878/settings/downloadclients) | movies   |
+|Sonarr:   |  [http://localhost:8989/settings/downloadclients](http://localhost:8989/settings/downloadclients) | series   |
+|Lidarr:   |  [http://localhost:8686/settings/downloadclients](http://localhost:8686/settings/downloadclients) | music    |
+|Readarr:  |  [http://localhost:8787/settings/downloadclients](http://localhost:8787/settings/downloadclients) | books    |
+|Whisparr: |  [http://localhost:6969/settings/downloadclients](http://localhost:6969/settings/downloadclients) | xxx      |
+|Mylar3:   |  [http://localhost:8090/config#tabs-3](http://localhost:8090/config#tabs-3) | comics |
+
+
+
+
+<figure markdown>
+  ![Mylar3 Add qBittorrent Download Client](/img/qbittorrent-mylar-add-downloader.png){ width="300" }
+  <figcaption>Mylar3 Add qBittorrent Download Client</figcaption>
+</figure>
+
+

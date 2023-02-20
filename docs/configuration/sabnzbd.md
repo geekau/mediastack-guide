@@ -49,7 +49,7 @@ Select the ==Cog Icon== on the top right, and open ==SABnzbd Settings==.
 
 
 
-### COnfigure Working Folders
+### Configure Working Folders
 
 
 <figure markdown>
@@ -377,3 +377,44 @@ Paste the link into the "Download URL or Magnet Link address" field, and select 
 If you inspect the completed torrent downloads, you will notice the manual download was not association with a category and was moved into the ==/data/torrents== directory, while the second download was assigned a category and was moved into the ==/data/torrents/software== directory.
 
 The downloaded test torrents can now be safely deleted using the WebUI.
+
+
+## Add SABnzbd to *ARR Apps
+
+
+
+<figure markdown>
+  ![SABnzbd Add Downloader to *ARR Applications](/img/sabnzbd-download-client.png){ width="300" }
+  <figcaption>SABnzbd Add Downloader to *ARR Applications</figcaption>
+</figure>
+
+
+
+<figure markdown>
+  ![SABnzbd Edit Download Client](/img/sabnzbd-edit-download-client.png){ width="300" }
+  <figcaption>SABnzbd Edit Download Client</figcaption>
+</figure>
+
+!!! Note "Note: SABnzbd API Key"
+
+    You can find your SABnzbd API key at: [http://localhost:8100/sabnzbd/config/general/](http://localhost:8100/sabnzbd/config/general/)
+
+| *ARR Application | Add Downloader Page | Default Category |
+|------------------|---------------------|-------------------|
+|Prowlarr: |  [http://localhost:9696/settings/downloadclients](http://localhost:9696/settings/downloadclients) | prowlarr |
+|Radarr:   |  [http://localhost:7878/settings/downloadclients](http://localhost:7878/settings/downloadclients) | movies   |
+|Sonarr:   |  [http://localhost:8989/settings/downloadclients](http://localhost:8989/settings/downloadclients) | series   |
+|Lidarr:   |  [http://localhost:8686/settings/downloadclients](http://localhost:8686/settings/downloadclients) | music    |
+|Readarr:  |  [http://localhost:8787/settings/downloadclients](http://localhost:8787/settings/downloadclients) | books    |
+|Whisparr: |  [http://localhost:6969/settings/downloadclients](http://localhost:6969/settings/downloadclients) | xxx      |
+|Mylar3:   |  [http://localhost:8090/config#tabs-3](http://localhost:8090/config#tabs-3) | comics |
+
+
+
+
+<figure markdown>
+  ![Mylar3 Add SABnzbd Download Client](/img/sabnzbd-mylar-add-downloader.png){ width="300" }
+  <figcaption>Mylar3 Add SABnzbd Download Client</figcaption>
+</figure>
+
+
