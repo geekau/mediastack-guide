@@ -384,53 +384,24 @@ Add *ARR applications: ==Prowlarr== --> ==Settings== --> ==Apps== then add each 
 </figure>
 
 
-!!! Danger "Notice: Do Not Attempt to Update Libraries Just Yet"
+!!! Danger "Notice: Do Not Attempt to Update Library Managers Just Yet"
 
     At this point in the configuration guide, all of the ARR applications have been integrated with Prowlarr and they are able to do searches and commence downloading media, however each of the applications still need to be configured with media locations and meta data information, please avoid using the ARR Media Library Managed to download media content until you have configured each of the applications, in the relevant guides.
 
 
 ## Additional Configuration Items
 
-Change UI Date and Languages
+### Change Date and Languages
 
+To change the date and language in the WebUI Portal, select ==Settings== --> ==UI==
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Enter the server, username and password for one of your Usenet servers, enable "SSL" encryption, and then select ==Test Server== to test the connection.
-
-Select ==Next== if the server test is successful.
 
 <figure markdown>
-  ![SABnzbd Quick-Start Wizard (Server)](/img/sabnzbd-wizard-server.png){ width="300" }
-  <figcaption>SABnzbd Quick-Start Wizard (Server)</figcaption>
+  ![Prowlarr WebUI Date and Language Settings](/img/prowlarr-date-language.png){ width="300" }
+  <figcaption>Prowlarr WebUI Date and Language Settings</figcaption>
 </figure>
 
-You will then be presented with the ==Setup is now complete!== page, however the links and the download folders will be incorrect.
-
-Select ==Go to SABnzbd== to close the Wizard, we will update the incorrect settings in the next steps.
-
-<figure markdown>
-  ![SABnzbd Quick-Start Wizard (Complete)](/img/sabnzbd-wizard-complete.png){ width="300" }
-  <figcaption>SABnzbd Quick-Start Wizard (Complete)</figcaption>
-</figure>
-
-## Change Default Settings
-
-Select the ==Cog Icon== on the top right, and open ==SABnzbd Settings==.
 
 
-### General Settings
+### Miscellaneous Points
+

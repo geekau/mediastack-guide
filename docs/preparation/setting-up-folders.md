@@ -44,11 +44,11 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         sudo -E chown -R $PUID:$PGID $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA/{media,usenet,torrents,watch}
         ```
 
-    === "Windows PowerShell"
+    === "Windows Command Prompt"
 
-        ``` powershell
-        set FOLDER_FOR_CONFIGS=D:\Storage\Docker
-        set FOLDER_FOR_MEDIA=D:\Storage\Media
+        ```
+        set FOLDER_FOR_CONFIGS=D:\MediaStackDockerConf
+        set FOLDER_FOR_MEDIA=D:\MediaStack
 
         FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall jellyfin jellyseerr lidarr mylar3 portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_CONFIGS%\%I
         FOR /D %I IN (server configs logs) DO mkdir %FOLDER_FOR_CONFIGS%\tdarr\%I

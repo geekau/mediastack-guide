@@ -21,7 +21,7 @@ nav:
   - Preparation:
     - MediaStack Applications:         preparation/mediastack-applications.md
     - Networking Architecture:         preparation/networking-architecture.md
-    - Installing Docker:               preparation/installing-docker.md
+    - Installing Docker on Host:       preparation/installing-docker.md
     - Setting Up App / Media Folders:  preparation/setting-up-folders.md
     - Prepare Media Library:           preparation/prepare-media-library.md
     - Docker Compose Files:            preparation/docker-compose-files.md
@@ -33,8 +33,8 @@ nav:
     - Portainer   (Docker GUI):        installation/portainer.md
   - Configure Media Apps:
     - Gluetun     (VPN Client):        configuration/gluetun.md
-    - qBittorrent (Torrent Files):     configuration/qbittorrent.md
-    - SABnzbd     (Usenet Files):      configuration/sabnzbd.md
+    - qBittorrent (Torrent Downloads): configuration/qbittorrent.md
+    - SABnzbd     (Usenet Downloads):  configuration/sabnzbd.md
     - Prowlarr    (Index Search):      configuration/prowlarr.md
     - Radarr      (Movie Library):     configuration/radarr.md
     - Sonarr      (Series Library):    configuration/sonarr.md
