@@ -43,7 +43,7 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         sudo -E chmod -R 775 $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
         sudo -E chown -R $PUID:$PGID $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA/{media,usenet,torrents,watch}
         ```
-
+ 
     === "Windows Command Prompt"
 
         ```
