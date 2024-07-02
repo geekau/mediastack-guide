@@ -23,7 +23,7 @@ Our approach is simple deployment and ease of use for greater user uptick.
 - Host your media stack using Docker on any Operating System or NAS Device (Windows / Linux / Synology)
 - Rapidly deploy full media stack with Docker Compose files in matter of minutes
 - Stream your full media library to any media device on your home network
-- Full network encryption for all services connecting via the Internet (VPN and Zero Trust)
+- 100% network encryption for all services connecting via the Internet (VPN and Zero Trust)
 - Dedicated *ARR (starr) media library managers for your movies, tv shows, anime, music, comics, and books
 - Access all of your media stack applications from the Internet with Nginx Reverse Proxy
 - Internet access to your full media library using your own DDNS or DNS address
