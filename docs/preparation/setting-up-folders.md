@@ -7,7 +7,7 @@
 
 
 ## Set up all of the folders / subfolders:
-The commands suit the folders defined above in your ENV file for `FOLDER_FOR_CONFIGS` and `FOLDER_FOR_MEDIA`.
+The commands suit the folders defined above in your ENV file for `FOLDER_FOR_MEDIA` and `FOLDER_FOR_DATA`.
 
 ## For Linux hosted data folders:
 If you used Linux / NAS folders in the ENV file, then use the following commands to create the necessary folders:
@@ -18,8 +18,8 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
 
 !!! note "Select the correct operating system to execute desired commands:"
 
-    - `FOLDER_FOR_CONFIGS`  
     - `FOLDER_FOR_MEDIA`  
+    - `FOLDER_FOR_DATA`  
     - `UID`  
     - `GID`  
 
@@ -30,28 +30,29 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         Check your Docker user ID with the command `id docker`, and update the PUID value below.
 
         ``` bash
-        export FOLDER_FOR_CONFIGS=/home/geekau/dockerdata
-        export FOLDER_FOR_MEDIA=/home/geekau/data
+        export FOLDER_FOR_MEDIA=/mediastack
+        export FOLDER_FOR_DATA=/mediastackdata
+
         export PUID=1000
         export PGID=1000
 
-        sudo -E mkdir -p $FOLDER_FOR_CONFIGS/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
+        sudo -E mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,series,xxx}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/watch
-        sudo -E chmod -R 775 $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
-        sudo -E chown -R $PUID:$PGID $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA/{media,usenet,torrents,watch}
+        sudo -E chmod -R 775 $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
+        sudo -E chown -R $PUID:$PGID $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
         ```
  
     === "Windows Command Prompt"
 
         ```
-        set FOLDER_FOR_CONFIGS=D:\MediaStackDockerConf
         set FOLDER_FOR_MEDIA=D:\MediaStack
+        set FOLDER_FOR_DATA=D:\MediaStackData
 
-        FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall jellyfin jellyseerr lidarr mylar3 portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_CONFIGS%\%I
-        FOR /D %I IN (server configs logs) DO mkdir %FOLDER_FOR_CONFIGS%\tdarr\%I
+        FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall jellyfin jellyseerr lidarr mylar3 plex portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_DATA%\%I
+        FOR /D %I IN (server configs logs) DO mkdir %FOLDER_FOR_DATA%\tdarr\%I
         FOR /D %I IN (anime audio books comics movies music photos series xxx) DO mkdir %FOLDER_FOR_MEDIA%\media\%I
         FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr series software xxx) DO mkdir %FOLDER_FOR_MEDIA%\usenet\%I
         FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr series software xxx) DO mkdir %FOLDER_FOR_MEDIA%\torrents\%I
@@ -66,22 +67,22 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
 
     === "Synology NAS (SSH)"
 
-        The Docker process on Synology NAS runs as "root", so user and group permissions for $FOLDER_FOR_CONFIGS will be set as "root". All "Shared Folders" you create manually have Group ID as "users", so we only need to declare the User ID (PUID) which Docker uses to access files inside the "FOLDER_FOR_MEDIA" folder.
+        The Docker process on Synology NAS runs as "root", so user and group permissions for $FOLDER_FOR_DATA will be set as "root". All "Shared Folders" you create manually have Group ID as "users", so we only need to declare the User ID (PUID) which Docker uses to access files inside the "FOLDER_FOR_MEDIA" folder.
 
         Check your Docker user ID with the command `id docker`, and update the PUID value below.
 
         ``` bash
-        export FOLDER_FOR_CONFIGS=/volume1/docker/appdata
-        export FOLDER_FOR_MEDIA=/volume1/media
+        export FOLDER_FOR_MEDIA=/mediastack
+        export FOLDER_FOR_DATA=/mediastackdata
         export PUID=1030
 
-        sudo mkdir -p $FOLDER_FOR_CONFIGS/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
+        sudo mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
         sudo mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,series,xxx}
         sudo mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
         sudo mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
         sudo mkdir -p $FOLDER_FOR_MEDIA/watch
-        sudo chmod -R 777 $FOLDER_FOR_CONFIGS $FOLDER_FOR_MEDIA
-        sudo chown -R root:root $FOLDER_FOR_CONFIGS
+        sudo chmod -R 777 $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
+        sudo chown -R root:root $FOLDER_FOR_DATA
         sudo chown -R $PUID:users $FOLDER_FOR_MEDIA/{media,usenet,torrents,watch}
         ```
 
@@ -169,7 +170,7 @@ This means the "docker" user has User ID of 131, Group ID of 123, and is in the 
 **PUID**\=131  
 **PGID**\=123  
 **UMASK**\=0002 <-- Don't change this unless you know what you're doing  
-**TIMEZONE**\=Australia/Brisbane  
+**TIMEZONE**\=Europe/Zurich  
   
 Update your local Timezone using this list: [List of tz database time zones - Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)  
   
@@ -197,33 +198,30 @@ Ultimately, you need to ensure the "docker" user has read/write access to whatev
   
 When you created the "docker" user for Linux, you also created a "docker" group. Additionally, you added your own Linux user account into the "docker" group, so you want to apply "docker:docker" permissions to folders for the correct access permissions to filter through the file structure.  
   
-If you want to be security conscience and only allow members of the "docker" group (and running docker applications) access to for docker and media folders, you can execute the following commands, which also turn on the SetGid bit for the group, so any new folder / file created inside these folders will have full permissions to anyone in the "docker" group; so being a member of the "docker" group is key.  
+If you want to be security conscience and only allow members of the "docker" group (and running docker applications) access to the docker and media folders, you can execute the following commands, which also turn on the SetGid bit for the group, so any new folder / file created inside these folders will have full permissions to anyone in the "docker" group; so being a member of the "docker" group is key.  
   
 
 Code:
 
-    sudo chmod -R u+rwx,g+rws,o+rx,o-w /opt/docker /opt/media /opt/usenet /opt/torrents /opt/watch
-    sudo chown -R docker:docker /opt/docker /opt/media /opt/usenet /opt/torrents /opt/watch
+    sudo chmod -R u+rwx,g+rws,o+rx,o-w /mediastack /mediastackdata
+    sudo chown -R docker:docker /mediastack /mediastackdata
 
   
 
 Code:
 
-    drwxrwsr-x+  15 docker       docker             4096 Jan 01 00:10 /opt/docker
-    drwxrwsr-x+  12 docker       docker             4096 Jan 01 00:10 /opt/media
-    drwxrwsr-x+  12 docker       docker             4096 Jan 01 00:10 /opt/torrents
-    drwxrwsr-x+  17 docker       docker             4096 Jan 01 00:10 /opt/usenet
-    drwxrwsr-x+   2 docker       docker            53248 Jan 01 00:10 /opt/watch
+    drwxrwsr-x+  15 docker       docker             4096 Jan 01 00:10 /mediastack
+    drwxrwsr-x+  12 docker       docker             4096 Jan 01 00:10 /mediastackdata
 
   
   
-If you don't share your Linux host computer with other users and you are having problems with access and permissions, you can always using the following commands, which allow everyone to have absolute access:  
+If you don't share your Linux host computer with other users and you are having problems with access and permissions, you can always use the following commands, which allow everyone to have absolute access:
   
 
 Code:
 
-    sudo chmod -R 777 /opt/docker /opt/media /opt/usenet /opt/torrents /opt/watch
-    sudo chown -R docker:docker /opt/docker /opt/media /opt/usenet /opt/torrents /opt/watch
+    sudo chmod -R 777 /mediastack /mediastackdata
+    sudo chown -R docker:docker /mediastack /mediastackdata
 
   
 **NOTE:** If you ever experience issues with file / permission access issues, then rerun both the "chmod" and "chown" commands above, and restart your docker media stack.  

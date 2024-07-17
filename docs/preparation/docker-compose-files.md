@@ -5,7 +5,7 @@
     This page is still under development and may not have accurate information, and should be considered incomplete / inaccurate until this notice is removed.
 
 ## Download Compose Files
-Goto: [https://github.com/geekau/media-stack](https://github.com/geekau/media-stack)
+Goto: [https://github.com/geekau/mediastack](https://github.com/geekau/mediastack)
 
 Download this repository to your computer by selecting "**Code**" --> "**Download Zip**".
 

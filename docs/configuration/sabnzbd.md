@@ -8,6 +8,23 @@ SABnzbd is a well established open-source Usenet download client. SABnzbd is a m
     - Docker Information: &nbsp; &nbsp; &nbsp; [https://docs.linuxserver.io/images/docker-sabnzbd](https://docs.linuxserver.io/images/docker-sabnzbd)
 
 
+The first time you access SABnzbd via your web browser, you may need to use the IP Address of your docker host, as it has a builtin hostname verification security feature, and you will be presented with this error message:
+
+Access denied - Hostname verification failed: https://sabnzbd.org/hostname-check
+
+In order to access the SABnzbd web browser using the docker hostname (not IP address), you will need to add the docker hostname and FQDN to the ==host_whitelist== in the configuration file, located in the ==(FOLDER_FOR_DATA)/sabnzbd== folder.
+
+```
+vi /mediastackdata/sabnzbd/sabnzbd.ini
+```
+
+host_whitelist = localhost,dockerhost,dockerhost.domain.com  
+local_ranges = 192.168.1.0/24,172.28.10.0/24  
+
+```
+sudo docker container restart sabnzbd
+```
+
 ## Quick-Start Wizard
 
 Go to the [SABnzbd WebUI](http://localhost:8100). If this is the first time using the application, you will be presented with the SABnzbd Quick-Start Wizard, choose your desired langauge and select ==Start Wizard== to continue.

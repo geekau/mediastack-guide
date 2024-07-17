@@ -32,7 +32,7 @@ https://www.synoforum.com/resources/ultimate-starter-docker-portainer-portainer-
   
 **Deployment via Portainer GUI on Synology / Linux / Windows:**  
   
-Deploying the docker-compose media stack via Portainer, will be exactly the same on Synology / Linux / Windows, assuming Portainer has already been installed on the Docker Host, and the file paths have been updated in the ENV file for each respective Operating System.  
+Deploying the docker compose media stack via Portainer, will be exactly the same on Synology / Linux / Windows, assuming Portainer has already been installed on the Docker Host, and the file paths have been updated in the ENV file for each respective Operating System.  
   
 \- Open Portainer at: [https://localhost:9443](https://localhost:9443)  
   
@@ -40,9 +40,9 @@ Deploying the docker-compose media stack via Portainer, will be exactly the same
   
 \- Stack Name: "media\_stack" <-- Must be lowercase and only use underscores or hyphens  
   
-\- Select: "Upload" -- Press "Upload File", then select the "docker-compose-media-stack.yaml" file and save.  
+\- Select: "Upload" -- Press "Upload File", then select the "docker-compose-mediastack.yaml" file and save.  
   
-\- Select: "Load Variables From .ENV File", then select the "docker-compose-media-stack.env" file and save.  
+\- Select: "Load Variables From .ENV File", then select the "docker-compose-mediastack.env" file and save.  
   
 \- "Enable access control": Disable this if you do not have multiple users in Portainer (Optional)  
   
@@ -66,7 +66,7 @@ Back up the **OLDER\_FOR\_DOCKER\_DATA** sub-folders to save you rebuilding afte
   
 Now is the best time to validate your docker compose configuration, open some of the applications using the links at the very top to make sure they're up and running, then:  
   
-\- If you used docker-compose command at the terminal / PowerShell, go to the .ENV file, then make the following change, and run the docker-compose up command again.  
+\- If you used docker compose command at the terminal / PowerShell, go to the .ENV file, then make the following change, and run the docker compose up command again.  
   
 
 Code:
@@ -76,7 +76,7 @@ Code:
   
 \- If you used Portainer, go to "Stacks" -- "media\_stack" -- "Editor", find "TP\_THEME" down the bottom in the variables, and change the value to "dracula", then select "Actions: Update The Stack".  
   
-Once you have redeployed the docker-compose via the terminal / Portainer, go back into the applications using the links up the top again, and check that your chance has occurred.  
+Once you have redeployed the docker compose via the terminal / Portainer, go back into the applications using the links up the top again, and check that your chance has occurred.  
   
 **NOTE:** The TP\_THEME is used in all docker containers, except Jellyfin, Jellyseerr, and Whisparr.  
   

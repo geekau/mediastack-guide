@@ -29,6 +29,7 @@ Radarr is a movie collection manager for Usenet and BitTorrent users. It can mon
     - Docker Information: &nbsp; &nbsp; &nbsp; [https://docs.linuxserver.io/images/docker-radarr](https://docs.linuxserver.io/images/docker-radarr)
 
 
+Docker official installation instructions are located at: [Official: Install Docker Engine](https://docs.docker.com/engine/install/)
 
 https://www.coretechnologies.com/products/AlwaysUp/Apps/StartDockerDaemonAsAWindowsService.html
 
@@ -98,7 +99,7 @@ Download and install the Microsoft "WSL2 Linux kernel update package for x64 mac
 
 
 
-sudo docker-compose --file docker-compose-media-stack.yaml --env-file docker-compose.env up -d
+sudo docker compose --file docker-compose-media-stack.yaml --env-file docker-compose.env up -d
 
 
 

@@ -26,65 +26,72 @@ The environment file is called `docker-compose.env`, and it is exactly the same 
 !!! note "File: docker-compose.env &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <-- Default Configuration File"
 
     ```
-    ###########################################################################
-    ###########################################################################
-    ###########################################################################
+    #################################################################################
+    #################################################################################
+    #################################################################################
     ##
-    ##  Docker Compose Environment Variable file for Jellyfin Media Stack
+    ##  Docker Compose Environment Variable file for Jellyfin / *ARR Media Stack
     ##
     ##  Update any of the environment variables below as required.
     ##
-    ##  It is highly recommended Linux users set up a "docker"
-    ##  user, so the applications can access the local filesystem
-    ##  with this user's access privileges. Use PUID / PGID to map
-    ##  user access between the Docker apps and local filesystem.
+    ##  It is highly recommended Linux users set up a "docker" user, so the
+    ##  applications can access the local filesystem with this user's access
+    ##  privileges. Use PUID / PGID to map user access between the Docker apps
+    ##  and local filesystem.
     ##
-    ###########################################################################
-    ###########################################################################
-    ###########################################################################
+    ##  The MediaStack Guide is located at https://mediastake.guide
+    ##
+    #################################################################################
+    #################################################################################
+    #################################################################################
 
     #Name of the project in Docker
-    COMPOSE_PROJECT_NAME=media-stack
+    COMPOSE_PROJECT_NAME=mediastack
 
     # This is the network subnet which will be used inside the docker "media_network", change as required.
     # LOCAL_SUBNET is your home network and is needed so the VPN client allows access to your home computers.
     DOCKER_SUBNET=172.28.10.0/24
     DOCKER_GATEWAY=172.28.10.1
-    LOCAL_SUBNET=10.168.1.0/24
-    LOCAL_DOCKER_IP=10.168.1.10
+    LOCAL_SUBNET=192.168.1.0/24      # Update for your home network
+    LOCAL_DOCKER_IP=192.168.1.10     # Update for your home network
 
     # Each of the "*ARR" applications have been configured so the theme can be changed to your needs.
     # Refer to Theme Park for more info / options: https://docs.theme-park.dev/theme-options/aquamarine/
     TP_THEME=nord
 
     # These are the folders on your local host computer / NAS running docker, they MUST exist
-    # and have correct permissions for PUID and PGUI prior to running the docker-compose.
+    # and have correct permissions for PUID and PGUI prior to running the docker compose.
     #
     # Use the commands in the Guide to create all the sub-folders in each of these folders.
 
-    # Host Data Folders - Will accept Linux, Windows, NAS folders
-    FOLDER_FOR_CONFIGS=/home/geekau/docker
-    FOLDER_FOR_MEDIA=/home/geekau/media-stack
+    # Host Data Folders - Will accept Linux, Windows, NAS folders.
+    # Make sure these folders exists before running the "docker compose" command.
+    FOLDER_FOR_MEDIA=/mediastack            # Update for your folders
+    FOLDER_FOR_DATA=/mediastackdata         # Update for your folders
 
     # File access, date and time details for the containers / applications to use.
     # Run "sudo id docker" on host computer to find PUID / PGID and update these to suit.
     PUID=1000
     PGID=1000
     UMASK=0002
-    TIMEZONE=Australia/Brisbane
+    TIMEZONE=Europe/Zurich
 
     # Update your own Internet VPN provide details below
+    # Online documentation: https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers
     VPN_TYPE=openvpn
     VPN_SERVICE_PROVIDER=VPN provider name
     VPN_USERNAME=<username from VPN provider>
     VPN_PASSWORD=<password from VPN provider>
-    SERVER_REGION=<regions supported by VPN provider>
-    SERVER_CITIES=
-    SERVER_HOSTNAMES=
+
+    SERVER_COUNTRIES=       # Comma separated list of countries
+    SERVER_REGIONS=         # Comma separated list of regions
+    SERVER_CITIES=          # Comma separated list of server cities
+    SERVER_HOSTNAMES=       # Comma separated list of server hostnames
+    SERVER_CATEGORIES=      # Comma separated list of server categories
 
     # Fill in this item ONLY if you're using a custom OpenVPN configuration
     # Should be inside gluetun data folder - Example: /gluetun/custom-openvpn.conf
-    # You can then edit it inside the FOLDER_FOR_CONFIGS location for gluetun.
+    # You can then edit it inside the FOLDER_FOR_DATA location for gluetun.
     OPENVPN_CUSTOM_CONFIG=
 
     # Fill in these items ONLY if you change VPN_TYPE to "wireguard"
@@ -142,12 +149,12 @@ The environment file is called `docker-compose.env`, and it is exactly the same 
 
 
 
-PART 3 - Configuring the Docker-Compose Environment Settings
+PART 3 - Configuring the Docker Compose Environment Settings
 
-This implementation will use a docker-compose configuration file and an accompanying environment file, containing all of the variables for the docker-compose file, so it can be customised to your individual requirements. This allows complex docker builds to be rapidly deployed over and over with relative ease, and minimal input. In fact, it is quicker and easier to delete all of the docker applications and redeploy it again, rather than trying to do any fault finding when errors occur. It is also a simply way to upgrade application versions, by deleting the entire docker stack, and redeploying again using updated images.
+This implementation will use a docker compose configuration file and an accompanying environment file, containing all of the variables for the docker compose file, so it can be customised to your individual requirements. This allows complex docker builds to be rapidly deployed over and over with relative ease, and minimal input. In fact, it is quicker and easier to delete all of the docker applications and redeploy it again, rather than trying to do any fault finding when errors occur. It is also a simply way to upgrade application versions, by deleting the entire docker stack, and redeploying again using updated images.
 
-Download Docker Compose Media Stack - Yaml file
-Download Docker Compose Media Stack - Environment file
+Download Docker Compose MediaStack - Yaml file
+Download Docker Compose MediaStack - Environment file
 
 Below are some of the planning details / settings you need to consider, which are located inside the Environment File - they should be updated to suit your needs.
 
@@ -169,7 +176,7 @@ Its a mandatory requirement you have an active VPN connection, otherwise Gluetun
 
 A full list of supported VPN / Wireguard providers can be found on the Gluetun wiki on the right hand side menu: Home · qdm12/gluetun Wiki
 
-Gluetun also supports custom VPN configurations if you have alternate VPN setups, the docker-compose file has the necessary variables if you need to set up a custom VPN connection, including Wireguard.
+Gluetun also supports custom VPN configurations if you have alternate VPN setups, the docker compose file has the necessary variables if you need to set up a custom VPN connection, including Wireguard.
 
 VPN_SERVICE_PROVIDER=VPN provider name
 VPN_USERNAME=<username from VPN provider>
@@ -180,17 +187,17 @@ Main Folders For Media and Docker Persistent Configurations:
 
 This is the most important component of your media server, were data is going to be stored, and how all the different Docker applications are going to access the different media / configuration files.
 
-When you set up folders / volumes on the host computer, you need to map them in the Docker configuration, so the applications can access the data. The docker-compose file has already set up all the correct folder mappings between the host computer and docker applications by using environment variables in the YAML file, however you will need to update the variables below so the the docker-compose build knows which folders to map.
+When you set up folders / volumes on the host computer, you need to map them in the Docker configuration, so the applications can access the data. The docker compose file has already set up all the correct folder mappings between the host computer and docker applications by using environment variables in the YAML file, however you will need to update the variables below so the the docker compose build knows which folders to map.
 
 When considering media storage, you also need to consider files are going to be downloaded by the Docker applications and moved between folders, which are actually being moved by the underlaying host computer. So you need to consider what happens when moving a 10GB file between two folders inside different Docker applications, may in fact be getting transferred to different HDDs / Filesystems / Volumes, on the host system - this can greatly slow down the performance of disk operations and docker performance.
 
 It is highly recommended the locations you choose for the MEDIA, TORRENTS, USENET, and WATCH folders, are located on the same HDD / Volume / Partition on the local host computer. The Docker stack has been carefully planned, and as long as these host folders are using these principles, then the Docker application will take advantage of Atomic Moves (instant) inside the containers.
 
-FOLDER_FOR_DOCKER_DATA= # Folder to store persistent configuration settings for all the docker applications
-FOLDER_FOR_MEDIA= # Folder where root of media library exists
-FOLDER_FOR_TORRENTS= # Folder where all torrent files will be downloaded (Transmission)
-FOLDER_FOR_USENET= # Folder where all NZB Usenet files will be downloaded (NZBGet)
-FOLDER_FOR_WATCH= # Folder to place NZB and Torrent files for manual downloading
+FOLDER_FOR_DATA=      # Folder to store persistent configuration settings for all the docker applications
+FOLDER_FOR_MEDIA=     # Folder where root of media library exists
+FOLDER_FOR_TORRENTS=  # Folder where all torrent files will be downloaded (Transmission)
+FOLDER_FOR_USENET=    # Folder where all NZB Usenet files will be downloaded (NZBGet)
+FOLDER_FOR_WATCH=     # Folder to place NZB and Torrent files for manual downloading
 
 The following table provides examples on how the folders located on the Host computer, will be mapped to the folders inside the Docker containers.
 
@@ -200,7 +207,7 @@ Synology Example:​
 Linux Example:​
 Windows Example:​
 Docker Path:​
-FOLDER_FOR_DOCKER_DATA	/volume1/docker	/opt/docker	D:\Docker	Differs by container
+FOLDER_FOR_DATA	    /volume1/docker	/opt/docker	D:\Docker	Differs by container
 FOLDER_FOR_MEDIA	/volume1/media	/opt/media	D:\Media	/data/media
 FOLDER_FOR_TORRENTS	/volume1/data/torrents	/opt/torrents	D:\Torrents	/data/torrents
 FOLDER_FOR_USENET	/volume1/data/usenet	/opt/usenet	D:\Usenet	/data/usenet

@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 
-site_name: MediaStack.Guide
+site_name: MediaStack.Guide &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DOCUMENTION UNDER HEAVY DEVELOPMENT
 site_url:  https://mediastack.guide/
 site_description: >
   Quick-start guide to set up a full VPN encrypted streaming media service, with reverse-proxy / MFA access from the Internet, for Linux, Windows, Synology NAS, and more...   Full Docker deployment for Jellyfin, Jellyseerr, Gluetun, DDNS-Updater, Prowlarr, Radarr, Sonarr, Lidarr, Mylar, Readarr, Whisparr, Bazarr, qBittorrent, SABnzbd, Unpackerr, SWAG, Heimdall, Authelia, Flaresolverr, and Portainer.
@@ -47,6 +47,7 @@ nav:
     - Unpackerr   (Unzip Archives):    configuration/unpackerr.md
     - Jellyfin    (Media Server):      configuration/jellyfin.md
     - Jellyseerr  (Request Manager):   configuration/jellyseerr.md
+    - Plex        (Media Server):      configuration/plex.md
   - Configure Remote Access:
     - Cloudflare Domain Management:    remote-access/cloudflare-domain-management.md
     - DDNS-Updater:                    remote-access/ddns-updater.md
@@ -190,4 +191,4 @@ extra:
       name: "Twitter: squidfunk"
 
 copyright: >
-  Copyright &copy; 2023 - <a href="https://MediaStack.Guide">MediaStack.Guide</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( &nbsp;<a href="#__consent">Update Change Cookie Settings</a> &nbsp;)
+  Copyright &copy; 2024 - <a href="https://MediaStack.Guide">MediaStack.Guide</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( &nbsp;<a href="#__consent">Update Change Cookie Settings</a> &nbsp;)

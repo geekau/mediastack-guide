@@ -10,6 +10,24 @@ qBittorrent is a well established open-source BitTorrent download client. qBitto
 
 ## Login to WebUI
 
+The default username and password in earlier versions of qBittorrent, used to be ==admin== and ==adminadmin== respectively, however the password is now randomly generated every time qBittorrent is started until a permanent password is set.
+
+The randomised password can be viewed in your docker logs by using the following command, then changed to a permanent password once you have logged in.
+
+
+```
+sudo docker logs qbittorrent
+```
+
+Log output:
+
+```
+The WebUI administrator username is: admin
+The WebUI administrator password was not set. A temporary password is provided for this session: hIk7RrW3e9
+You should set your own password in program preferences.
+```
+
+
 Go to the [qBittorrent WebUI](http://localhost:8200) and log into the application
 
 <figure markdown>
@@ -17,10 +35,7 @@ Go to the [qBittorrent WebUI](http://localhost:8200) and log into the applicatio
   <figcaption>qBittorrent Login Screen</figcaption>
 </figure>
 
-!!! Tip "Default Login Credentials"
-
-    - Username: &nbsp; &nbsp; &nbsp; ==admin==  
-    - Password: &nbsp; &nbsp; &nbsp; ==adminadmin==
+!!! Tip "Set A Permanent Login Password"
 
     Default Username and Password can be changed by navigating to ==Options Icon== --> ==Web UI== --> ==Authentication==
 
@@ -227,29 +242,29 @@ Once you have successfully connected to the qBittorrent Docker container, run th
 curl ifconfig.io
 ```
 
-The IP address of the remote / secure VPN connection will be displayed. Type `exit` to disconnect from the Docker interactive session.
+The IP address of the remote / secure VPN connection will be displayed. Type `exit` to disconnect from the Docker interactive session.  
 
-> NOTE: If the Gluetun container is not running, or does not have an active VPN connection, then no traffic from any of the Docker containers will be allowed to go out to the Internet; it is all blocked unless a secure VPN tunnel is active through Gluetun VPN.
+> NOTE: If the Gluetun container is not running, or does not have an active VPN connection, then no traffic from any of the Docker containers will be allowed to go out to the Internet; it is all blocked unless a secure VPN tunnel is active through Gluetun VPN.  
 
 
 ## Download Torrent Test File
 
-Now qBittorrent is fully configured and secure behind the Gluetun VPN, you should check downloads are working correctly, by downloading a simple Torrent test file.
+Now qBittorrent is fully configured and secure behind the Gluetun VPN, you should check downloads are working correctly, by downloading a simple Torrent test file.  
 
 
 ### Manual Watch Download
 
-Head over to [https://ubuntu.com/download/alternative-downloads](https://ubuntu.com/download/alternative-downloads) to Ubuntu's BitTorrent page, and download one of the ".torrent" files, and copy it into the ==FOLDER_FOR_MEDIA/watch== folder on the Docker host, which is mapped to the qBittorrent container folder ==/data/watch==.
+Head over to the BitTorrent download page at Ubuntu [https://ubuntu.com/download/alternative-downloads](https://ubuntu.com/download/alternative-downloads) and download the Ubuntu server ".torrent" file to your computer, then copy the ".torrent" file into copy it into the ==FOLDER_FOR_MEDIA/watch== folder on the Docker host, which is mapped to the qBittorrent container folder ==/data/watch==.  
 
-As qBittorrent is monitoring the ==/data/watch== folder inside the container for incoming ".torrent" files, the torrent download will start after a short period. Once completed, the downloaded torrent will be moved to the root of the ==/data/torrents== folder, as no category was provided using the manual download step (==FOLDER_FOR_MEDIA/torrents==).
+As qBittorrent is monitoring the ==/data/watch== folder inside the container for incoming ".torrent" files, the torrent download will start immediately after the torrent file has been copied. Once completed, the downloaded torrent will be moved to the ==/data/torrents/complete== folder, as no category was provided using the manual download step (==FOLDER_FOR_MEDIA/torrents/complete==).  
 
-This is a good process to use qBittorrent manually for your own download requirements.
+This is a good process if you need to use qBittorrent to manually download torrent files.  
 
 ### Download Link with Category
 
 You can also download torrents by copying the Download URL or Magnet Link address of the torrent, and clicking on the "Add Torrent Link" button.
 
-Paste the link into the "Download URL or Magnet Link address" field, and select the category which best suits the torrent. In this case, we'll select one of the other torrent download links from the Ubuntu test above, use the "==software==" Category, then select ==Download==.
+Paste the link into the "Download URL or Magnet Link address" field, and select the category which best suits the torrent. In this case, we'll select one of the other torrent download links from the Ubuntu BitTorrent download page, select the "==software==" Category, then select ==Download==.  
 
 <figure markdown>
   ![qBittorrent Completed Downloads](../img/qbittorrent-completed.png){ width="300" }
