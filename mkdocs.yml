@@ -1,1 +1,194 @@
-site_name: MediaStack.Guide
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: MediaStack.Guide &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DOCUMENTION UNDER HEAVY DEVELOPMENT
+site_url:  https://mediastack.guide/
+site_description: >
+  Quick-start guide to set up a full VPN encrypted streaming media service, with reverse-proxy / MFA access from the Internet, for Linux, Windows, Synology NAS, and more...   Full Docker deployment for Jellyfin, Jellyseerr, Gluetun, DDNS-Updater, Prowlarr, Radarr, Sonarr, Lidarr, Mylar, Readarr, Whisparr, Bazarr, qBittorrent, SABnzbd, Unpackerr, SWAG, Heimdall, Authelia, Flaresolverr, and Portainer.
+
+repo_name: mediastack.guide
+repo_url:  https://github.com/geekau/mediastack.guide
+edit_uri:  blob/main/docs/
+
+plugins:
+  - search
+  - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: false
+#  - typeset
+
+nav:
+  - Home:                              index.md
+  - Preparation:
+    - MediaStack Applications:         preparation/mediastack-applications.md
+    - Networking Architecture:         preparation/networking-architecture.md
+    - Installing Docker on Host:       preparation/installing-docker.md
+    - Setting Up App / Media Folders:  preparation/setting-up-folders.md
+    - Prepare Media Library:           preparation/prepare-media-library.md
+    - Docker Compose Files:            preparation/docker-compose-files.md
+  - Installation:
+    - Default Environment:             installation/default-environment.md
+    - Customising Environment:         installation/customising-environment.md
+    - Individual Install:              installation/individual-install.md
+    - Collective Install:              installation/collective-install.md
+    - Portainer   (Docker GUI):        installation/portainer.md
+  - Configure Media Apps:
+    - Gluetun     (VPN Client):        configuration/gluetun.md
+    - qBittorrent (Torrent Downloads): configuration/qbittorrent.md
+    - SABnzbd     (Usenet Downloads):  configuration/sabnzbd.md
+    - Prowlarr    (Index Search):      configuration/prowlarr.md
+    - Radarr      (Movie Library):     configuration/radarr.md
+    - Sonarr      (Series Library):    configuration/sonarr.md
+    - Lidarr      (Music Library):     configuration/lidarr.md
+    - Readarr     (Book Library):      configuration/readarr.md
+    - Mylar       (Comic Library):     configuration/mylar.md
+    - Whisparr    (Adult Library):     configuration/whisparr.md
+    - Bazaar      (Subtitles):         configuration/bazaar.md
+    - Tdarr       (Transcoding):       configuration/tdarr.md
+    - Unpackerr   (Unzip Archives):    configuration/unpackerr.md
+    - Jellyfin    (Media Server):      configuration/jellyfin.md
+    - Jellyseerr  (Request Manager):   configuration/jellyseerr.md
+    - Plex        (Media Server):      configuration/plex.md
+  - Configure Remote Access:
+    - Cloudflare Domain Management:    remote-access/cloudflare-domain-management.md
+    - DDNS-Updater:                    remote-access/ddns-updater.md
+    - Secure Web App Gateway:          remote-access/secure-web-app-gateway.md
+    - Nginx - Reverse Proxy:           remote-access/nginx-reverse-proxy.md
+    - Authelia    (AA Server):         remote-access/authelia.md
+    - Heimdall    (Link Manager):      remote-access/heimdall.md
+    - Cloudflare Zero Trust:           remote-access/cloudflare-zero-trust.md
+  - Help:
+    - Application Websites:            help/application-websites.md
+    - Contributing:                    help/contributing.md
+    - Template:                        help/template.md
+  - OLD DOCS:
+    - Old Notes 1:                     help/1.md
+    - Old Notes 2:                     help/2.md
+    - Old Notes 3:                     help/3.md
+    - Old Notes 4:                     help/4.md
+    - Old Notes 5:                     help/5.md
+
+theme:
+  name:       material
+  custom_dir: overrides
+  favicon:    assets/favicon.ico
+
+  features:
+  - announce.dismiss
+  - content.action.edit
+  - content.action.view
+  - content.code.annotate
+  - content.code.copy
+  - content.tabs.link
+  - navigation.instant
+  - navigation.tracking
+  - navigation.top
+  - navigation.footer
+  - navigation.tabs
+  - navigation.sections
+  - navigation.expand
+  - navigation.prune
+  - navigation.indexes
+  - toc.follow
+  - toc.integrate
+  - search.suggest
+  - search.highlight
+
+  palette:
+  - media:   "(prefers-color-scheme: light)"
+    scheme:  default
+    primary: deep purple
+    accent:  light green
+    toggle:
+      icon:  material/lightbulb
+      name:  Switch to Dark Mode
+  - media:   "(prefers-color-scheme: dark)"
+    scheme:  slate
+    primary: yellow
+    accent:  red
+    toggle:
+      icon:  material/lightbulb-outline
+      name:  Switch to Light Mode
+
+  icon:
+    logo:       assets/header-logo
+    repo:       fontawesome/brands/github
+    admonition:
+      note:     fontawesome/solid/note-sticky
+      abstract: fontawesome/solid/book
+      info:     fontawesome/solid/circle-info
+      tip:      fontawesome/solid/bullhorn
+      success:  fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning:  fontawesome/solid/triangle-exclamation
+      failure:  fontawesome/solid/bomb
+      danger:   fontawesome/solid/skull
+      bug:      fontawesome/solid/robot
+      example:  fontawesome/solid/flask
+      quote:    fontawesome/solid/quote-left
+
+markdown_extensions:
+  - admonition
+  - pymdownx.betterem
+  - pymdownx.caret: {smart_insert: true, insert: true, superscript: true}
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.highlight: {auto_title: true, anchor_linenums: true}
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+  - pymdownx.tasklist: {custom_checkbox: true}
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      title: "On This Page:"
+      toc_depth: 4
+      permalink: true
+      permalink_title: "Permanent Link <Anchor>"
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
+
+extra:
+  version:
+    provider: stable
+  consent:
+    title: Cookie Consent
+    description: >- 
+      We use cookies to recognise your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to make our documentation better.
+
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/geekau/MediaStack.Guide
+      name: "GitHub: MediaStack.Guide"
+
+    - icon: fontawesome/brands/github
+      link: https://github.com/geekau/media-stack
+      name: "GitHub: media-stack"
+
+    - icon: fontawesome/brands/twitter 
+      link: https://twitter.com/squidfunk
+      name: "Twitter: squidfunk"
+
+copyright: >
+  Copyright &copy; 2024 - <a href="https://MediaStack.Guide">MediaStack.Guide</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( &nbsp;<a href="#__consent">Update Change Cookie Settings</a> &nbsp;)

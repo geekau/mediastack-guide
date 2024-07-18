@@ -1,6 +1,11 @@
-mkdocs
+mkdocs-awesome-pages-plugin==2.9.2
 mkdocs-bootswatch
-mkdocs-minify-plugin
-mkdocs-material
-mkdocs-awesome-pages-plugin
 mkdocs-git-revision-date-localized-plugin
+mkdocs-glightbox
+mkdocs-include-markdown-plugin
+mkdocs-macros-plugin
+mkdocs-markdownextradata-plugin
+mkdocs-material==9.2.7
+mkdocs-minify-plugin
+mkdocs-redirects
+pymdown-extensions==10.2.1
