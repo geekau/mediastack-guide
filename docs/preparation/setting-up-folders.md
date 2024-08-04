@@ -36,7 +36,7 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         export PUID=1000
         export PGID=1000
 
-        sudo -E mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
+        sudo -E mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,homepage,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,series,xxx}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
@@ -51,7 +51,7 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         set FOLDER_FOR_MEDIA=D:\MediaStack
         set FOLDER_FOR_DATA=D:\MediaStackData
 
-        FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall jellyfin jellyseerr lidarr mylar3 plex portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_DATA%\%I
+        FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall homepage jellyfin jellyseerr lidarr mylar3 plex portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_DATA%\%I
         FOR /D %I IN (server configs logs) DO mkdir %FOLDER_FOR_DATA%\tdarr\%I
         FOR /D %I IN (anime audio books comics movies music photos series xxx) DO mkdir %FOLDER_FOR_MEDIA%\media\%I
         FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr series software xxx) DO mkdir %FOLDER_FOR_MEDIA%\usenet\%I
@@ -76,7 +76,7 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         export FOLDER_FOR_DATA=/mediastackdata
         export PUID=1030
 
-        sudo mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
+        sudo mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,homepage,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
         sudo mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,series,xxx}
         sudo mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
         sudo mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}

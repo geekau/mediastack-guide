@@ -54,7 +54,8 @@ nav:
     - Secure Web App Gateway:          remote-access/secure-web-app-gateway.md
     - Nginx - Reverse Proxy:           remote-access/nginx-reverse-proxy.md
     - Authelia    (AA Server):         remote-access/authelia.md
-    - Heimdall    (Link Manager):      remote-access/heimdall.md
+    - Heimdall    (App Dashboard):     remote-access/heimdall.md
+    - Homepage    (App Dashboard):     remote-access/heimdall.md
     - Cloudflare Zero Trust:           remote-access/cloudflare-zero-trust.md
   - Help:
     - Application Websites:            help/application-websites.md

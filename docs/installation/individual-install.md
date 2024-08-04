@@ -17,6 +17,10 @@ Provide steps to install Docker on Windows, Linux, MacOS, Synology NAS and other
 
 ## Heading Three
 
+```
+username@vm1:/media-stack$ sudo docker compose --file docker-compose-gluetun.yaml --env-file docker-compose.env up
+**WARN**[0000] Found orphan containers ([portainer flaresolverr ddns-updater heimdall authelia swag tdarr-node tdarr unpackerr sabnzbd qbittorrent bazarr whisparr sonarr readarr radarr mylar3 lidarr prowlarr plex jellyseerr jellyfin]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+```
 
 
 ## 4 - Install the Docker applications individually as you need them.
