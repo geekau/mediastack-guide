@@ -51,11 +51,11 @@ nav:
   - Configure Remote Access:
     - Cloudflare Domain Management:    remote-access/cloudflare-domain-management.md
     - DDNS-Updater:                    remote-access/ddns-updater.md
-    - Secure Web App Gateway:          remote-access/secure-web-app-gateway.md
+    - Secure Web App Gateway:          remote-access/swag.md
     - Nginx - Reverse Proxy:           remote-access/nginx-reverse-proxy.md
     - Authelia    (AA Server):         remote-access/authelia.md
     - Heimdall    (App Dashboard):     remote-access/heimdall.md
-    - Homepage    (App Dashboard):     remote-access/heimdall.md
+    - Homepage    (App Dashboard):     remote-access/homepage.md
     - Cloudflare Zero Trust:           remote-access/cloudflare-zero-trust.md
   - Help:
     - Application Websites:            help/application-websites.md
