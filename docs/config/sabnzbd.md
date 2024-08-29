@@ -30,7 +30,7 @@ sudo docker container restart sabnzbd
 Go to the [SABnzbd WebUI](http://localhost:8100). If this is the first time using the application, you will be presented with the SABnzbd Quick-Start Wizard, choose your desired langauge and select ==Start Wizard== to continue.
 
 <figure markdown>
-  ![SABnzbd Quick-Start Wizard (Language)](../img/sabnzbd-wizard-language.png){ width="300" }
+  ![SABnzbd Quick-Start Wizard (Language)](assets/sabnzbd-wizard-language.png){ width="300" }
   <figcaption>SABnzbd Quick-Start Wizard (Language)</figcaption>
 </figure>
 
@@ -39,7 +39,7 @@ Enter the server, username and password for one of your Usenet servers, enable "
 Select ==Next== if the server test is successful.
 
 <figure markdown>
-  ![SABnzbd Quick-Start Wizard (Server)](../img/sabnzbd-wizard-server.png){ width="300" }
+  ![SABnzbd Quick-Start Wizard (Server)](assets/sabnzbd-wizard-server.png){ width="300" }
   <figcaption>SABnzbd Quick-Start Wizard (Server)</figcaption>
 </figure>
 
@@ -48,7 +48,7 @@ You will then be presented with the ==Setup is now complete!== page, however the
 Select ==Go to SABnzbd== to close the Wizard, we will update the incorrect settings in the next steps.
 
 <figure markdown>
-  ![SABnzbd Quick-Start Wizard (Complete)](../img/sabnzbd-wizard-complete.png){ width="300" }
+  ![SABnzbd Quick-Start Wizard (Complete)](assets/sabnzbd-wizard-complete.png){ width="300" }
   <figcaption>SABnzbd Quick-Start Wizard (Complete)</figcaption>
 </figure>
 
@@ -60,7 +60,7 @@ Select the ==Cog Icon== on the top right, and open ==SABnzbd Settings==.
 ### General Settings
 
 <figure markdown>
-  ![SABnzbd Folders General](../img/sabnzbd-general.png){ width="300" }
+  ![SABnzbd Folders General](assets/sabnzbd-general.png){ width="300" }
   <figcaption>SABnzbd Folders General</figcaption>
 </figure>
 
@@ -70,7 +70,7 @@ Select the ==Cog Icon== on the top right, and open ==SABnzbd Settings==.
 
 
 <figure markdown>
-  ![SABnzbd Folders Settings](../img/sabnzbd-folders.png){ width="300" }
+  ![SABnzbd Folders Settings](assets/sabnzbd-folders.png){ width="300" }
   <figcaption>SABnzbd Folders Settings</figcaption>
 </figure>
 
@@ -79,7 +79,7 @@ Select the ==Cog Icon== on the top right, and open ==SABnzbd Settings==.
 
 
 <figure markdown>
-  ![SABnzbd Servers Settings](../img/sabnzbd-servers.png){ width="300" }
+  ![SABnzbd Servers Settings](assets/sabnzbd-servers.png){ width="300" }
   <figcaption>SABnzbd Servers Settings</figcaption>
 </figure>
 
@@ -87,14 +87,14 @@ Select the ==Cog Icon== on the top right, and open ==SABnzbd Settings==.
 
 
 <figure markdown>
-  ![SABnzbd Advanced Connection Settings](../img/sabnzbd-advanced.png){ width="300" }
+  ![SABnzbd Advanced Connection Settings](assets/sabnzbd-advanced.png){ width="300" }
   <figcaption>SABnzbd Advanced Connection Settings</figcaption>
 </figure>
 
 
 
 <figure markdown>
-  ![SABnzbd Completed Server List](../img/sabnzbd-servers-complete.png){ width="300" }
+  ![SABnzbd Completed Server List](assets/sabnzbd-servers-complete.png){ width="300" }
   <figcaption>SABnzbd Completed Server List</figcaption>
 </figure>
 
@@ -111,7 +111,7 @@ Download the SABnzbd 1000MB test file at: [https://sabnzbd.org/tests/test_downlo
 
 
 <figure markdown>
-  ![SABnzbd Category Settings](../img/sabnzbd-categories.png){ width="300" }
+  ![SABnzbd Category Settings](assets/sabnzbd-categories.png){ width="300" }
   <figcaption>SABnzbd Category Settings</figcaption>
 </figure>
 
@@ -119,12 +119,12 @@ Download the SABnzbd 1000MB test file at: [https://sabnzbd.org/tests/test_downlo
 
 
 <figure markdown>
-  ![SABnzbd Connection Status](../img/sabnzbd-status.png){ width="300" }
+  ![SABnzbd Connection Status](assets/sabnzbd-status.png){ width="300" }
   <figcaption>SABnzbd Connection Status</figcaption>
 </figure>
 
 <figure markdown>
-  ![SABnzbd Test Download](../img/sabnzbd-downloading.png){ width="300" }
+  ![SABnzbd Test Download](assets/sabnzbd-downloading.png){ width="300" }
   <figcaption>SABnzbd Test Download</figcaption>
 </figure>
 
@@ -132,7 +132,7 @@ Download the SABnzbd 1000MB test file at: [https://sabnzbd.org/tests/test_downlo
 
 
 <figure markdown>
-  ![SABnzbd Connection Summary](../img/sabnzbd-connections.png){ width="300" }
+  ![SABnzbd Connection Summary](assets/sabnzbd-connections.png){ width="300" }
   <figcaption>SABnzbd Connection Summary</figcaption>
 </figure>
 
@@ -168,7 +168,7 @@ Open the Options dialog and make the following changes in order to the default s
 Goto: ==Options Icon== --> ==Downloads==
 
 <figure markdown>
-  ![qBittorrent Download Options](../img/qbittorrent-downloads.png){ width="300" }
+  ![qBittorrent Download Options](assets/qbittorrent-downloads.png){ width="300" }
   <figcaption>qBittorrent Download Options</figcaption>
 </figure>
 
@@ -178,7 +178,7 @@ Goto: ==Options Icon== --> ==Downloads==
 Goto: ==Options Icon== --> ==Connection==
 
 <figure markdown>
-  ![qBittorrent Connection Options](../img/qbittorrent-connection.png){ width="300" }
+  ![qBittorrent Connection Options](assets/qbittorrent-connection.png){ width="300" }
   <figcaption>qBittorrent Connection Options</figcaption>
 </figure>
 
@@ -210,7 +210,7 @@ Goto: ==Options Icon== --> ==Connection==
 Goto: ==Options Icon== --> ==Speed==
 
 <figure markdown>
-  ![qBittorrent Download Speed](../img/qbittorrent-speed.png){ width="300" }
+  ![qBittorrent Download Speed](assets/qbittorrent-speed.png){ width="300" }
   <figcaption>qBittorrent Download Speed</figcaption>
 </figure>
 
@@ -231,7 +231,7 @@ Goto: ==Options Icon== --> ==Speed==
 Goto: ==Options Icon== --> ==BitTorrent==
 
 <figure markdown>
-  ![qBittorrent BitTorrent Settings](../img/qbittorrent-bittorrent.png){ width="300" }
+  ![qBittorrent BitTorrent Settings](assets/qbittorrent-bittorrent.png){ width="300" }
   <figcaption>qBittorrent BitTorrent Settings</figcaption>
 </figure>
 
@@ -257,7 +257,7 @@ Goto: ==Options Icon== --> ==BitTorrent==
 Goto: ==Options Icon== --> ==Web UI==
 
 <figure markdown>
-  ![qBittorrent WebUI Settings](../img/qbittorrent-webui.png){ width="300" }
+  ![qBittorrent WebUI Settings](assets/qbittorrent-webui.png){ width="300" }
   <figcaption>qBittorrent WebUI Settings</figcaption>
 </figure>
 
@@ -300,7 +300,7 @@ Once the download has been completed, qBittorrent tells the *ARR Media Library M
 Goto: Right click ==Categories== --> ==Add Category==
 
 <figure markdown>
-  ![qBittorrent Download Categories](../img/qbittorrent-category-1.png){ width="300" }
+  ![qBittorrent Download Categories](assets/qbittorrent-category-1.png){ width="300" }
   <figcaption>qBittorrent Add Category - Step 1</figcaption>
 </figure>
 
@@ -311,7 +311,7 @@ Goto: Right click ==Categories== --> ==Add Category==
 Goto: ==Options Icon== --> ==Downloads==
 
 <figure markdown>
-  ![qBittorrent Download Categories](../img/qbittorrent-category-2.png){ width="300" }
+  ![qBittorrent Download Categories](assets/qbittorrent-category-2.png){ width="300" }
   <figcaption>qBittorrent Add Category - Step 2</figcaption>
 </figure>
 
@@ -324,7 +324,7 @@ Goto: ==Options Icon== --> ==Downloads==
 Continue to add the following categories:
 
 <figure markdown>
-  ![qBittorrent Download Categories](../img/qbittorrent-category-3.png){ width="300" }
+  ![qBittorrent Download Categories](assets/qbittorrent-category-3.png){ width="300" }
   <figcaption>qBittorrent Add Category - Step 3</figcaption>
 </figure>
 
@@ -387,7 +387,7 @@ You can also download torrents by copying the Download URL or Magnet Link addres
 Paste the link into the "Download URL or Magnet Link address" field, and select the category which best suits the torrent. In this case, we'll select one of the other torrent download links from the Ubuntu test above, use the "==software==" Category, then select ==Download==.
 
 <figure markdown>
-  ![qBittorrent Completed Downloads](../img/qbittorrent-completed.png){ width="300" }
+  ![qBittorrent Completed Downloads](assets/qbittorrent-completed.png){ width="300" }
   <figcaption>qBittorrent Completed Downloads</figcaption>
 </figure>
 
@@ -401,14 +401,14 @@ The downloaded test torrents can now be safely deleted using the WebUI.
 
 
 <figure markdown>
-  ![SABnzbd Add Downloader to *ARR Applications](../img/sabnzbd-download-client.png){ width="300" }
+  ![SABnzbd Add Downloader to *ARR Applications](assets/sabnzbd-download-client.png){ width="300" }
   <figcaption>SABnzbd Add Downloader to *ARR Applications</figcaption>
 </figure>
 
 
 
 <figure markdown>
-  ![SABnzbd Edit Download Client](../img/sabnzbd-edit-download-client.png){ width="300" }
+  ![SABnzbd Edit Download Client](assets/sabnzbd-edit-download-client.png){ width="300" }
   <figcaption>SABnzbd Edit Download Client</figcaption>
 </figure>
 
@@ -430,7 +430,7 @@ The downloaded test torrents can now be safely deleted using the WebUI.
 
 
 <figure markdown>
-  ![Mylar3 Add SABnzbd Download Client](../img/sabnzbd-mylar-add-downloader.png){ width="300" }
+  ![Mylar3 Add SABnzbd Download Client](assets/sabnzbd-mylar-add-downloader.png){ width="300" }
   <figcaption>Mylar3 Add SABnzbd Download Client</figcaption>
 </figure>
 

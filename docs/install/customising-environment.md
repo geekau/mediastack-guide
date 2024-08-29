@@ -4,6 +4,34 @@ The docker applications are deployed and configured using an environment file, w
 
 The environment file is called `docker-compose.env`, and it is exactly the same file located in each of the folders
 
+
+# Configuration Input
+
+Please enter your configuration values below:
+
+<form id="configForm">
+  <label for="COMPOSE_PROJECT_NAME">Project Name:</label>
+  <input type="text" id="COMPOSE_PROJECT_NAME" name="COMPOSE_PROJECT_NAME"><br><br>
+
+  <label for="dockerSubnet">Docker Subnet:</label>
+  <input type="text" id="dockerSubnet" name="dockerSubnet"><br><br>
+
+  <label for="dockerGateway">Docker Gateway:</label>
+  <input type="text" id="dockerGateway" name="dockerGateway"><br><br>
+
+  <label for="localSubnet">Local Subnet:</label>
+  <input type="text" id="localSubnet" name="localSubnet"><br><br>
+
+  <label for="localDockerIp">Local Docker IP:</label>
+  <input type="text" id="localDockerIp" name="localDockerIp"><br><br>
+
+  <!-- Add more input fields as needed -->
+
+  <input type="submit" value="Submit">
+</form>
+
+
+
 !!! note "File: docker-compose.env &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <-- Default Configuration File"
 
     ```
@@ -27,18 +55,22 @@ The environment file is called `docker-compose.env`, and it is exactly the same 
     #################################################################################
 
     #Name of the project in Docker
-    COMPOSE_PROJECT_NAME=mediastack
+    COMPOSE_PROJECT_NAME={{ COMPOSE_PROJECT_NAME }}
 
     # This is the network subnet which will be used inside the docker "media_network", change as required.
     # LOCAL_SUBNET is your home network and is needed so the VPN client allows access to your home computers.
-    DOCKER_SUBNET=172.28.10.0/24
-    DOCKER_GATEWAY=172.28.10.1
-    LOCAL_SUBNET=192.168.1.0/24      # Update for your home network
-    LOCAL_DOCKER_IP=192.168.1.10     # Update for your home network
+    DOCKER_SUBNET={{ DOCKER_SUBNET }}
+    DOCKER_GATEWAY={{ DOCKER_GATEWAY }}
+    LOCAL_SUBNET={{ LOCAL_SUBNET }}             # Update for your home network
+    LOCAL_DOCKER_IP={{ LOCAL_DOCKER_IP }}            # Update for your home network
 
     # Each of the "*ARR" applications have been configured so the theme can be changed to your needs.
     # Refer to Theme Park for more info / options: https://docs.theme-park.dev/theme-options/aquamarine/
-    TP_THEME=nord
+    TP_THEME={{ TP_THEME }}
+
+    # If you intend to use Plex as your Media Server, then enter your Plex Claim
+    # information below, to link this Plex Media Server to your Plex account
+    PLEX_CLAIM={{ PLEX_CLAIM }}                             # Optional
 
     # These are the folders on your local host computer / NAS running docker, they MUST exist
     # and have correct permissions for PUID and PGUI prior to running the docker compose.
@@ -47,86 +79,102 @@ The environment file is called `docker-compose.env`, and it is exactly the same 
 
     # Host Data Folders - Will accept Linux, Windows, NAS folders.
     # Make sure these folders exists before running the "docker compose" command.
-    FOLDER_FOR_MEDIA=/mediastack            # Update for your folders
-    FOLDER_FOR_DATA=/mediastackdata         # Update for your folders
+    FOLDER_FOR_MEDIA={{ FOLDER_FOR_MEDIA }}            # Update for your folders
+    FOLDER_FOR_DATA={{ FOLDER_FOR_DATA }}         # Update for your folders
 
     # File access, date and time details for the containers / applications to use.
     # Run "sudo id docker" on host computer to find PUID / PGID and update these to suit.
-    PUID=1000
-    PGID=1000
-    UMASK=0002
-    TIMEZONE=Europe/Zurich
+    PUID={{ PUID }}
+    PGID={{ PGID }}
+    UMASK={{ UMASK }}
+    TIMEZONE={{ TIMEZONE }}
+
+    # Update SMTP username / password to your preferred settings.
+    # Email sending domain is set using "URL" value in SWAG setting below.
+    SMTP_USERNAME={{ SMTP_USERNAME }}
+    SMTP_PASSWORD={{ SMTP_PASSWORD }}
+    SMTP_PORT={{ SMTP_PORT }}
 
     # Update your own Internet VPN provide details below
     # Online documentation: https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers
-    VPN_TYPE=openvpn
-    VPN_SERVICE_PROVIDER=VPN provider name
-    VPN_USERNAME=<username from VPN provider>
-    VPN_PASSWORD=<password from VPN provider>
+    VPN_TYPE={{ VPN_TYPE }}
+    VPN_SERVICE_PROVIDER={{ VPN_SERVICE_PROVIDER }}
+    VPN_USERNAME={{ VPN_USERNAME }}
+    VPN_PASSWORD={{ VPN_PASSWORD }}
 
-    SERVER_COUNTRIES=       # Comma separated list of countries
-    SERVER_REGIONS=         # Comma separated list of regions
-    SERVER_CITIES=          # Comma separated list of server cities
-    SERVER_HOSTNAMES=       # Comma separated list of server hostnames
-    SERVER_CATEGORIES=      # Comma separated list of server categories
+    # You MUST provide at least one entry to the SERVER variables below, that supports your VPN provider's settings.
+    # If you want to add more than one entry per line, use comma separated values: "one,two,three" etc...
+    SERVER_COUNTRIES={{ SERVER_COUNTRIES }}
+    SERVER_REGIONS={{ SERVER_REGIONS }}
+    SERVER_CITIES={{ SERVER_CITIES }}
+    SERVER_HOSTNAMES={{ SERVER_HOSTNAMES }}
+    SERVER_CATEGORIES={{ SERVER_CATEGORIES }}
 
     # Fill in this item ONLY if you're using a custom OpenVPN configuration
     # Should be inside gluetun data folder - Example: /gluetun/custom-openvpn.conf
     # You can then edit it inside the FOLDER_FOR_DATA location for gluetun.
-    OPENVPN_CUSTOM_CONFIG=
+    OPENVPN_CUSTOM_CONFIG={{ OPENVPN_CUSTOM_CONFIG }}
 
     # Fill in these items ONLY if you change VPN_TYPE to "wireguard"
-    VPN_ENDPOINT_IP=
-    VPN_ENDPOINT_PORT=
-    WIREGUARD_PUBLIC_KEY=
-    WIREGUARD_PRIVATE_KEY=
-    WIREGUARD_PRESHARED_KEY=
-    WIREGUARD_ADDRESSES=
+    VPN_ENDPOINT_IP={{ VPN_ENDPOINT_IP }}
+    VPN_ENDPOINT_PORT={{ VPN_ENDPOINT_PORT }}
+    WIREGUARD_PUBLIC_KEY={{ WIREGUARD_PUBLIC_KEY }}
+    WIREGUARD_PRIVATE_KEY={{ WIREGUARD_PRIVATE_KEY }}
+    WIREGUARD_PRESHARED_KEY={{ WIREGUARD_PRESHARED_KEY }}
+    WIREGUARD_ADDRESSES={{ WIREGUARD_ADDRESSES }}
 
     # These are the default ports used to access each of the application in your web browser.
     # You can safely change these if you need, but they can't conflict with other active ports.
-    QBIT_PORT_TCP=6881
-    QBIT_PORT_UDP=6881
-    FLARESOLVERR_PORT=8191
+    QBIT_PORT={{ QBIT_PORT }}
+    FLARESOLVERR_PORT={{ FLARESOLVERR_PORT }}
 
-    TDARR_SERVER_PORT=8266
-    WEBUI_PORT_TDARR=8265
+    TDARR_SERVER_PORT={{ TDARR_SERVER_PORT }}
+    WEBUI_PORT_TDARR={{ WEBUI_PORT_TDARR }}
 
-    WEBUI_PORT_BAZARR=6767
-    WEBUI_PORT_DDNS_UPDATER=6500
-    WEBUI_PORT_JELLYFIN=8096
-    WEBUI_PORT_JELLYSEERR=5055
-    WEBUI_PORT_LIDARR=8686
-    WEBUI_PORT_MYLAR3=8090
-    WEBUI_PORT_PORTAINER=9443
-    WEBUI_PORT_PROWLARR=9696
-    WEBUI_PORT_QBITTORRENT=8200
-    WEBUI_PORT_RADARR=7878
-    WEBUI_PORT_READARR=8787
-    WEBUI_PORT_SONARR=8989
-    WEBUI_PORT_SABNZBD=8100
-    WEBUI_PORT_WHISPARR=6969
+    WEBUI_PORT_BAZARR={{ WEBUI_PORT_BAZARR }}
+    WEBUI_PORT_DDNS_UPDATER={{ WEBUI_PORT_DDNS_UPDATER }}
+    WEBUI_PORT_HEIMDALL={{ WEBUI_PORT_HEIMDALL }}
+    WEBUI_PORT_HOMEPAGE={{ WEBUI_PORT_HOMEPAGE }}
+    WEBUI_PORT_JELLYFIN={{ WEBUI_PORT_JELLYFIN }}
+    WEBUI_PORT_JELLYSEERR={{ WEBUI_PORT_JELLYSEERR }}
+    WEBUI_PORT_LIDARR={{ WEBUI_PORT_LIDARR }}
+    WEBUI_PORT_MYLAR3={{ WEBUI_PORT_MYLAR3 }}
+    WEBUI_PORT_PLEX={{ WEBUI_PORT_PLEX }}
+    WEBUI_PORT_PORTAINER={{ WEBUI_PORT_PORTAINER }}
+    WEBUI_PORT_PROWLARR={{ WEBUI_PORT_PROWLARR }}
+    WEBUI_PORT_QBITTORRENT={{ WEBUI_PORT_QBITTORRENT }}
+    WEBUI_PORT_RADARR={{ WEBUI_PORT_RADARR }}
+    WEBUI_PORT_READARR={{ WEBUI_PORT_READARR }}
+    WEBUI_PORT_SONARR={{ WEBUI_PORT_SONARR }}
+    WEBUI_PORT_SABNZBD={{ WEBUI_PORT_SABNZBD }}
+    WEBUI_PORT_WHISPARR={{ WEBUI_PORT_WHISPARR }}
 
     # SWAG is configured for Reverse Proxy. Set your Internet gateway to redirect incoming ports 80 and 443
     # to the ports used below (using Docker IP Address), and they will be translated back to 80 and 443 by SWAG.
     # Change these port numbers if you have conflicting services running on the Docker host computer.
 
-    REVERSE_PROXY_PORT_HTTP=5080
-    REVERSE_PROXY_PORT_HTTPS=5443
+    REVERSE_PROXY_PORT_HTTP={{ REVERSE_PROXY_PORT_HTTP }}
+    REVERSE_PROXY_PORT_HTTPS={{ REVERSE_PROXY_PORT_HTTPS }}
 
     # SWAG REVERSE PROXY SETTINGS:
-    URL=your-domain-name-goes-here.com
-    SUBDOMAINS=wildcard
-    VALIDATION=dns
-    DNSPLUGIN=cloudflare
-    CERTPROVIDER=
-    PROPAGATION=
-    DUCKDNSTOKEN=
-    EMAIL=
-    ONLY_SUBDOMAINS=false
-    EXTRA_DOMAINS=
-    STAGING=false
+    URL={{ URL }}
+    SUBDOMAINS={{ SUBDOMAINS }}
+    VALIDATION={{ VALIDATION }}
+    DNSPLUGIN={{ DNSPLUGIN }}
+    CERTPROVIDER={{ CERTPROVIDER }}
+    PROPAGATION={{ PROPAGATION }}
+    DUCKDNSTOKEN={{ DUCKDNSTOKEN }}
+    EMAIL={{ EMAIL }}
+    ONLY_SUBDOMAINS={{ ONLY_SUBDOMAINS }}
+    EXTRA_DOMAINS={{ EXTRA_DOMAINS }}
+    STAGING={{ STAGING }}
 
+    # Cloudflare Tunnel for SWAG
+    CF_ZONE_ID={{ CF_ZONE_ID }}
+    CF_ACCOUNT_ID={{ CF_ACCOUNT_ID }}
+    CF_API_TOKEN={{ CF_API_TOKEN }}
+    CF_TUNNEL_NAME={{ CF_TUNNEL_NAME }}
+    CF_TUNNEL_TOKEN={{ CF_TUNNEL_TOKEN }}
     ```
 
 

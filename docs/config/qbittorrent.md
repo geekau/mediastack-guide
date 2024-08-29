@@ -31,7 +31,7 @@ You should set your own password in program preferences.
 Go to the [qBittorrent WebUI](http://localhost:8200) and log into the application
 
 <figure markdown>
-  ![qBittorrent Login Screen](../img/qbittorrent-login.png){ width="300" }
+  ![qBittorrent Login Screen](assets/qbittorrent-login.png){ width="300" }
   <figcaption>qBittorrent Login Screen</figcaption>
 </figure>
 
@@ -48,7 +48,7 @@ Open the Options dialog and make the following changes in order to the default s
 Goto: ==Options Icon== --> ==Downloads==
 
 <figure markdown>
-  ![qBittorrent Download Options](../img/qbittorrent-downloads.png){ width="300" }
+  ![qBittorrent Download Options](assets/qbittorrent-downloads.png){ width="300" }
   <figcaption>qBittorrent Download Options</figcaption>
 </figure>
 
@@ -58,7 +58,7 @@ Goto: ==Options Icon== --> ==Downloads==
 Goto: ==Options Icon== --> ==Connection==
 
 <figure markdown>
-  ![qBittorrent Connection Options](../img/qbittorrent-connection.png){ width="300" }
+  ![qBittorrent Connection Options](assets/qbittorrent-connection.png){ width="300" }
   <figcaption>qBittorrent Connection Options</figcaption>
 </figure>
 
@@ -90,7 +90,7 @@ Goto: ==Options Icon== --> ==Connection==
 Goto: ==Options Icon== --> ==Speed==
 
 <figure markdown>
-  ![qBittorrent Download Speed](../img/qbittorrent-speed.png){ width="300" }
+  ![qBittorrent Download Speed](assets/qbittorrent-speed.png){ width="300" }
   <figcaption>qBittorrent Download Speed</figcaption>
 </figure>
 
@@ -111,7 +111,7 @@ Goto: ==Options Icon== --> ==Speed==
 Goto: ==Options Icon== --> ==BitTorrent==
 
 <figure markdown>
-  ![qBittorrent BitTorrent Settings](../img/qbittorrent-bittorrent.png){ width="300" }
+  ![qBittorrent BitTorrent Settings](assets/qbittorrent-bittorrent.png){ width="300" }
   <figcaption>qBittorrent BitTorrent Settings</figcaption>
 </figure>
 
@@ -137,7 +137,7 @@ Goto: ==Options Icon== --> ==BitTorrent==
 Goto: ==Options Icon== --> ==Web UI==
 
 <figure markdown>
-  ![qBittorrent WebUI Settings](../img/qbittorrent-webui.png){ width="300" }
+  ![qBittorrent WebUI Settings](assets/qbittorrent-webui.png){ width="300" }
   <figcaption>qBittorrent WebUI Settings</figcaption>
 </figure>
 
@@ -180,7 +180,7 @@ Once the download has been completed, qBittorrent tells the *ARR Media Library M
 Goto: Right click ==Categories== --> ==Add Category==
 
 <figure markdown>
-  ![qBittorrent Download Categories](../img/qbittorrent-category-1.png){ width="300" }
+  ![qBittorrent Download Categories](assets/qbittorrent-category-1.png){ width="300" }
   <figcaption>qBittorrent Add Category - Step 1</figcaption>
 </figure>
 
@@ -192,10 +192,10 @@ Goto: ==Options Icon== --> ==Downloads==
 
 Create a new category for each folder located in the `/data/torrents` folder, except for the ==complete== and ==incomplete== folders, as these are working folders, not specifically set up to manage categories.
 
-Refer to the host / container folder mapping diagram, which was set up during preparation: [Docker Host / Container Folder Mapping](../preparation/setting-up-folders.md#folder-mappings-between-host-and-docker-containers)
+Refer to the host / container folder mapping diagram, which was set up during preparation: [Docker Host / Container Folder Mapping](../prep/setting-up-folders.md#folder-mappings-between-host-and-docker-containers)
 
 <figure markdown>
-  ![qBittorrent Download Categories](../img/qbittorrent-category-2.png){ width="300" }
+  ![qBittorrent Download Categories](assets/qbittorrent-category-2.png){ width="300" }
   <figcaption>qBittorrent Add Category - Step 2</figcaption>
 </figure>
 
@@ -208,7 +208,7 @@ Refer to the host / container folder mapping diagram, which was set up during pr
 Continue to add the following categories:
 
 <figure markdown>
-  ![qBittorrent Download Categories](../img/qbittorrent-category-3.png){ width="300" }
+  ![qBittorrent Download Categories](assets/qbittorrent-category-3.png){ width="300" }
   <figcaption>qBittorrent Add Category - Step 3</figcaption>
 </figure>
 
@@ -267,7 +267,7 @@ You can also download torrents by copying the Download URL or Magnet Link addres
 Paste the link into the "Download URL or Magnet Link address" field, and select the category which best suits the torrent. In this case, we'll select one of the other torrent download links from the Ubuntu BitTorrent download page, select the "==software==" Category, then select ==Download==.  
 
 <figure markdown>
-  ![qBittorrent Completed Downloads](../img/qbittorrent-completed.png){ width="300" }
+  ![qBittorrent Completed Downloads](assets/qbittorrent-completed.png){ width="300" }
   <figcaption>qBittorrent Completed Downloads</figcaption>
 </figure>
 
@@ -280,14 +280,14 @@ The downloaded test torrents can now be safely deleted using the WebUI.
 
 
 <figure markdown>
-  ![qBittorrent Add Downloader to *ARR Applications](../img/qbittorrent-download-client.png){ width="300" }
+  ![qBittorrent Add Downloader to *ARR Applications](assets/qbittorrent-download-client.png){ width="300" }
   <figcaption>qBittorrent Add Downloader to *ARR Applications</figcaption>
 </figure>
 
 
 
 <figure markdown>
-  ![qBittorrent Edit Download Client](../img/qbittorrent-edit-download-client.png){ width="300" }
+  ![qBittorrent Edit Download Client](assets/qbittorrent-edit-download-client.png){ width="300" }
   <figcaption>qBittorrent Edit Download Client</figcaption>
 </figure>
 
@@ -307,7 +307,7 @@ The downloaded test torrents can now be safely deleted using the WebUI.
 
 
 <figure markdown>
-  ![Mylar3 Add qBittorrent Download Client](../img/qbittorrent-mylar-add-downloader.png){ width="300" }
+  ![Mylar3 Add qBittorrent Download Client](assets/qbittorrent-mylar-add-downloader.png){ width="300" }
   <figcaption>Mylar3 Add qBittorrent Download Client</figcaption>
 </figure>
 

@@ -11,62 +11,61 @@ edit_uri:  blob/main/docs/
 
 plugins:
   - search
+  - macros
   - glightbox
   - git-revision-date-localized:
       enable_creation_date: false
 #  - typeset
 
 nav:
-  - Home:                              index.md
   - Preparation:
-    - MediaStack Applications:         preparation/mediastack-applications.md
-    - Networking Architecture:         preparation/networking-architecture.md
-    - Installing Docker on Host:       preparation/installing-docker.md
-    - Setting Up App / Media Folders:  preparation/setting-up-folders.md
-    - Prepare Media Library:           preparation/prepare-media-library.md
-    - Docker Compose Files:            preparation/docker-compose-files.md
+    - Home:                             index.md
+    - MediaStack Applications:          prep/mediastack-applications.md
+    - Network Architecture:             prep/network-architecture.md
+    - Installing Docker on Host:        prep/installing-docker.md
+    - Setting Up App / Media Folders:   prep/setting-up-folders.md
+    - Prepare Media Library:            prep/prepare-media-library.md
+    - Docker Compose Files:             prep/docker-compose-files.md
   - Installation:
-    - Default Environment:             installation/default-environment.md
-    - Customising Environment:         installation/customising-environment.md
-    - Individual Install:              installation/individual-install.md
-    - Collective Install:              installation/collective-install.md
-    - Portainer   (Docker GUI):        installation/portainer.md
-  - Configure Media Apps:
-    - Gluetun     (VPN Client):        configuration/gluetun.md
-    - qBittorrent (Torrent Downloads): configuration/qbittorrent.md
-    - SABnzbd     (Usenet Downloads):  configuration/sabnzbd.md
-    - Prowlarr    (Index Search):      configuration/prowlarr.md
-    - Radarr      (Movie Library):     configuration/radarr.md
-    - Sonarr      (Series Library):    configuration/sonarr.md
-    - Lidarr      (Music Library):     configuration/lidarr.md
-    - Readarr     (Book Library):      configuration/readarr.md
-    - Mylar       (Comic Library):     configuration/mylar.md
-    - Whisparr    (Adult Library):     configuration/whisparr.md
-    - Bazaar      (Subtitles):         configuration/bazaar.md
-    - Tdarr       (Transcoding):       configuration/tdarr.md
-    - Unpackerr   (Unzip Archives):    configuration/unpackerr.md
-    - Jellyfin    (Media Server):      configuration/jellyfin.md
-    - Jellyseerr  (Request Manager):   configuration/jellyseerr.md
-    - Plex        (Media Server):      configuration/plex.md
-  - Configure Remote Access:
-    - Cloudflare Domain Management:    remote-access/cloudflare-domain-management.md
-    - DDNS-Updater:                    remote-access/ddns-updater.md
-    - Secure Web App Gateway:          remote-access/swag.md
-    - Nginx - Reverse Proxy:           remote-access/nginx-reverse-proxy.md
-    - Authelia    (AA Server):         remote-access/authelia.md
-    - Heimdall    (App Dashboard):     remote-access/heimdall.md
-    - Homepage    (App Dashboard):     remote-access/homepage.md
-    - Cloudflare Zero Trust:           remote-access/cloudflare-zero-trust.md
+    - Default Environment:              install/default-environment.md
+    - Customising Environment:          install/customising-environment.md
+    - Individual Install:               install/individual-install.md
+    - Collective Install:               install/collective-install.md
+    - Portainer:                        install/portainer.md
+  - Configuration:
+    - Gluetun:                          config/gluetun.md
+    - qBittorrent:                      config/qbittorrent.md
+    - SABnzbd:                          config/sabnzbd.md
+    - Prowlarr:                         config/prowlarr.md
+    - Radarr:                           config/radarr.md
+    - Sonarr:                           config/sonarr.md
+    - Lidarr:                           config/lidarr.md
+    - Readarr:                          config/readarr.md
+    - Mylar3:                           config/mylar.md
+    - Whisparr:                         config/whisparr.md
+    - Bazaar:                           config/bazaar.md
+    - Tdarr:                            config/tdarr.md
+    - Unpackerr:                        config/unpackerr.md
+    - Jellyfin:                         config/jellyfin.md
+    - Jellyseerr:                       config/jellyseerr.md
+    - Plex:                             config/plex.md
+  - Remote Access:
+    - DNS Resolution:                   remote/dns-resolution.md
+    - Cloudflare DNS:                   remote/cloudflare-dns.md
+    - DDNS-Updater:                     remote/ddns-updater.md
+    - DUO Security:                     remote/duo-security.md
+    - Authelia:                         remote/authelia.md
+    - Secure Web App Gateway:           remote/swag.md
+    - Heimdall:                         remote/heimdall.md
+    - Homepage:                         remote/homepage.md
+    - Cloudflare Tunnels:               remote/cloudflare-tunnels.md
   - Help:
-    - Application Websites:            help/application-websites.md
-    - Contributing:                    help/contributing.md
-    - Template:                        help/template.md
+    - Application Websites:             help/application-websites.md
+    - Contributing:                     help/contributing.md
+    - Template:                         help/template.md
   - OLD DOCS:
-    - Old Notes 1:                     help/1.md
-    - Old Notes 2:                     help/2.md
-    - Old Notes 3:                     help/3.md
-    - Old Notes 4:                     help/4.md
-    - Old Notes 5:                     help/5.md
+    - Old Notes 1:                      help/1.md
+    - Old Notes 3:                      help/3.md
 
 theme:
   name:       material
@@ -90,7 +89,7 @@ theme:
   - navigation.prune
   - navigation.indexes
   - toc.follow
-  - toc.integrate
+#  - toc.integrate
   - search.suggest
   - search.highlight
 
@@ -147,7 +146,9 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
-      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - pymdownx.tasklist: {custom_checkbox: true}
   - attr_list
   - def_list
@@ -159,7 +160,9 @@ markdown_extensions:
       toc_depth: 4
       permalink: true
       permalink_title: "Permanent Link <Anchor>"
-      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
 
 extra_css:
   - stylesheets/extra.css
@@ -171,7 +174,7 @@ extra_javascript:
 
 extra:
   version:
-    provider: stable
+    provider: mike
   consent:
     title: Cookie Consent
     description: >- 
@@ -185,7 +188,7 @@ extra:
 
     - icon: fontawesome/brands/github
       link: https://github.com/geekau/media-stack
-      name: "GitHub: media-stack"
+      name: "GitHub: mediastack"
 
     - icon: fontawesome/brands/twitter 
       link: https://twitter.com/squidfunk

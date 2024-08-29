@@ -37,9 +37,9 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         export PGID=1000
 
         sudo -E mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,homepage,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
-        sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,series,xxx}
-        sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
-        sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,tv,xxx}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
         sudo -E mkdir -p $FOLDER_FOR_MEDIA/watch
         sudo -E chmod -R 775 $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
         sudo -E chown -R $PUID:$PGID $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
@@ -53,9 +53,9 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
 
         FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall homepage jellyfin jellyseerr lidarr mylar3 plex portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_DATA%\%I
         FOR /D %I IN (server configs logs) DO mkdir %FOLDER_FOR_DATA%\tdarr\%I
-        FOR /D %I IN (anime audio books comics movies music photos series xxx) DO mkdir %FOLDER_FOR_MEDIA%\media\%I
-        FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr series software xxx) DO mkdir %FOLDER_FOR_MEDIA%\usenet\%I
-        FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr series software xxx) DO mkdir %FOLDER_FOR_MEDIA%\torrents\%I
+        FOR /D %I IN (anime audio books comics movies music photos tv xxx) DO mkdir %FOLDER_FOR_MEDIA%\media\%I
+        FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr software tv xxx) DO mkdir %FOLDER_FOR_MEDIA%\usenet\%I
+        FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr software tv xxx) DO mkdir %FOLDER_FOR_MEDIA%\torrents\%I
         mkdir %FOLDER_FOR_MEDIA%\watch
         ```
 
@@ -77,9 +77,9 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         export PUID=1030
 
         sudo mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,homepage,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
-        sudo mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,series,xxx}
-        sudo mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
-        sudo mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,series,software,xxx}
+        sudo mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,tv,xxx}
+        sudo mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
+        sudo mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
         sudo mkdir -p $FOLDER_FOR_MEDIA/watch
         sudo chmod -R 777 $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
         sudo chown -R root:root $FOLDER_FOR_DATA
@@ -109,7 +109,7 @@ After you run the commands above (Linux or Windows), **this will be your folder 
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies                │⠀⠀⠀⠀├── movies      <-- Radarr Media Library Manager
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music                 │⠀⠀⠀⠀├── music       <-- Lidarr Media Library Manager
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── photos                │⠀⠀⠀⠀├── photos      <-- N/A - Add Personal Photos
-    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series                │⠀⠀⠀⠀├── series      <-- Sonarr Media Library Manager
+    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── tv                    │⠀⠀⠀⠀├── tv          <-- Sonarr Media Library Manager
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── xxx                   │⠀⠀⠀⠀└── xxx         <-- Whisparr Media Library Manager
     ⠀⠀⠀⠀⠀├── torrents               ⠀⠀⠀⠀├── torrents     <-- Folder for Torrent Downloads Data
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime                 │⠀⠀⠀⠀├── anime       <-- Anime Category (Sonarr)
@@ -122,7 +122,7 @@ After you run the commands above (Linux or Windows), **this will be your folder 
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies                │⠀⠀⠀⠀├── movies      <-- Movie Category (Radarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music                 │⠀⠀⠀⠀├── music       <-- Music Category (Lidarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── prowlarr              │⠀⠀⠀⠀├── prowlarr    <-- Uncategorised Downloads from Prowlarr
-    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series                │⠀⠀⠀⠀├── series      <-- TV Series (Sonarr)
+    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── tv                    │⠀⠀⠀⠀├── tv          <-- TV Series (Sonarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── software              │⠀⠀⠀⠀├── software    <-- Software Category (Manual DL)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── xxx                   │⠀⠀⠀⠀└── xxx         <-- Adult / XXX Category (Whisparr)
     ⠀⠀⠀⠀⠀├── usenet                 ⠀⠀⠀⠀├── usenet       <-- Folder for Usenet Downloads Data
@@ -136,7 +136,7 @@ After you run the commands above (Linux or Windows), **this will be your folder 
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies                │⠀⠀⠀⠀├── movies      <-- Movie Category (Radarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music                 │⠀⠀⠀⠀├── music       <-- Music Category (Lidarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── prowlarr              │⠀⠀⠀⠀├── prowlarr    <-- Uncategorised Downloads from Prowlarr
-    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── series                │⠀⠀⠀⠀├── series      <-- TV Series (Sonarr)
+    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── tv                    │⠀⠀⠀⠀├── tv          <-- TV Series (Sonarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── software              │⠀⠀⠀⠀├── software    <-- Software Category (Manual DL)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀└── xxx                   │⠀⠀⠀⠀└── xxx         <-- Adult / XXX Category (Whisparr)
     ⠀⠀⠀⠀⠀└── watch                  ⠀⠀⠀⠀└── watch       <-- Add .nzb and .torrent files for manual download

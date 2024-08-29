@@ -77,7 +77,7 @@ To change the date and language in the WebUI Portal, select ==Settings== --> ==U
 
 
 <figure markdown>
-  ![Radarr WebUI Date and Language Settings](../img/radarr-date-language.png){ width="300" }
+  ![Radarr WebUI Date and Language Settings](assets/radarr-date-language.png){ width="300" }
   <figcaption>Radarr WebUI Date and Language Settings</figcaption>
 </figure>
 
@@ -89,13 +89,13 @@ To change the Certification Country for metadata information and ratings in the 
 
 
 <figure markdown>
-  ![Radarr Certification Country for Metadata](../img/radarr-certification-country-metadata.png){ width="300" }
+  ![Radarr Certification Country for Metadata](assets/radarr-certification-country-metadata.png){ width="300" }
   <figcaption>Radarr Certification Country for Metadata</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Radarr Metadata Settings](../img/radarr-metadata.png){ width="300" }
+  ![Radarr Metadata Settings](assets/radarr-metadata.png){ width="300" }
   <figcaption>Radarr Metadata Settings</figcaption>
 </figure>
 
@@ -123,7 +123,7 @@ To set up naming standards, browse to ==Settings== --> ==Media Management== and 
 | Movie Folder Format:   | `{Movie CleanTitle} {(Release Year)} - [imdbid-{ImdbId}]` | 
 
 <figure markdown>
-  ![Radarr Movie Naming Settings](../img/radarr-file-naming.png){ width="300" }
+  ![Radarr Movie Naming Settings](assets/radarr-file-naming.png){ width="300" }
   <figcaption>Radarr Movie Naming Settings</figcaption>
 </figure>
 
@@ -144,7 +144,7 @@ To adjust Radarr file management settings, browse to ==Settings== --> ==Media Ma
 
 
 <figure markdown>
-  ![Radarr Movie File Management](../img/radarr-file-management.png){ width="300" }
+  ![Radarr Movie File Management](assets/radarr-file-management.png){ width="300" }
   <figcaption>Radarr Movie File Management</figcaption>
 </figure>
 
@@ -157,26 +157,26 @@ Radarr has now been configured so it can start importing / downloading any media
 To link your media library and being importing movies, select ==Radarr== --> ==Movies== --> ==Import Existing Movies==
 
 <figure markdown>
-  ![Radarr Import Media Library](../img/radarr-import-existing-movies.png){ width="300" }
+  ![Radarr Import Media Library](assets/radarr-import-existing-movies.png){ width="300" }
   <figcaption>Radarr Import Media Library</figcaption>
 </figure>
 
 As this is the first time running the import wizard, you need to tell Radarr where your media is located, select ==Start Import== then navigate to the `/data/media/movies` directory and press ==
 
 <figure markdown>
-  ![Radarr Start Import Prompt](../img/radarr-start-import.png){ width="300" }
+  ![Radarr Start Import Prompt](assets/radarr-start-import.png){ width="300" }
   <figcaption>Radarr Start Import Prompt</figcaption>
 </figure>
 
 <figure markdown>
-  ![Radarr Select Media Library Folder](../img/radarr-select-media-folder.png){ width="300" }
+  ![Radarr Select Media Library Folder](assets/radarr-select-media-folder.png){ width="300" }
   <figcaption>Radarr Select Media Library Folder</figcaption>
 </figure>
 
 If you have successfully mapped the root media folder to `/data/media/movies` and you don't yet have any folders or media in this directory, then you will see the following display, and there will be no value in the "Unmapped Folders" column.
 
 <figure markdown>
-  ![Radarr Mapped Media Library Folder](../img/radarr-mapped-media-folder.png){ width="300" }
+  ![Radarr Mapped Media Library Folder](assets/radarr-mapped-media-folder.png){ width="300" }
   <figcaption>Radarr Mapped Media Library Folder</figcaption>
 </figure>
 
@@ -199,7 +199,7 @@ You have now mapped your media folder correctly, however you will need to import
     - "Spaceballs (1987) - [imdbid-tt0094012]"
 
     <figure markdown>
-      ![Radarr Test Import Folders](../img/radarr-test-import-folders.png){ width="300" }
+      ![Radarr Test Import Folders](assets/radarr-test-import-folders.png){ width="300" }
       <figcaption>Radarr Test Import Folders</figcaption>
     </figure>
 
@@ -208,20 +208,20 @@ When you navigate ==Movies== --> ==Library Import==, you will now see there are 
 
 
 <figure markdown>
-  ![Radarr Import Unmapped Folder](../img/radarr-unmapped-folders.png){ width="300" }
+  ![Radarr Import Unmapped Folder](assets/radarr-unmapped-folders.png){ width="300" }
   <figcaption>Radarr Import Unmapped Folder</figcaption>
 </figure>
 
 Radarr will 
 
 <figure markdown>
-  ![Radarr Import Unmapped Folders](../img/radarr-import-unmapped-folders.png){ width="300" }
+  ![Radarr Import Unmapped Folders](assets/radarr-import-unmapped-folders.png){ width="300" }
   <figcaption>Radarr Import Unmapped Folders</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Radarr Imported Mapped Media](../img/radarr-imported-mapped-media.png){ width="300" }
+  ![Radarr Imported Mapped Media](assets/radarr-imported-mapped-media.png){ width="300" }
   <figcaption>Radarr Imported Mapped Media</figcaption>
 </figure>
 
@@ -229,7 +229,7 @@ Radarr will
 In the main library view, select ==Options== to adjust the view to your liking.
 
 <figure markdown>
-  ![Radarr Adjust Display Options](../img/radarr-display-options.png){ width="300" }
+  ![Radarr Adjust Display Options](assets/radarr-display-options.png){ width="300" }
   <figcaption>Radarr Adjust Display Options</figcaption>
 </figure>
 
@@ -239,30 +239,30 @@ In the main library view, select ==Options== to adjust the view to your liking.
 
 
 <figure markdown>
-  ![Radarr View Media Details](../img/radarr-view-media-details.png){ width="300" }
+  ![Radarr View Media Details](assets/radarr-view-media-details.png){ width="300" }
   <figcaption>Radarr View Media Details</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Radarr Download Searched Media](../img/radarr-download-searched-media.png){ width="300" }
+  ![Radarr Download Searched Media](assets/radarr-download-searched-media.png){ width="300" }
   <figcaption>Radarr Download Searched Media</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Radarr Downloading Searched Media](../img/radarr-downloading-searched-media.png){ width="300" }
+  ![Radarr Downloading Searched Media](assets/radarr-downloading-searched-media.png){ width="300" }
   <figcaption>Radarr Downloading Searched Media</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Radarr Downloaded Searched Media](../img/radarr-downloaded-searched-media.png){ width="300" }
+  ![Radarr Downloaded Searched Media](assets/radarr-downloaded-searched-media.png){ width="300" }
   <figcaption>Radarr Downloaded Searched Media</figcaption>
 </figure>
 
 <figure markdown>
-  ![Radarr Updated Media Library](../img/radarr-updated-media-library.png){ width="300" }
+  ![Radarr Updated Media Library](assets/radarr-updated-media-library.png){ width="300" }
   <figcaption>Radarr Updated Media Library</figcaption>
 </figure>
 
@@ -274,13 +274,13 @@ In the main library view, select ==Options== to adjust the view to your liking.
 
 
 <figure markdown>
-  ![Radarr Search for Missing Media Files](../img/radarr-search-missing-media-files.png){ width="300" }
+  ![Radarr Search for Missing Media Files](assets/radarr-search-missing-media-files.png){ width="300" }
   <figcaption>Radarr Search for Missing Media Files</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Radarr Select Media From Search Results](../img/radarr-select-search-results.png){ width="300" }
+  ![Radarr Select Media From Search Results](assets/radarr-select-search-results.png){ width="300" }
   <figcaption>Radarr Select Media From Search Results</figcaption>
 </figure>
 

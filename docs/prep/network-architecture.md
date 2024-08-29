@@ -121,6 +121,79 @@ graph TD
 
 <br><br><br>
 
-## Remote Network Access
+## Secure Remote Network Access  
 
-## Heading
+All of the Docker configurations are set up to allow you to remotely access your Docker applications while you're away from home. The network diagram illustrates a secure remote access architecture utilising a combination of Docker applications, SWAG (Secure Web Application Gateway), Authelia, Heimdal, and Cloudflare Zero Trust. This setup ensures that only authenticated and trusted users that you grant permissions to, can access the internal Docker-based services over the Internet.
+
+At the core of the network is the Docker infrastructure, operating on the subnet 172.28.10.0/24 (adjustable). Within this network, multiple applications are hosted in Docker containers. Once a remote user is successfully authenticated, they are granted access to Heimdall, which serves as a landing page portal provding users with easy access to the other Docker applications. To securely manage and route incoming connections, SWAG functions as both a reverse proxy and web server, and uses a valid SSL Digital Certificate to encrypt the remote HTTPS session. It intercepts requests from remote users and forwards them to the appropriate internal services.
+
+Cloudflare plays a crucial role in enhancing security. It acts as the initial point of contact for remote Internet users, offering a robust proxy service that filters and manages traffic before it reaches SWAG. Cloudflare Zero Trust provides an additional layer of security by enforcing authentication and access policies. This means that any request must pass through Cloudflare's security checks, ensuring only authorised traffic reaches the internal Docker network.
+
+Authelia, integrated with both SWAG and Cloudflare Zero Trust, handles user authentication. It provides two-factor authentication (2FA) and single sign-on (SSO) capabilities, ensuring that users must verify their identities before gaining access. This integration ensures that even if an attacker bypasses the Cloudflare security checks, they still face robust authentication challenges from Authelia.
+
+By combining these technologies, the setup ensures a secure, scalable, and manageable remote access solution. The network protects against unauthorized access while providing legitimate users with seamless access to the necessary applications, thus balancing security with user convenience.
+
+</br>
+<center>
+
+``` mermaid  
+graph
+    subgraph DockerNet[<center>Docker Networking - 172.28.10.0/24</center>]
+        Authelia
+        SMTP[SMTP</br>Relay]
+        SWAG
+        NIC[Docker Host</br>Network Bridge]
+        Homepage
+        Docker{Docker</br>Applications}
+        Apps{Internal Network</br>Access}
+    end
+    subgraph Internet[<center>Internet Zone</center>]
+        Remote[ Remote</br>Internet Users ]
+        Tunnel{<center>Cloudflare</br>Tunnel</center>}
+        DUO{<center>DUO Security</br>2FA</center>}
+    end
+    Gateway[Home Gateway]
+    Remote <-.->   | Push</br>Notifications             | DUO
+    Authelia -.->  | Password</br>Resets                | SMTP
+    Homepage ==>   | Remote</br>Access                  | Docker
+    Homepage ==>   | Remote</br>Access                  | Apps
+    Gateway -.->   | Password</br>Resets                | Remote
+    Tunnel ==>     | Remote Access</br>HTTPS to SWAG    | Gateway
+    Remote ==>     | Remote Access</br>HTTPS to SWAG    | Tunnel
+    Gateway ==>    | Remote</br>Access                  | NIC
+    NIC ==>        | Remote</br>Access                  | SWAG
+    Authelia <-.-> | Auth                               | NIC
+    Authelia <-.-> | Auth                               | SWAG
+    NIC <-.->      | Auth                               | Gateway
+    Gateway <-.->  | Auth                               | DUO
+    SWAG ==>       | Authenticated Users                | Homepage
+    SMTP -.->      | Password</br>Resets                | NIC
+    NIC -.->       | Password</br>Resets                | Gateway
+
+    style Authelia stroke:green ,stroke-width:2px
+    style SWAG stroke:green     ,stroke-width:2px
+    style SMTP stroke:green     ,stroke-width:2px
+    style Homepage stroke:green ,stroke-width:2px
+    style Remote stroke:green   ,stroke-width:2px
+    style Gateway stroke:green  ,stroke-width:2px
+    style DUO stroke:green      ,stroke-width:2px
+    style Tunnel stroke:green   ,stroke-width:2px
+    style Apps stroke:green     ,stroke-width:2px
+    style Docker stroke:green   ,stroke-width:2px
+    style NIC stroke:green      ,stroke-width:2px
+
+    linkStyle 0 stroke:#FFA500  ,stroke-width:2px
+    linkStyle 1 stroke:#0088FF  ,stroke-width:2px
+    linkStyle 4 stroke:#0088FF  ,stroke-width:2px
+    linkStyle 9 stroke:#FFA500  ,stroke-width:2px
+    linkStyle 10 stroke:#FFA500 ,stroke-width:2px
+    linkStyle 11 stroke:#FFA500 ,stroke-width:2px
+    linkStyle 12 stroke:#FFA500 ,stroke-width:2px
+    linkStyle 14 stroke:#0088FF ,stroke-width:2px
+    linkStyle 15 stroke:#0088FF ,stroke-width:2px
+
+
+```  
+
+</center>
+<br><br>

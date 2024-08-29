@@ -23,7 +23,7 @@ Prowlarr is a indexer manager/proxy built on the popular arr .net/reactjs base s
 Go to the [Prowlarr WebUI](http://localhost:9696). If this is the first time using Prowlarr, you will be presented with an ==Authentication Required== dialog, as Prowlarr now allows admins to prevent unauthorised access to the application. You can select ==Forms (Login Page)== --> ==Disabled for Local Address== --> Add ==Username== and ==Password== --> ==Save== to continue.
 
 <figure markdown>
-  ![Prowlarr Authenication Options](../img/prowlarr-authentication.png){ width="300" }
+  ![Prowlarr Authenication Options](assets/prowlarr-authentication.png){ width="300" }
   <figcaption>Prowlarr Authenication Options</figcaption>
 </figure>
 
@@ -40,13 +40,13 @@ Select ==Settings== --> ==Indexer Proxies== --> ==+== (Plus Button)
 
 
 <figure markdown>
-  ![Prowlarr Add Indexer Proxy](../img/prowlarr-add-flaresolverr.png){ width="300" }
+  ![Prowlarr Add Indexer Proxy](assets/prowlarr-add-flaresolverr.png){ width="300" }
   <figcaption>Prowlarr Add Indexer Proxy</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Prowlarr Add FlareSolverr Proxy](../img/prowlarr-flaresolverr-config.png){ width="300" }
+  ![Prowlarr Add FlareSolverr Proxy](assets/prowlarr-flaresolverr-config.png){ width="300" }
   <figcaption>Prowlarr Add FlareSolverr Proxy</figcaption>
 </figure>
 
@@ -55,7 +55,7 @@ Select ==Settings== --> ==Indexer Proxies== --> ==+== (Plus Button)
 
 
 <figure markdown>
-  ![Prowlarr FlareSolverr Proxy List](../img/prowlarr-flaresolverr-list.png){ width="300" }
+  ![Prowlarr FlareSolverr Proxy List](assets/prowlarr-flaresolverr-list.png){ width="300" }
   <figcaption>Prowlarr FlareSolverr Proxy List</figcaption>
 </figure>
 
@@ -72,7 +72,7 @@ Select ==Indexers== --> ==Add Indexer==
 
 
 <figure markdown>
-  ![Prowlarr Add Indexer](../img/prowlarr-add-indexer.png){ width="300" }
+  ![Prowlarr Add Indexer](assets/prowlarr-add-indexer.png){ width="300" }
   <figcaption>Prowlarr Add Indexer</figcaption>
 </figure>
 
@@ -84,7 +84,7 @@ Select ==Indexers== --> ==Add Indexer==
 
 
 <figure markdown>
-  ![Prowlarr Add NZB Indexer](../img/prowlarr-add-nzb-indexer.png){ width="300" }
+  ![Prowlarr Add NZB Indexer](assets/prowlarr-add-nzb-indexer.png){ width="300" }
   <figcaption>Prowlarr Add NZB Indexer</figcaption>
 </figure>
 
@@ -97,7 +97,7 @@ Select ==Indexers== --> ==Add Indexer==
 
 
 <figure markdown>
-  ![Prowlarr Add Torrent Indexer](../img/prowlarr-add-torrent-indexer.png){ width="300" }
+  ![Prowlarr Add Torrent Indexer](assets/prowlarr-add-torrent-indexer.png){ width="300" }
   <figcaption>Prowlarr Add Torrent Indexer</figcaption>
 </figure>
 
@@ -105,7 +105,7 @@ Select ==Indexers== --> ==Add Indexer==
 ### Advanced Indexer Settings
 
 <figure markdown>
-  ![Prowlarr Test Search Indexer](../img/prowlarr-indexer-advanced.png){ width="300" }
+  ![Prowlarr Test Search Indexer](assets/prowlarr-indexer-advanced.png){ width="300" }
   <figcaption>Prowlarr Test Search Indexer</figcaption>
 </figure>
 
@@ -116,7 +116,7 @@ Select ==Indexers== --> ==Add Indexer==
     Add something about search priority
 
 <figure markdown>
-  ![Prowlarr Indexer Listing](../img/prowlarr-indexer-listing.png){ width="300" }
+  ![Prowlarr Indexer Listing](assets/prowlarr-indexer-listing.png){ width="300" }
   <figcaption>Prowlarr Indexer Listing</figcaption>
 </figure>
 
@@ -125,7 +125,7 @@ Select ==Indexers== --> ==Add Indexer==
 
 
 <figure markdown>
-  ![Prowlarr Test Search Indexer](../img/prowlarr-test-search.png){ width="300" }
+  ![Prowlarr Test Search Indexer](assets/prowlarr-test-search.png){ width="300" }
   <figcaption>Prowlarr Test Search Indexer</figcaption>
 </figure>
 
@@ -140,7 +140,7 @@ Add the qBittorrent download client to Prowlarr: ==Prowlarr== --> ==Settings== -
 
 
 <figure markdown>
-  ![Prowlarr Add qBittorrent Download Client](../img/qbittorrent-edit-download-client.png){ width="300" }
+  ![Prowlarr Add qBittorrent Download Client](assets/qbittorrent-edit-download-client.png){ width="300" }
   <figcaption>Prowlarr Add qBittorrent Download Client</figcaption>
 </figure>
 
@@ -149,7 +149,7 @@ Scroll down the bottom of the ==Edit Download Client== dialog box and press the 
 
 
 <figure markdown>
-  ![Prowlarr Edit qBittorrent Download Category Mappings](../img/prowlarr-qbittorrent-add-mapped-categories.png){ width="300" }
+  ![Prowlarr Edit qBittorrent Download Category Mappings](assets/prowlarr-qbittorrent-add-mapped-categories.png){ width="300" }
   <figcaption>qBittorrent Edit Download Category Mappings</figcaption>
 </figure>
 
@@ -237,7 +237,7 @@ Add each of the ==Download Client Categories== listed in the table below, and se
 Once you have added all of the mapped categories, the config should look like this:
 
 <figure markdown>
-  ![Prowlarr List qBittorrent Download Category Mappings](../img/prowlarr-qbittorrent-list-mapped-categories.png){ width="300" }
+  ![Prowlarr List qBittorrent Download Category Mappings](assets/prowlarr-qbittorrent-list-mapped-categories.png){ width="300" }
   <figcaption>qBittorrent List Download Category Mappings</figcaption>
 </figure>
 
@@ -256,7 +256,7 @@ Add the SABnzbd download client to Prowlarr: ==Prowlarr== --> ==Settings== --> =
 
 
 <figure markdown>
-  ![Prowlarr Add SABnzbd Download Client](../img/sabnzbd-edit-download-client.png){ width="300" }
+  ![Prowlarr Add SABnzbd Download Client](assets/sabnzbd-edit-download-client.png){ width="300" }
   <figcaption>Prowlarr Add SABnzbd Download Client</figcaption>
 </figure>
 
@@ -265,7 +265,7 @@ Scroll down the bottom of the ==Edit Download Client== dialog box and press the 
 
 
 <figure markdown>
-  ![Prowlarr Edit SABnzbd Download Category Mappings](../img/prowlarr-sabnzbd-add-mapped-categories.png){ width="300" }
+  ![Prowlarr Edit SABnzbd Download Category Mappings](assets/prowlarr-sabnzbd-add-mapped-categories.png){ width="300" }
   <figcaption>SABnzbd Edit Download Category Mappings</figcaption>
 </figure>
 
@@ -277,7 +277,7 @@ Add each of the ==Download Client Categories== listed in the table below, and se
 Once you have added all of the mapped categories, the config should look like this:
 
 <figure markdown>
-  ![Prowlarr List SABnzbd Download Category Mappings](../img/prowlarr-sabnzbd-list-mapped-categories.png){ width="300" }
+  ![Prowlarr List SABnzbd Download Category Mappings](assets/prowlarr-sabnzbd-list-mapped-categories.png){ width="300" }
   <figcaption>SABnzbd List Download Category Mappings</figcaption>
 </figure>
 
@@ -292,7 +292,7 @@ Add *ARR applications: ==Prowlarr== --> ==Settings== --> ==Apps== then add each 
 
 
 <figure markdown>
-  ![Prowlarr Connect ARR Applications](../img/prowlarr-connect-app-applications.png){ width="300" }
+  ![Prowlarr Connect ARR Applications](assets/prowlarr-connect-app-applications.png){ width="300" }
   <figcaption>Prowlarr Connect ARR Applications</figcaption>
 </figure>
 
@@ -318,7 +318,7 @@ Add *ARR applications: ==Prowlarr== --> ==Settings== --> ==Apps== then add each 
 
 
 <figure markdown>
-  ![Prowlarr Connect ARR Applications](../img/prowlarr-add-app-applications.png){ width="300" }
+  ![Prowlarr Connect ARR Applications](assets/prowlarr-add-app-applications.png){ width="300" }
   <figcaption>Prowlarr Connect ARR Applications</figcaption>
 </figure>
 
@@ -337,7 +337,7 @@ Add *ARR applications: ==Prowlarr== --> ==Settings== --> ==Apps== then add each 
 
 
 <figure markdown>
-  ![Prowlarr List ARR Applications](../img/prowlarr-list-app-applications.png){ width="300" }
+  ![Prowlarr List ARR Applications](assets/prowlarr-list-app-applications.png){ width="300" }
   <figcaption>Prowlarr List ARR Applications</figcaption>
 </figure>
 
@@ -359,7 +359,7 @@ Add *ARR applications: ==Prowlarr== --> ==Settings== --> ==Apps== then add each 
 
 
 <figure markdown>
-  ![Radarr List Imported Indexers](../img/radarr-list-imported-indexers.png){ width="300" }
+  ![Radarr List Imported Indexers](assets/radarr-list-imported-indexers.png){ width="300" }
   <figcaption>Radarr List Imported Indexers</figcaption>
 </figure>
 
@@ -379,7 +379,7 @@ Add *ARR applications: ==Prowlarr== --> ==Settings== --> ==Apps== then add each 
 
 
 <figure markdown>
-  ![Mylar Enable Imported Indexers](../img/mylar-enable-imported-indexers.png){ width="300" }
+  ![Mylar Enable Imported Indexers](assets/mylar-enable-imported-indexers.png){ width="300" }
   <figcaption>Mylar Enable Imported Indexers</figcaption>
 </figure>
 
@@ -397,7 +397,7 @@ To change the date and language in the WebUI Portal, select ==Settings== --> ==U
 
 
 <figure markdown>
-  ![Prowlarr WebUI Date and Language Settings](../img/prowlarr-date-language.png){ width="300" }
+  ![Prowlarr WebUI Date and Language Settings](assets/prowlarr-date-language.png){ width="300" }
   <figcaption>Prowlarr WebUI Date and Language Settings</figcaption>
 </figure>
 
