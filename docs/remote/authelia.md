@@ -123,7 +123,7 @@ Copy and paste the entire "Authelia Configuration" below, into the Authelia `con
 ###############################################################################
 
 server:
-  address: tcp://:9091/authelia
+  address: tcp://:9091/
   asset_path: /config/assets
   disable_healthcheck: false
   buffers:
