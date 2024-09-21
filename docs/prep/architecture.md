@@ -30,7 +30,7 @@ graph TD
         Radarr ---- Gluetun
         Readarr --- Gluetun
         Sonarr ---- Gluetun
-        Mylar3 --- Gluetun
+        Mylar --- Gluetun
         Whisparr ---- Gluetun
         Bazarr --- Gluetun
         Lidarr ---- Gluetun
@@ -46,7 +46,7 @@ graph TD
     
     style Bazarr stroke:green,stroke-width:2px
     style Lidarr stroke:green,stroke-width:2px
-    style Mylar3 stroke:green,stroke-width:2px
+    style Mylar stroke:green,stroke-width:2px
     style Prowlarr stroke:green,stroke-width:2px
     style Radarr stroke:green,stroke-width:2px
     style Readarr stroke:green,stroke-width:2px
@@ -83,7 +83,7 @@ graph TD
         Radarr -..-> NIC
         Readarr -.-> NIC
         Sonarr -..-> NIC
-        Mylar3 -.-> NIC
+        Mylar -.-> NIC
         Whisparr -..-> NIC
         Bazarr -.-> NIC
         Lidarr -..-> NIC
@@ -101,7 +101,7 @@ graph TD
     
     style Bazarr stroke:orange,stroke-width:2px
     style Lidarr stroke:orange,stroke-width:2px
-    style Mylar3 stroke:orange,stroke-width:2px
+    style Mylar stroke:orange,stroke-width:2px
     style Prowlarr stroke:orange,stroke-width:2px
     style Radarr stroke:orange,stroke-width:2px
     style Readarr stroke:orange,stroke-width:2px
@@ -125,13 +125,13 @@ graph TD
 
 All of the Docker configurations are set up to allow you to remotely access your Docker applications while you're away from home. The network diagram illustrates a secure remote access architecture utilising a combination of Docker applications, SWAG (Secure Web Application Gateway), Authelia, Heimdal, and Cloudflare Zero Trust. This setup ensures that only authenticated and trusted users that you grant permissions to, can access the internal Docker-based services over the Internet.
 
-At the core of the network is the Docker infrastructure, operating on the subnet 172.28.10.0/24 (adjustable). Within this network, multiple applications are hosted in Docker containers. Once a remote user is successfully authenticated, they are granted access to Heimdall, which serves as a landing page portal provding users with easy access to the other Docker applications. To securely manage and route incoming connections, SWAG functions as both a reverse proxy and web server, and uses a valid SSL Digital Certificate to encrypt the remote HTTPS session. It intercepts requests from remote users and forwards them to the appropriate internal services.
+At the core of the network is the Docker infrastructure, operating on the subnet 172.28.10.0/24 (adjustable). Within this network, multiple applications are hosted in Docker containers. Once a remote user is successfully authenticated, they are granted access to Heimdall, which serves as a landing page portal provding users with easy access to the other Docker applications. To securely manage and route incoming connections, SWAG functions as both a reverse proxy and web server, and uses a valid SSL Digital Certificate to encrypt the remote HTTPS session. It intercepts requests from remote users and forwards them to the appropriate internal services.  
 
-Cloudflare plays a crucial role in enhancing security. It acts as the initial point of contact for remote Internet users, offering a robust proxy service that filters and manages traffic before it reaches SWAG. Cloudflare Zero Trust provides an additional layer of security by enforcing authentication and access policies. This means that any request must pass through Cloudflare's security checks, ensuring only authorised traffic reaches the internal Docker network.
+Cloudflare plays a crucial role in enhancing security. It acts as the initial point of contact for remote Internet users, offering a robust proxy service that filters and manages traffic before it reaches SWAG. Cloudflare Zero Trust provides an additional layer of security by enforcing authentication and access policies. This means that any request must pass through Cloudflare's security checks, ensuring only authorised traffic reaches the internal Docker network.  
 
-Authelia, integrated with both SWAG and Cloudflare Zero Trust, handles user authentication. It provides two-factor authentication (2FA) and single sign-on (SSO) capabilities, ensuring that users must verify their identities before gaining access. This integration ensures that even if an attacker bypasses the Cloudflare security checks, they still face robust authentication challenges from Authelia.
+Authelia, integrated with both SWAG and Cloudflare Zero Trust, handles user authentication. It provides two-factor authentication (2FA) and single sign-on (SSO) capabilities, ensuring that users must verify their identities before gaining access. This integration ensures that even if an attacker bypasses the Cloudflare security checks, they still face robust authentication challenges from Authelia.  
 
-By combining these technologies, the setup ensures a secure, scalable, and manageable remote access solution. The network protects against unauthorized access while providing legitimate users with seamless access to the necessary applications, thus balancing security with user convenience.
+By combining these technologies, the setup ensures a secure, scalable, and manageable remote access solution. The network protects against unauthorized access while providing legitimate users with seamless access to the necessary applications, thus balancing security with user convenience.  
 
 </br>
 <center>
@@ -191,8 +191,6 @@ graph
     linkStyle 12 stroke:#FFA500 ,stroke-width:2px
     linkStyle 14 stroke:#0088FF ,stroke-width:2px
     linkStyle 15 stroke:#0088FF ,stroke-width:2px
-
-
 ```  
 
 </center>

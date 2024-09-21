@@ -20,6 +20,8 @@ List of all Media-Stack applications used in this guide and their roles
 
 ## Application Portals:
 
+<center>
+
  Portal | Application | Function
 -------- | -------- | --------
 [https://localhost:9443](https://localhost:9443)|Portainer|GUI Interface for Docker Management
@@ -28,7 +30,7 @@ List of all Media-Stack applications used in this guide and their roles
 [http://localhost:8096](http://localhost:8096)|Jellyfin|(Media Player)
 [http://localhost:5055](http://localhost:5055)|Jellyseerr|(Content Request Management)
 [http://localhost:8686](http://localhost:8686)|Lidarr|(Library Manager - Music)
-[http://localhost:8090](http://localhost:8090)|Mylar3|(Library Manager - Comics)
+[http://localhost:8090](http://localhost:8090)|Mylar|(Library Manager - Comics)
 [http://localhost:9696](http://localhost:9696)|Prowlarr|(Index and Search Management)
 [http://localhost:7878](http://localhost:7878)|Radarr|(Library Manager - Movies)
 [http://localhost:8787](http://localhost:8787)|Readarr|(Library Manager - Books)
@@ -41,8 +43,8 @@ List of all Media-Stack applications used in this guide and their roles
 [http://localhost:5433](http://localhost:5433)|SWAG - Nginx|Web Server for Reverse Proxy HTTPS
 [http://localhost:6500](http://localhost:6500)|DDNS-Updater|Web Portal - DDNS-Updater Status
 
-**Default qBittorrent Portal Access:**     Username: **admin**     Password: **adminadmin**
 
+</center>
 
 
   
@@ -106,7 +108,7 @@ Library Manager for Music content management
 
 [http://localhost:8090](http://localhost:8090)
 
-Mylar3
+Mylar
 
 Library Manager for Comic content management
 

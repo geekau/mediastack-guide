@@ -20,12 +20,12 @@ plugins:
 nav:
   - Preparation:
     - Home:                             index.md
-    - MediaStack Applications:          prep/mediastack-applications.md
-    - Network Architecture:             prep/network-architecture.md
-    - Installing Docker on Host:        prep/installing-docker.md
-    - Setting Up App / Media Folders:   prep/setting-up-folders.md
-    - Prepare Media Library:            prep/prepare-media-library.md
-    - Docker Compose Files:             prep/docker-compose-files.md
+    - MediaStack Applications:          prep/applications.md
+    - Network Architecture:             prep/architecture.md
+    - Installing Docker on Host:        prep/docker.md
+    - Setting Up App / Media Folders:   prep/folders.md
+    - Prepare Media Library:            prep/media.md
+    - Docker Compose Files:             prep/compose.md
   - Installation:
     - Default Environment:              install/default-environment.md
     - Customising Environment:          install/customising-environment.md
@@ -50,22 +50,20 @@ nav:
     - Jellyseerr:                       config/jellyseerr.md
     - Plex:                             config/plex.md
   - Remote Access:
-    - DNS Resolution:                   remote/dns-resolution.md
-    - Cloudflare DNS:                   remote/cloudflare-dns.md
-    - DDNS-Updater:                     remote/ddns-updater.md
-    - DUO Security:                     remote/duo-security.md
+    - DNS Resolution:                   remote/dns.md
+    - DUO Security:                     remote/duo.md
     - Authelia:                         remote/authelia.md
     - Secure Web App Gateway:           remote/swag.md
     - Heimdall:                         remote/heimdall.md
     - Homepage:                         remote/homepage.md
-    - Cloudflare Tunnels:               remote/cloudflare-tunnels.md
-  - Help:
-    - Application Websites:             help/application-websites.md
-    - Contributing:                     help/contributing.md
-    - Template:                         help/template.md
-  - OLD DOCS:
-    - Old Notes 1:                      help/1.md
-    - Old Notes 3:                      help/3.md
+    - Cloudflare Tunnels:               remote/tunnels.md
+#  - Help:
+#    - Application Websites:             help/application-websites.md
+#    - Contributing:                     help/contributing.md
+#    - Template:                         help/template.md
+#  - OLD DOCS:
+#    - Old Notes 1:                      help/1.md
+#    - Old Notes 3:                      help/3.md
 
 theme:
   name:       material

@@ -65,7 +65,7 @@ wsl --set-default-version 2
 ```
 
 <figure markdown>
-  ![Windows - Install Windows Subsystem for Linux](../img/windows-install-wsl.png){ width="300" }
+  ![Windows - Install Windows Subsystem for Linux](assets/windows-install-wsl.png){ width="300" }
   <figcaption>Windows - Install Windows Subsystem for Linux</figcaption>
 </figure>
 
@@ -86,13 +86,13 @@ Download and install the Microsoft "WSL2 Linux kernel update package for x64 mac
 
 
 <figure markdown>
-  ![Windows - Install WSL2 Linux Kernel Update](../img/windows-install-wsl-update.png){ width="300" }
+  ![Windows - Install WSL2 Linux Kernel Update](assets/windows-install-wsl-update.png){ width="300" }
   <figcaption>Windows - Install WSL2 Linux Kernel Update</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Windows - WSL2 Installed](../img/windows-wsl-installed.png){ width="300" }
+  ![Windows - WSL2 Installed](assets/windows-wsl-installed.png){ width="300" }
   <figcaption>Windows - WSL2 Installed</figcaption>
 </figure>
 
@@ -124,19 +124,19 @@ Download and install Docker Desktop for Windows:
 
 
 <figure markdown>
-  ![Windows - Docker Desktop Installed](../img/windows-docker-installed.png){ width="300" }
+  ![Windows - Docker Desktop Installed](assets/windows-docker-installed.png){ width="300" }
   <figcaption>Windows - Docker Desktop Installed</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Windows - WSL2 Installed](../img/windows-wsl-installed.png){ width="300" }
+  ![Windows - WSL2 Installed](assets/windows-wsl-installed.png){ width="300" }
   <figcaption>Windows - WSL2 Installed</figcaption>
 </figure>
 
 
 <figure markdown>
-  ![Windows - Docker Desktop Enable Ubuntu Integration](../img/windows-docker-desktop-enable-ubuntu.png){ width="300" }
+  ![Windows - Docker Desktop Enable Ubuntu Integration](assets/windows-docker-desktop-enable-ubuntu.png){ width="300" }
   <figcaption>Windows - Docker Desktop Enable Ubuntu Integration</figcaption>
 </figure>
 
@@ -177,7 +177,7 @@ sudo docker exec -it radarr bash
 
 
 <figure markdown>
-  ![Windows - Install Windows Subsystem for Linux](../img/windows-install-wsl.png){ width="300" }
+  ![Windows - Install Windows Subsystem for Linux](assets/windows-install-wsl.png){ width="300" }
   <figcaption>Windows - Install Windows Subsystem for Linux</figcaption>
 </figure>
 

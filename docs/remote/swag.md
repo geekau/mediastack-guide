@@ -1,186 +1,230 @@
 # SWAG - Secure Web Application Gateway
 
-## Delete This Section...
 
-!!! Danger "Warning: &nbsp; &nbsp; &nbsp; Page Under Development"
 
-    This page is still under development and may not have accurate information, and should be considered incomplete / inaccurate until this notice is removed.
 
+!!! Info "Additional Application Information - External Links"  
+    - Application Website: &nbsp; &nbsp; &nbsp; [https://www.authelia.com/](https://www.authelia.com/)  
+    - Docker Information: &nbsp; &nbsp; &nbsp; [https://hub.docker.com/r/authelia/authelia](https://hub.docker.com/r/authelia/authelia)  
+---
+
+</br>
+
+## SWAG Will Not Start
+
+!!! Warning "SWAG WILL NOT START"  
+    This is a notice to advise that SWAG WILL NOT START until all of the following items have been completed:  
+
+    - All domain applications have been configured in `FOLDER_FOR_DATA/swag/proxy-conf` directory.  
+    - Your DNS Provider has been configured in the `FOLDER_FOR_DATA/swag/dns-conf` directory.  
+    - DNS is correctly pointing your domain name to your Internet IP address.  
+    - Certbot has successfully installed a valid SSL digital certificate.  
+    - Port forwarding has been enabled on your home router / gateway.  
+
+    This is a safety / security feature and is built by design to function this way.  
+---
+
+</br>
+
+## Heading here.
+
+``` conf
+# SWAG is configured for Reverse Proxy. Set your Internet gateway to redirect incoming ports 80 and 443
+# to the ports used below (using Docker IP Address), and they will be translated back to 80 and 443 by SWAG.
+# Change these port numbers if you have conflicting services running on the Docker host computer.
+# If ports 80 and 443 are already used, then adjust and redirect incoming ports to 5080 and 5443, or similar.
+
+REVERSE_PROXY_PORT_HTTP=80
+REVERSE_PROXY_PORT_HTTPS=443
 
+# SWAG REVERSE PROXY SETTINGS:
+DOMAINNAME=your-domain-name-goes-here.com
+SUBDOMAINS=wildcard
+VALIDATION=dns
+DNSPLUGIN=cloudflare
+CERTPROVIDER=letsencrypt
+PROPAGATION=
+DUCKDNSTOKEN=
+EMAIL=
+ONLY_SUBDOMAINS=false
+EXTRA_DOMAINS=
+STAGING=false
 
-"Configure Remote Access" Menu and Pages will document steps in order to configure all the applications to allow remote access into your home network / Jellyfin server from the Internet.
+# Cloudflare Tunnel for SWAG
+CF_ZONE_ID=6ad4f87ae98717e76c221k75a1e0b6f2
+CF_ACCOUNT_ID=67a350ae5a9756k803e9c607eec9f4j9
+CF_API_TOKEN=1u90r5BPQ7o5tAzqr1gZalHC9VlaZa45dUG56GIi
+CF_TUNNEL_NAME=
+CF_TUNNEL_TOKEN=
 
-These pages to document the integrated of:
+```
 
-- Cloudflare for Domain Name Registration and Hosting (Your Own Internet Address)
-- DDNS-Updater to Update DNS Records Hosted on Cloudflare DNS, or Public DDNS Provider
-- Authelia for User Authentication / Authorisation - AA Server
-- Cloudflare Zero Trust Network Access
-- Nginx Reverse Proxy Server (SWAG)
-- Automate SSL Install with Let's Encrypt / ZeroSSL Certificate Authorities
-- Heimdall (Link Manager) - Configure Links for All Internet Web Services.... Jellyfin / *ARR Apps etc..
+## Check DNS Configuration
 
+In order for SWAG to get a valid SSL digital certificate from Let's Encrypt or ZeroSSL, the domain name you registered in Cloudflare / Authelia, needs to also be configured in SWAG.
 
-## What is SWAG
+``` bash
+cd FOLDER_FOR_DATA/swag/dns-confs
+vi cloudflare.ini
+```
 
+Add you Cloudflare API Token to the cloudflare.ini, and comment the other two lines cloudflare lines
 
+``` yaml
+#dns_cloudflare_email = cloudflare@example.com                            # Add "#" at start of line
+#dns_cloudflare_api_key = 0123456789abcdef0123456789abcdef01234567        # Add "#" at start of line
+dns_cloudflare_api_token = YourCloudflareToken                            # Enable this line with API Token
+```
 
-duo_api:
-  hostname: api-somenumber.duosecurity.com
-  integration_key: SOMESECRETKEY
-  secret_key: somelongersecretkey
+> NOTE: May need to check your respective DNS provider to ensure Certbot is configured and can register an SSL digital certificate.
 
-## Register a DNS / DDNS Address
 
 
-## Register DUO Security
+## Enable Domain Configurations
 
+``` bash
+cd FOLDER_FOR_DATA/swag/nginx/proxy-confs
 
+cp authelia.subdomain.conf.sample      authelia.subdomain.conf
+cp bazarr.subdomain.conf.sample        bazarr.subdomain.conf
+cp ddns-updater.subdomain.conf.sample  ddns-updater.subdomain.conf
+cp filebot.subdomain.conf.sample       filebot.subdomain.conf
+cp flaresolverr.subdomain.conf.sample  flaresolverr.subdomain.conf
+cp gluetun.subdomain.conf.sample       gluetun.subdomain.conf
+cp heimdall.subdomain.conf.sample      heimdall.subdomain.conf
+cp homarr.subdomain.conf.sample        homarr.subdomain.conf
+cp homepage.subdomain.conf.sample      homepage.subdomain.conf
+cp jellyfin.subdomain.conf.sample      jellyfin.subdomain.conf
+cp jellyseerr.subdomain.conf.sample    jellyseerr.subdomain.conf
+cp lidarr.subdomain.conf.sample        lidarr.subdomain.conf
+cp mylar.subdomain.conf.sample         mylar.subdomain.conf
+cp plex.subdomain.conf.sample          plex.subdomain.conf
+cp portainer.subdomain.conf.sample     portainer.subdomain.conf
+cp prowlarr.subdomain.conf.sample      prowlarr.subdomain.conf
+cp qbittorrent.subdomain.conf.sample   qbittorrent.subdomain.conf
+cp radarr.subdomain.conf.sample        radarr.subdomain.conf
+cp readarr.subdomain.conf.sample       readarr.subdomain.conf
+cp sabnzbd.subdomain.conf.sample       sabnzbd.subdomain.conf
+cp sonarr.subdomain.conf.sample        sonarr.subdomain.conf
+cp tdarr.subdomain.conf.sample         tdarr.subdomain.conf
+cp whisparr.subdomain.conf.sample      whisparr.subdomain.conf
+```
 
-## User accounts
+In all of the new `.conf` files we copied, we need to enable the Authelia
 
-sudo docker run authelia/authelia:latest authelia crypto hash generate argon2 --password strong_password_to_hash
-Digest: $argon2id$v=19$m=65536,t=3,p=4$aFa+b8r/LFJt9JGb7yiXdw$0ChnAzTQtwNHUTn6fICRJNcbljta/WwNgF29iLENNEM
+```
+#include /config/nginx/authelia-location.conf;     <-- Change these lines
+#include /config/nginx/authelia-server.conf;       <-- Change these lines
+```
 
-vi /mediastackdata/authelia/users_database.yml
-users:
-  john:
-    displayname: John Doe
-    password: $argon2id$v=19$m=65536,t=3,p=4$/yxpBgUJVmRvq0mMIsFUaQ$pGtxdCaI3qkeVGoU+BGSb0pY1SHDxKkclRK5UINfISQ
-    email: john@example.com
-    groups: []
-  jane:
-    displayname: Jane Doe
-    password: $argon2id$v=19$m=65536,t=3,p=4$/yxpBgUJVmRvq0mMIsFUaQ$pGtxdCaI3qkeVGoU+BGSb0pY1SHDxKkclRK5UINfISQ
-    email: jane@example.com
-    groups: []
+```
+include /config/nginx/authelia-location.conf;     <-- To these lines
+include /config/nginx/authelia-server.conf;       <-- To these lines
+```
 
+## Active Authelia in all Nginx configurations
+However, that's a lot of files we need to edit manually, so run the following script to automatically remove the `#` from the authelia include line.
 
+```
+cd FOLDER_FOR_DATA/swag/nginx/proxy-confs
+sed -i 's/^\(\s*\)#\(\s*include \/config\/nginx\/authelia.*\)/\1\2/' *.conf
+```
 
-cp /mediastackdata/authelia/configuration.yml /mediastackdata/authelia/configuration.yml.original
+## Output all lines which are edited correctly in all of the Nginx configurations
 
+```
+grep -Hn '^\s*include /config/nginx/authelia' *.conf
+```
 
 
 
 
-##
+```
+sudo docker container stop swag
+sudo docker container rm swag
+sudo docker-compose --file docker-compose-swag.yaml --env-file docker-compose.env up -d
+```
 
 
-##
+```
+sudo docker logs swag
+```
 
 
 
 
+```
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/example.com/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/example.com/privkey.pem
+This certificate expires on 2024-12-19.
+These files will be updated when the certificate renews.
+NEXT STEPS:
+- The certificate will need to be renewed before it expires. Certbot can automatically renew the certificate in the background, but you may need to take steps to enable that functionality. See https://certbot.org/renewal-setup for instructions.
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+New certificate generated; starting nginx
+The cert does not expire within the next day. Letting the cron script handle the renewal attempts overnight (2:08am).
+[custom-init] No custom files found, skipping...
+[ls.io-init] done.
+Server ready
+```
 
-# Nginx - Reverse Proxy
 
 
-## Heading One
 
-!!! Danger "Warning: &nbsp; &nbsp; &nbsp; Page Under Development"
+## Certbot
 
-    This page is still under development and may not have accurate information, and should be considered incomplete / inaccurate until this notice is removed.
 
+## cloudflare Zone ID stuff
 
 
 
-## Heading Two
 
-## Heading Three
-
-
-
-
-
-
-
-
-
-
-## For Reverse Proxy into your network (from the Internet):
-
- Portal | Application | Function
--------- | -------- | --------
-[http://your-domain-name.com](http://your-domain-name.com)|SWAG|Reverse Proxy
-[https://your-domain-name.com](http://your-domain-name.com)|SWAG|Reverse Proxy
-
-The SWAG container provides Nginx Reverse Proxy and MFA running on ports **5080/HTTP** and **5443/HTTPS**, so they don't conflict with other services running on the Docker host computer. To access your Reverse Proxy from the Internet, you need to set up your gateway / router, to allow Internet ports **80** and **443** into your network, but redirect them to the Docker host IP Address on ports **5080** and **5443** respectively.
-
-Port **80** will be accessible on the Internet and redirected to the Reverse Proxy on port **5080**, however it will redirect to HTTPS protocol using port **443** via the Internet, which will also be redirected to the Reverse Proxy on port **5443**. Reverse Proxy port numbers can be changed as required in the ENV file if required.
-
-The SWAG container requires a resolvable domain name, and will automatically install SSL certificates using either Let's Encrypt or Zero SSL providers, and is also able to provide Multi-Factor Authentication (MFA), to provide strong security for your Internet connected applications.
-
- - [https://www.linuxserver.io/blog/zero-trust-hosting-and-reverse-proxy-via-cloudflare-swag-and-authelia](https://www.linuxserver.io/blog/zero-trust-hosting-and-reverse-proxy-via-cloudflare-swag-and-authelia)
-
-
-
-
-
-# THESE ARE ITEMS FOR NOTES ONLY AT THIS POINT
-
-
-
-cat /home/geekau/docker/swag/nginx/proxy-confs/sabnzbd.subfolder.conf.sample
-
-/home/geekau/docker/swag/nginx/proxy-confs/sabnzbd.subfolder.conf.sample
-
-
-
-
+```
 $FOLDER_FOR_CONFIGS/swag/
 $FOLDER_FOR_CONFIGS/swag/dns-conf/
 $FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/
-$FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sabnzbd.subfolder.conf.sample
-$FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sonarr.subfolder.conf.sample
-$FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sonarr.subdomain.conf.sample
-$FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sonarr.subfolder.conf.sample
-$FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sonarr.subdomain.conf.sample
 $FOLDER_FOR_CONFIGS/swag/nginx/
 $FOLDER_FOR_CONFIGS/swag/nginx/
 $FOLDER_FOR_CONFIGS/swag/nginx/proxy.conf
 $FOLDER_FOR_CONFIGS/swag/nginx/nginx.conf
+```
+
+```
+cd /$FOLDER_FOR_DATA/swag/nginx
+```
+
+```
+cd /$FOLDER_FOR_DATA/swag/nginx/site-confs
+```
+
+
+## Port Forwarding From Internet
 
 
 
-sudo -E cp $FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sabnzbd.subfolder.conf.sample     $FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sabnzbd.subfolder.conf
-sudo -E cp $FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sonarr.subfolder.conf.sample      $FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/sonarr.subfolder.conf
-ls -la $FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/*.conf
-ls -la $FOLDER_FOR_CONFIGS/swag/nginx/proxy-confs/
+sudo netstat -tulpn -4 | grep -E '80|443'
 
-mv /mnt/user/appdata/swag/nginx/proxy-confs/sonarr.subdomain.conf.sample /mnt/user/appdata/swag/nginx/proxy-confs/sonarr.subdomain.conf
+sudo netstat -tulpn -4 | grep -E '5080|5443'
 
+```
+username@vm1:/volume1/docker/appdata/swag/dns-conf$ sudo netstat -tulpn -4 | grep -E '5080|5443'
+tcp        0      0 0.0.0.0:5443            0.0.0.0:*               LISTEN      24790/docker-proxy
+tcp        0      0 0.0.0.0:5080            0.0.0.0:*               LISTEN      24819/docker-proxy
+```
 
+Static IP is a MUST when port forwarding from the Internet.
 
-audiobookshelf.subdomain.conf.sample
-audiobookshelf.subfolder.conf.sample
-authelia.subdomain.conf.sample
-bazarr.subdomain.conf.sample
-bazarr.subfolder.conf.sample
-filebot.subdomain.conf.sample
-filebot.subfolder.conf.sample
-jellyfin.subdomain.conf.sample
-jellyfin.subfolder.conf.sample
-jellyseerr.subdomain.conf.sample
-lidarr.subdomain.conf.sample
-lidarr.subfolder.conf.sample
-mylar.subdomain.conf.sample
-mylar.subfolder.conf.sample
-portainer.subdomain.conf.sample
-portainer.subfolder.conf.sample
-prowlarr.subdomain.conf.sample
-prowlarr.subfolder.conf.sample
-qbittorrent.subdomain.conf.sample
-qbittorrent.subfolder.conf.sample
-radarr.subdomain.conf.sample
-radarr.subfolder.conf.sample
-readarr.subdomain.conf.sample
-readarr.subfolder.conf.sample
-sabnzbd.subdomain.conf.sample
-sabnzbd.subfolder.conf.sample
-sonarr.subdomain.conf.sample
-sonarr.subfolder.conf.sample
-tdarr.subdomain.conf.sample
+REVERSE_PROXY_PORT_HTTP=80
+REVERSE_PROXY_PORT_HTTPS=443
+LOCAL_DOCKER_IP=192.168.1.10
 
 
 
+
+.

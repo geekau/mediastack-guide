@@ -192,7 +192,7 @@ Goto: ==Options Icon== --> ==Downloads==
 
 Create a new category for each folder located in the `/data/torrents` folder, except for the ==complete== and ==incomplete== folders, as these are working folders, not specifically set up to manage categories.
 
-Refer to the host / container folder mapping diagram, which was set up during preparation: [Docker Host / Container Folder Mapping](../prep/setting-up-folders.md#folder-mappings-between-host-and-docker-containers)
+Refer to the host / container folder mapping diagram, which was set up during preparation: [Docker Host / Container Folder Mapping](../prep/folders.md#folder-mappings-between-host-and-docker-containers)
 
 <figure markdown>
   ![qBittorrent Download Categories](assets/qbittorrent-category-2.png){ width="300" }
@@ -301,14 +301,14 @@ The downloaded test torrents can now be safely deleted using the WebUI.
 |Lidarr:   |  [http://localhost:8686/settings/downloadclients](http://localhost:8686/settings/downloadclients) | music    |
 |Readarr:  |  [http://localhost:8787/settings/downloadclients](http://localhost:8787/settings/downloadclients) | books    |
 |Whisparr: |  [http://localhost:6969/settings/downloadclients](http://localhost:6969/settings/downloadclients) | xxx      |
-|Mylar3:   |  [http://localhost:8090/config#tabs-3](http://localhost:8090/config#tabs-3) | comics |
+|Mylar:    |  [http://localhost:8090/config#tabs-3](http://localhost:8090/config#tabs-3) | comics |
 
 
 
 
 <figure markdown>
-  ![Mylar3 Add qBittorrent Download Client](assets/qbittorrent-mylar-add-downloader.png){ width="300" }
-  <figcaption>Mylar3 Add qBittorrent Download Client</figcaption>
+  ![Mylar Add qBittorrent Download Client](assets/qbittorrent-mylar-add-downloader.png){ width="300" }
+  <figcaption>Mylar Add qBittorrent Download Client</figcaption>
 </figure>
 
 

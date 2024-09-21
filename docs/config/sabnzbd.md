@@ -424,14 +424,14 @@ The downloaded test torrents can now be safely deleted using the WebUI.
 |Lidarr:   |  [http://localhost:8686/settings/downloadclients](http://localhost:8686/settings/downloadclients) | music    |
 |Readarr:  |  [http://localhost:8787/settings/downloadclients](http://localhost:8787/settings/downloadclients) | books    |
 |Whisparr: |  [http://localhost:6969/settings/downloadclients](http://localhost:6969/settings/downloadclients) | xxx      |
-|Mylar3:   |  [http://localhost:8090/config#tabs-3](http://localhost:8090/config#tabs-3) | comics |
+|Mylar:    |  [http://localhost:8090/config#tabs-3](http://localhost:8090/config#tabs-3) | comics |
 
 
 
 
 <figure markdown>
-  ![Mylar3 Add SABnzbd Download Client](assets/sabnzbd-mylar-add-downloader.png){ width="300" }
-  <figcaption>Mylar3 Add SABnzbd Download Client</figcaption>
+  ![Mylar Add SABnzbd Download Client](assets/sabnzbd-mylar-add-downloader.png){ width="300" }
+  <figcaption>Mylar Add SABnzbd Download Client</figcaption>
 </figure>
 
 

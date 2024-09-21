@@ -30,33 +30,34 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         Check your Docker user ID with the command `id docker`, and update the PUID value below.
 
         ``` bash
-        export FOLDER_FOR_MEDIA=/mediastack
-        export FOLDER_FOR_DATA=/mediastackdata
+        export FOLDER_FOR_MEDIA=/your-media-folder       # Change to where you want your media to be stored
+        export FOLDER_FOR_DATA=/your-app-configs         # Change to where you want your container configurations to be stored
 
         export PUID=1000
-        export PGID=1000
+        export PGID=1000  
 
-        sudo -E mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,homepage,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
-        sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,tv,xxx}
-        sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
-        sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
-        sudo -E mkdir -p $FOLDER_FOR_MEDIA/watch
-        sudo -E chmod -R 775 $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
-        sudo -E chown -R $PUID:$PGID $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
+        sudo -E mkdir -p $FOLDER_FOR_DATA/{authelia/assets,bazarr,ddns-updater,gluetun,heimdall,homarr/{configs,data,icons},homepage,jellyfin,jellyseerr,lidarr,mylar,opensmtpd,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}  
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,tv,xxx}  
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}  
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}  
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/watch  
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/filebot/{input,output}  
+        sudo -E chmod -R 775 $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA  
+        sudo -E chown -R $PUID:$PGID $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA  
         ```
  
     === "Windows Command Prompt"
 
-        ```
-        set FOLDER_FOR_MEDIA=D:\MediaStack
-        set FOLDER_FOR_DATA=D:\MediaStackData
+        ``` cmd
+        set FOLDER_FOR_MEDIA=D:\Your-Media-Folder        # Change to where you want your media to be stored
+        set FOLDER_FOR_DATA=D:\Your-App-Configs          # Change to where you want your container configurations to be stored
 
-        FOR /D %I IN (authelia bazarr ddns-updater gluetun heimdall homepage jellyfin jellyseerr lidarr mylar3 plex portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_DATA%\%I
-        FOR /D %I IN (server configs logs) DO mkdir %FOLDER_FOR_DATA%\tdarr\%I
+        FOR /D %I IN (authelia\assets bazarr ddns-updater gluetun heimdall homarr\configs homarr\data homarr\icons homepage jellyfin jellyseerr lidarr mylar smtp plex portainer prowlarr qbittorrent radarr readarr sabnzbd sonarr swag tdarr\server tdarr\configs tdarr\logs tdarr_transcode_cache unpackerr whisparr) DO mkdir %FOLDER_FOR_DATA%\%I
         FOR /D %I IN (anime audio books comics movies music photos tv xxx) DO mkdir %FOLDER_FOR_MEDIA%\media\%I
         FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr software tv xxx) DO mkdir %FOLDER_FOR_MEDIA%\usenet\%I
         FOR /D %I IN (anime audio books comics complete console incomplete movies music prowlarr software tv xxx) DO mkdir %FOLDER_FOR_MEDIA%\torrents\%I
         mkdir %FOLDER_FOR_MEDIA%\watch
+        mkdir %FOLDER_FOR_MEDIA%\filebot\input %FOLDER_FOR_MEDIA%\filebot\output
         ```
 
     === "MacOS Shell"
@@ -72,18 +73,20 @@ If you used Linux / NAS folders in the ENV file, then use the following commands
         Check your Docker user ID with the command `id docker`, and update the PUID value below.
 
         ``` bash
-        export FOLDER_FOR_MEDIA=/mediastack
-        export FOLDER_FOR_DATA=/mediastackdata
-        export PUID=1030
+        export FOLDER_FOR_MEDIA=/volume1/media               # Change to where you want your media to be stored
+        export FOLDER_FOR_DATA=/volume1/docker/appdata       # Change to where you want your container configurations to be stored
 
-        sudo mkdir -p $FOLDER_FOR_DATA/{authelia,bazarr,ddns-updater,gluetun,heimdall,homepage,jellyfin,jellyseerr,lidarr,mylar3,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
-        sudo mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,tv,xxx}
-        sudo mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
-        sudo mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
-        sudo mkdir -p $FOLDER_FOR_MEDIA/watch
-        sudo chmod -R 777 $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
-        sudo chown -R root:root $FOLDER_FOR_DATA
-        sudo chown -R $PUID:users $FOLDER_FOR_MEDIA/{media,usenet,torrents,watch}
+        export PUID=1000
+        export PGID=users
+
+        sudo -E mkdir -p $FOLDER_FOR_DATA/{authelia/assets,bazarr,ddns-updater,gluetun,heimdall,homarr/{configs,data,icons},homepage,jellyfin,jellyseerr,lidarr,mylar,opensmtpd,plex,portainer,prowlarr,qbittorrent,radarr,readarr,sabnzbd,sonarr,swag,tdarr/{server,configs,logs},tdarr_transcode_cache,unpackerr,whisparr}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/media/{anime,audio,books,comics,movies,music,photos,tv,xxx}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/usenet/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/torrents/{anime,audio,books,comics,complete,console,incomplete,movies,music,prowlarr,software,tv,xxx}
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/watch
+        sudo -E mkdir -p $FOLDER_FOR_MEDIA/filebot/{input,output}
+        sudo -E chmod -R 775 $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
+        sudo -E chown -R $PUID:$PGID $FOLDER_FOR_MEDIA $FOLDER_FOR_DATA
         ```
 
 
@@ -105,7 +108,7 @@ After you run the commands above (Linux or Windows), **this will be your folder 
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime                 │⠀⠀⠀⠀├── anime       <-- Sonarr Media Library Manager
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio                 │⠀⠀⠀⠀├── audio       <-- Lidarr Media Library Manager
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books                 │⠀⠀⠀⠀├── books       <-- Readarr Media Library Manager
-    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics      <-- Mylar3 Media Library Manager
+    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics      <-- Mylar Media Library Manager
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── movies                │⠀⠀⠀⠀├── movies      <-- Radarr Media Library Manager
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── music                 │⠀⠀⠀⠀├── music       <-- Lidarr Media Library Manager
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── photos                │⠀⠀⠀⠀├── photos      <-- N/A - Add Personal Photos
@@ -115,7 +118,7 @@ After you run the commands above (Linux or Windows), **this will be your folder 
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime                 │⠀⠀⠀⠀├── anime       <-- Anime Category (Sonarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio                 │⠀⠀⠀⠀├── audio       <-- Audio Category (Lidarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books                 │⠀⠀⠀⠀├── books       <-- Book Category (Readarr)
-    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics      <-- Comic Category (Mylar3)
+    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics      <-- Comic Category (Mylar)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── complete              │⠀⠀⠀⠀├── complete    <-- Completed / General Downloads
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── console               │⠀⠀⠀⠀├── console     <-- Comic Category (Manual DL)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── incomplete            │⠀⠀⠀⠀├── incomplete  <-- Incomplete / Working Downloads
@@ -129,7 +132,7 @@ After you run the commands above (Linux or Windows), **this will be your folder 
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── anime                 │⠀⠀⠀⠀├── anime       <-- Anime Category (Sonarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── audio                 │⠀⠀⠀⠀├── audio       <-- Audio Category (Lidarr)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── books                 │⠀⠀⠀⠀├── books       <-- Book Category (Readarr)
-    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics      <-- Comic Category (Mylar3)
+    ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── comics                │⠀⠀⠀⠀├── comics      <-- Comic Category (Mylar)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── complete              │⠀⠀⠀⠀├── complete    <-- Completed / General Downloads
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── console               │⠀⠀⠀⠀├── console     <-- Comic Category (Manual DL)
     ⠀⠀⠀⠀⠀│⠀⠀⠀⠀├── incomplete            │⠀⠀⠀⠀├── incomplete  <-- Incomplete / Working Downloads
