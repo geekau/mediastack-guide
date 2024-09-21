@@ -54,9 +54,10 @@ nav:
     - DUO Security:                     remote/duo.md
     - Authelia:                         remote/authelia.md
     - Secure Web App Gateway:           remote/swag.md
-    - Heimdall:                         remote/heimdall.md
-    - Homepage:                         remote/homepage.md
-    - Cloudflare Tunnels:               remote/tunnels.md
+#    - Heimdall:                         remote/heimdall.md
+#    - Homepage:                         remote/homepage.md
+#    - Cloudflare Tunnels:               remote/tunnels.md
+
 #  - Help:
 #    - Application Websites:             help/application-websites.md
 #    - Contributing:                     help/contributing.md

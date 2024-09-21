@@ -26,14 +26,14 @@
 
 </br>
 
-## Heading here.
+## SWAG Configuration
+
+The following settings in the `docker-compose.env` file are passed through the SWAG when the container is deployed.
+
+If any of the settings below are changed after SWAG has been deployed in Docker, then the running container must be removed, and SWAG redeployed again so the new settings are picked up.
 
 ``` conf
-# SWAG is configured for Reverse Proxy. Set your Internet gateway to redirect incoming ports 80 and 443
-# to the ports used below (using Docker IP Address), and they will be translated back to 80 and 443 by SWAG.
-# Change these port numbers if you have conflicting services running on the Docker host computer.
-# If ports 80 and 443 are already used, then adjust and redirect incoming ports to 5080 and 5443, or similar.
-
+# NGINX WEB PORTS (Adjustable)
 REVERSE_PROXY_PORT_HTTP=80
 REVERSE_PROXY_PORT_HTTPS=443
 
@@ -56,7 +56,6 @@ CF_ACCOUNT_ID=67a350ae5a9756k803e9c607eec9f4j9
 CF_API_TOKEN=1u90r5BPQ7o5tAzqr1gZalHC9VlaZa45dUG56GIi
 CF_TUNNEL_NAME=
 CF_TUNNEL_TOKEN=
-
 ```
 
 ## Check DNS Configuration

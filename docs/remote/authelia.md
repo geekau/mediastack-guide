@@ -250,13 +250,13 @@ notifier:
 #      maximum_version: TLS1.3
 ```
 
-## Customise Your Settings
+## Customise Your Settings  
 
-Now that you have copied the working configuration above into your own Authelia configuration.yml file, you will need to customise it slightly to your needs:
+Now that you have copied the working configuration above into your own Authelia configuration.yml file, you will need to customise it slightly to your needs:  
 
-1. Replace all domains (example.com), with your own domain name - (there are 7 entries).
+1. Replace all domains (example.com), with your own domain name - (there are 7 entries).  
 
-2. Update DUO Security API connection details.
+2. Update DUO Security API connection details.  
 
 ``` YAML
 duo_api:
@@ -276,6 +276,9 @@ sudo docker run --rm authelia/authelia authelia crypto rand --length 96
  - **session secret**: Encrypts session data stored in cookies, preventing tampering or session hijacking.
  - **encryption_key**: Encrypts sensitive data stored in the database, ensuring it remains safe even if the storage backend is compromised.
 
+!!! Note  
+    Authelia supports placing secrets into separate text files and secure their access permissions. If you prefer to save your secrets in this method, then refer to this guide for more info:  
+    [https://www.authelia.com/integration/deployment/docker/](https://www.authelia.com/integration/deployment/docker/){:target="_blank"}  
 
 4. Update the Authelia Password Policy if needed, refer to: [https://www.authelia.com/configuration/security/password-policy/](https://www.authelia.com/configuration/security/password-policy/){:target="_blank"}
 
