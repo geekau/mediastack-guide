@@ -111,16 +111,18 @@ Now that you have added your domain name into the Cloudflare portal, we want to 
 
 14. You should now have all of the following values from Cloudflare, so you can remotely manage / update your DNS information with MediaStack.
 
+```
  - API_TOKEN=
- - ACCOUNT_ID
+ - ACCOUNT_ID=
  - ZONE_ID=
  - DOMAIN=
+```
 
 !!! tip
 
     Make sure you save the Cloudflare API Token somewhere safe, as Cloudflare will not display this Token again. If you forget the Token, you will need to regenerate a new one and manually update all of your configurations.  
 
-    HELP: If you need additional assistance, you can refer to:  
+    If you need additional assistance, you can refer to Cloudflare guides:  
     
     - Cloudflare API Token guide: [https://developers.cloudflare.com/fundamentals/api/get-started/create-token/](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/){:target="_blank"}.  
     - Cloudflare Account and Zone IDs: [https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids/](https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids/){:target="_blank"}.  
@@ -307,13 +309,13 @@ Open the "Import Bookmarks - MediaStackGuide Applications (External URLs).html" 
 Example:
 
 ```
-            <DT><A HREF="https://jellyfin.YOURDOMAIN/">Jellyfin | Media Player</A>
+  <DT><A HREF="https://jellyfin.YOURDOMAIN/">Jellyfin | Media Player</A>
 ```
 
 Would become:
 
 ```
-            <DT><A HREF="https://jellyfin.example.com/">Jellyfin | Media Player</A>
+  <DT><A HREF="https://jellyfin.example.com/">Jellyfin | Media Player</A>
 ```
 
 Now that you have changed all entries for "YOURDOMAIN", you can import the bookmark file into your favourite web browser.

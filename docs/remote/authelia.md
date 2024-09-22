@@ -127,8 +127,8 @@ server:
   asset_path: /config/assets
   disable_healthcheck: false
   buffers:
-    read: 8192
-    write: 8192
+    read: 4096
+    write: 4096
 
 log:
   level: debug
@@ -183,24 +183,19 @@ password_policy:
   standard:
     enabled: true
     min_length: 14
-    max_length: 128
+    max_length: 96
     require_uppercase: true
     require_lowercase: true
     require_number: true
     require_special: true
-#  zxcvbn:
-#    enabled: true
-#    min_score: 3
 
 access_control:
   default_policy: deny
   rules:
-    - domain:
-      - "auth.example.com"
-      policy: bypass
-    - domain:
-      - "*.example.com"
-      policy: two_factor
+  - domain: auth.example.com
+    policy: bypass
+  - domain: example.com, *.example.com
+    policy: two_factor
 
 session:
   name: authelia_session
@@ -232,11 +227,15 @@ notifier:
   disable_startup_check: false
   filesystem:
     filename: /config/notifications.txt
+
+# NOTE: Filesystem and Filename must be disabled with "#"
+# if you want to enable SMTP below - only one can be active.
+
 #  smtp:
-#    address: "smtp://localhost:587"
+#    address: "smtp://mail.gmail.com:587"
 #    timeout: "5 seconds"
-#    username: "username"
-#    password: "password"
+#    username: "username@gmail.com"
+#    password: "gmailpassword"
 #    sender: "Authelia <admin@example.com>"
 #    identifier: localhost
 #    subject: "[Authelia] {title}"
