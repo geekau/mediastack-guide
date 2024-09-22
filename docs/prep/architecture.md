@@ -138,28 +138,31 @@ By combining these technologies, the setup ensures a secure, scalable, and manag
 
 ``` mermaid  
 graph
-    subgraph DockerNet[<center>Docker Networking - 172.28.10.0/24</center>]
+
+    subgraph DockerNet[<center>Docker Networking</br>172.28.10.0/24</center>]
         Authelia
-        SMTP[SMTP</br>Relay]
+        SMTP[SMTP</br>Server]
         SWAG
         NIC[Docker Host</br>Network Bridge]
         Homepage
         Docker{Docker</br>Applications}
         Apps{Internal Network</br>Access}
     end
+
     subgraph Internet[<center>Internet Zone</center>]
         Remote[ Remote</br>Internet Users ]
-        Tunnel{<center>Cloudflare</br>Tunnel</center>}
+        Proxy{<center>Cloudflare</br>Proxy</center>}
         DUO{<center>DUO Security</br>2FA</center>}
     end
+
     Gateway[Home Gateway]
     Remote <-.->   | Push</br>Notifications             | DUO
     Authelia -.->  | Password</br>Resets                | SMTP
     Homepage ==>   | Remote</br>Access                  | Docker
     Homepage ==>   | Remote</br>Access                  | Apps
     Gateway -.->   | Password</br>Resets                | Remote
-    Tunnel ==>     | Remote Access</br>HTTPS to SWAG    | Gateway
-    Remote ==>     | Remote Access</br>HTTPS to SWAG    | Tunnel
+    Proxy ==>      | Remote Access</br>HTTPS to SWAG    | Gateway
+    Remote ==>     | Remote Access</br>HTTPS to SWAG    | Proxy
     Gateway ==>    | Remote</br>Access                  | NIC
     NIC ==>        | Remote</br>Access                  | SWAG
     Authelia <-.-> | Auth                               | NIC
@@ -177,7 +180,7 @@ graph
     style Remote stroke:green   ,stroke-width:2px
     style Gateway stroke:green  ,stroke-width:2px
     style DUO stroke:green      ,stroke-width:2px
-    style Tunnel stroke:green   ,stroke-width:2px
+    style Proxy stroke:green   ,stroke-width:2px
     style Apps stroke:green     ,stroke-width:2px
     style Docker stroke:green   ,stroke-width:2px
     style NIC stroke:green      ,stroke-width:2px
