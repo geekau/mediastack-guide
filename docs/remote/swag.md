@@ -89,7 +89,6 @@ cp bazarr.subdomain.conf.sample        bazarr.subdomain.conf
 cp ddns-updater.subdomain.conf.sample  ddns-updater.subdomain.conf
 cp filebot.subdomain.conf.sample       filebot.subdomain.conf
 cp flaresolverr.subdomain.conf.sample  flaresolverr.subdomain.conf
-cp gluetun.subdomain.conf.sample       gluetun.subdomain.conf
 cp heimdall.subdomain.conf.sample      heimdall.subdomain.conf
 cp homarr.subdomain.conf.sample        homarr.subdomain.conf
 cp homepage.subdomain.conf.sample      homepage.subdomain.conf
