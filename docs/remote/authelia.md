@@ -123,7 +123,7 @@ Copy and paste the entire "Authelia Configuration" below, into the Authelia `con
 ###############################################################################
 
 server:
-  address: tcp://:9091/
+  address: tcp://:9091/authelia
   asset_path: /config/assets
   disable_healthcheck: false
   buffers:
@@ -206,7 +206,7 @@ session:
   remember_me: 1M
   cookies:
     - domain: example.com
-      authelia_url: https://auth.example.com
+      authelia_url: https://auth.example.com/authelia
       default_redirection_url: https://example.com
       same_site: strict
       inactivity: 5 minutes
