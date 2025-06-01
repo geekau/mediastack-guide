@@ -11,9 +11,9 @@ fi
 # Read the Python version from runtime.txt
 _VERSION_=$(cat runtime.txt)
 
-# Check if the version format is valid (number dot number)
-if [[ ! $_VERSION_ =~ ^[0-9]+\.[0-9]+$ ]]; then
-  echo [$(date +%T)]: "ERROR: Invalid Python version format in runtime.txt. Expected format: number.number (e.g., 3.7)"
+# Check if the version format is valid (number dot number dot number)
+if [[ ! $_VERSION_ =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  echo [$(date +%T)]: "ERROR: Invalid Python version format in runtime.txt. Expected format: number.number (e.g., 3.11.5)"
   exit 1
 fi
 
